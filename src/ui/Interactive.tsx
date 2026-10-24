@@ -159,7 +159,7 @@ export function Interactive({ mode, onExit, onRestart }: { mode: Mode; onExit: (
           )}
           {reveal && (
             <div className={'note ' + (isCorrect(q, a) ? 'good' : 'bad')}>
-              <b>{isCorrect(q, a) ? 'Helyes.' : 'Nem helyes.'}</b> {q.explain}
+              <b>{isCorrect(q, a) ? 'Helyes.' : 'Nem helyes.'}</b> <span className="steps">{q.explain}</span>
               {q.source && <div className="small muted">Forrás: {q.source}</div>}
             </div>
           )}

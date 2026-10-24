@@ -26,11 +26,16 @@ export interface Question {
   points: number
 }
 
+import { BANK_ANYAG } from './bank/anyag'
+import { BANK_TECHNOLOGIA } from './bank/technologia'
+import { BANK_SZAMITAS } from './bank/szamitas'
+import { BANK_BIZTONSAG } from './bank/biztonsag'
+
 const KKK = 'https://nagykunvk.hu/wp-content/uploads/2021/05/Villanyszerelo-2024.08.29.-v4-Villanyszerelo-2024.08.29.-v4.pdf'
 const SZKTV24 = 'https://s3-eu-west-1.amazonaws.com/szakmavilag/osztv-szktv/2024/2024-Villanyszerelo-Megoldas-2023-10-10-javTG-1.pdf'
 const SZKTV25 = 'https://s3-eu-west-1.amazonaws.com/szakmavilag/Villanyszerel%C5%91_Megold%C3%A1s_2025-5934.pdf'
 
-export const QUESTIONS: Question[] = [
+const BASE: Question[] = [
   // ───────────────────────── I. ANYAG- ÉS ALKATRÉSZISMERET ─────────────────────────
   {
     id: 'a-001', topic: 'anyag', kind: 'multi', points: 2,
@@ -1613,3 +1618,5 @@ export const QUESTIONS: Question[] = [
     source: 'MSZ HD 60364-6:2017 6.4.2',
   },
 ]
+
+export const QUESTIONS: Question[] = [...BASE, ...BANK_ANYAG, ...BANK_TECHNOLOGIA, ...BANK_SZAMITAS, ...BANK_BIZTONSAG]

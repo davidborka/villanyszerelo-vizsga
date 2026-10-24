@@ -116,7 +116,7 @@ function Start() {
               <button className="taskcard" onClick={() => openQuiz(mode)}>
                 <span className="num">90'</span>
                 <b>Interaktív vizsga</b>
-                <span className="muted small">40 feladat, 4 témakör (20/20/20/40%), 145 kérdéses bankból.</span>
+                <span className="muted small">40 feladat, 4 témakör (20/20/20/40%), {QUESTIONS.length} kérdéses bankból + generált számolós feladatok.</span>
               </button>
             </div>
           </div>
