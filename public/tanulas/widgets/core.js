@@ -30,9 +30,12 @@
       else if (v !== false && v != null) n.setAttribute(k, v)
     }
     for (const c of kids.flat()) if (c != null && c !== false) n.append(c.nodeType ? c : document.createTextNode(String(c)))
+    if (attrs?.role === 'button' && attrs.onclick && !attrs.onkeydown) n.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); attrs.onclick(e) }
+    })
     return n
   }
-  s.root = (w, hh) => s('svg', { viewBox: `0 0 ${w} ${hh}`, class: 'wsvg', role: 'img' })
+  s.root = (w, hh) => s('svg', { viewBox: `0 0 ${w} ${hh}`, class: 'wsvg', role: 'group', 'data-native': w })
 
   /** Fisher–Yates keverés (új tömb) */
   const shuffle = (a) => { const b = [...a]; for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]] } return b }
@@ -41,27 +44,52 @@
 
   const list = []
   function register(def) { list.push(def) }
+  function updateStat() {
+    const st = document.getElementById('wstat')
+    if (st) st.textContent = `${list.filter((d) => d.kind === 'task' && read().includes(d.id)).length} / ${list.filter((d) => d.kind === 'task').length} mini feladat megoldva`
+  }
 
   function mount(slot, def) {
     const body = h('div', { class: 'wbody' })
-    const fb = h('div', { class: 'wfb', 'aria-live': 'polite' })
+    const fb = h('div', { class: 'wfb', 'aria-live': 'polite', 'aria-atomic': 'true' })
     const badge = h('span', { class: 'wbadge ' + def.kind }, def.kind === 'task' ? 'Mini feladat' : 'Szemléltetés')
     const ok = h('span', { class: 'wok' }, '✓ megoldva')
     const card = h('div', { class: 'widget', id: 'w-' + def.id },
       h('div', { class: 'whead' }, badge, h('b', {}, def.title), ok,
-        h('button', { class: 'wreset', onclick: () => draw() }, '↺ Újra')),
+        h('button', { type: 'button', class: 'wreset', onclick: () => draw() }, '↺ Újra')),
       def.lead ? h('p', { class: 'wlead' }, def.lead) : null, body, fb)
+    let cleanup
     const paintDone = () => card.classList.toggle('solved', read().includes(def.id))
+    const clearOld = (e) => {
+      api.note('')
+      const row = e.target.closest?.('li, .bf-card')
+      if (row) {
+        row.classList.remove('ok', 'no')
+        row.querySelectorAll('select').forEach((sel) => { sel.style.borderColor = '' })
+      }
+    }
+    body.addEventListener('click', clearOld, true)
+    body.addEventListener('input', clearOld, true)
+    body.addEventListener('change', clearOld, true)
     const api = {
       note(msg, cls = '') { fb.className = 'wfb ' + cls; fb.textContent = msg },
       done(good, msg) {
         api.note(msg || (good ? 'Helyes!' : 'Még nem jó – nézd meg újra.'), good ? 'good' : 'bad')
         if (good && !read().includes(def.id)) write([...read(), def.id])
-        paintDone()
+        paintDone(); updateStat()
       },
       reset: () => draw(),
     }
-    function draw() { body.replaceChildren(); api.note(''); def.mount(body, api) }
+    function draw() {
+      if (cleanup) cleanup()
+      body.replaceChildren(); api.note('')
+      cleanup = def.mount(body, api)
+      body.querySelectorAll('svg.wsvg').forEach((svg) => {
+        svg.setAttribute('aria-label', svg.getAttribute('aria-label') || def.title)
+        const wrap = h('div', { class: 'wdiagram', tabindex: 0, role: 'region', 'aria-label': `${def.title} – nagyítható műszaki ábra` })
+        svg.replaceWith(wrap); wrap.append(svg)
+      })
+    }
     slot.replaceChildren(card)
     draw(); paintDone()
   }
@@ -78,9 +106,7 @@
         wall.append(h('h2', { id: k }, mods[k] || k))
         for (const d of list.filter((x) => x.module === k)) { const slot = h('div', { class: 'wslot' }); wall.append(slot); mount(slot, d) }
       }
-      const done = read().filter((id) => by[id]).length
-      const st = document.getElementById('wstat')
-      if (st) st.textContent = `${done} / ${list.filter((d) => d.kind === 'task').length} mini feladat megoldva`
+      updateStat()
     }
   }
 

@@ -8,7 +8,11 @@
   /** véletlen érték a..b között, step lépésközzel */
   const rstep = (a, b, step) => Math.round((a + Math.floor(Math.random() * (Math.round((b - a) / step) + 1)) * step) * 1000) / 1000
   /** magyar tizedesvesszős szám beolvasása */
-  const num = (x) => parseFloat(String(x).replace(/\s/g, '').replace(',', '.'))
+  const num = (x) => {
+    const raw = String(x).replace(/\s/g, '')
+    return /^[+-]?(?:\d+(?:[.,]\d*)?|[.,]\d+)$/.test(raw) ? Number(raw.replace(',', '.')) : NaN
+  }
+  const integer = (x) => /^[+-]?\d+$/.test(String(x).trim()) ? Number(String(x).trim()) : NaN
   const near = (got, want, tol) => Number.isFinite(got) && Math.abs(got - want) <= Math.abs(want) * tol + 1e-9
   const SQ3 = Math.sqrt(3)
   const RHO = 0.0178 // Ω·mm²/m, réz
@@ -31,25 +35,26 @@
     st.id = 'bf-style'
     st.textContent = `
 .bf-ar{display:flex;gap:4px}.wbody .bf-ar button{min-width:36px;min-height:36px;padding:0 6px}
-.wbody button{min-height:36px}
-.bf-card{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;display:flex;flex-direction:column;gap:6px}
+.bf-card{min-width:0;background:var(--bg);border:1px solid var(--line);border-left:3px solid transparent;border-radius:8px;padding:9px 10px;display:flex;flex-direction:column;gap:7px}
 .bf-card.ok{border-color:var(--good)}.bf-card.no{border-color:var(--bad)}
-.bf-why{font-size:13px;color:var(--muted);margin:0}
+.bf-why{font-size:13px;line-height:1.5;color:var(--muted);margin:0;overflow-wrap:anywhere}
 .bf-card.no .bf-why{color:var(--bad)}.bf-card.ok .bf-why{color:var(--good)}
-.bf-sl{display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center}
+.bf-sl{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 10px;align-items:center}
 .bf-sl input{grid-column:1/-1}
-.bf-meter{font-size:18px;min-width:130px;align-self:flex-start}
+.bf-meter{font-size:18px;min-width:0;align-self:flex-start}
 .bf-in{width:96px}
 .bf-fit select{max-width:100%;min-width:0;flex:1 1 200px}
 .bf-card select{max-width:100%;min-width:0}.bf-card .wrow>select:only-of-type{flex:1 1 160px}
-.bf-lab{display:inline-flex;gap:6px;align-items:center}
+.bf-lab{display:inline-flex;min-height:36px;gap:6px;align-items:center;flex-wrap:wrap}
+.bf-cable-row{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px;align-items:center}.bf-cable-row select{width:100%}
 .bf-sym{width:76px;height:76px;padding:4px!important;color:var(--fg)}
 .bf-sym svg{width:100%;height:100%;display:block}
 .wbody button.bf-sel{outline:3px solid var(--acc);outline-offset:1px}
-.wbody button.bf-done{opacity:.45;border-color:var(--good)}
+.wbody button.bf-done{opacity:.55;border-color:var(--good)}
 .bf-ol{margin:0;padding-left:20px;font-size:14px}.bf-ol li{margin:3px 0}
-.bf-pre{white-space:pre-line;font-size:14px;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px 10px;margin:0}
-.wsvg .bf-t{font-size:11px}.wsvg .bf-b{font-weight:700}
+.bf-pre{white-space:pre-line;font-size:14px;line-height:1.5;background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:8px 10px;margin:0;overflow-wrap:anywhere}
+.bf-solution::before{content:'Megoldás';display:block;margin-bottom:4px;font-weight:700;color:var(--acc)}
+.wsvg .bf-t{font-size:13px}.wsvg .bf-b{font-weight:700}
 `
     document.head.append(st)
   }
@@ -59,15 +64,19 @@
     let cur = init === undefined ? null : init
     const row = h('div', { class: 'wrow' + (cls ? ' ' + cls : '') })
     const btns = opts.map((o) => {
-      const b = h('button', { type: 'button', class: o.v === cur ? 'on' : null, onclick: () => { cur = o.v; btns.forEach((x) => x.classList.toggle('on', x === b)); onPick && onPick(o.v) } }, o.t)
+      const b = h('button', { type: 'button', class: o.v === cur ? 'on' : null, 'aria-pressed': o.v === cur, onclick: () => {
+        cur = o.v
+        btns.forEach((x) => { const selected = x === b; x.classList.toggle('on', selected); x.setAttribute('aria-pressed', selected) })
+        if (onPick) onPick(o.v)
+      } }, o.t)
       row.append(b)
       return b
     })
     return { el: row, get: () => cur }
   }
   /** legördülő lista; az első üres elem a „válassz” */
-  function select(opts, ph = 'válassz…') {
-    return h('select', {}, h('option', { value: '' }, ph), ...opts.map((o) => h('option', { value: o.v }, o.t)))
+  function select(opts, ph = 'válassz…', label = ph) {
+    return h('select', { 'aria-label': label }, h('option', { value: '' }, ph), ...opts.map((o) => h('option', { value: o.v }, o.t)))
   }
 
   /** ↑/↓ gombos sorbarendezés. items: helyes sorrendben [{t, why, hint}] */
@@ -81,10 +90,17 @@
         const li = h('li', { class: marks ? (marks[pos] ? 'ok' : 'no') : '' },
           h('b', {}, pos + 1 + '.'), h('span', {}, items[idx].t),
           h('div', { class: 'bf-ar' },
-            h('button', { type: 'button', 'aria-label': 'feljebb', disabled: pos === 0, onclick: () => { [order[pos - 1], order[pos]] = [order[pos], order[pos - 1]]; draw(); why.replaceChildren(); api.note('') } }, '↑'),
-            h('button', { type: 'button', 'aria-label': 'lejjebb', disabled: pos === order.length - 1, onclick: () => { [order[pos + 1], order[pos]] = [order[pos], order[pos + 1]]; draw(); why.replaceChildren(); api.note('') } }, '↓')))
+            h('button', { type: 'button', 'aria-label': `${items[idx].t} feljebb, jelenleg ${pos + 1}.`, disabled: pos === 0, onclick: () => move(pos, -1) }, '↑'),
+            h('button', { type: 'button', 'aria-label': `${items[idx].t} lejjebb, jelenleg ${pos + 1}.`, disabled: pos === order.length - 1, onclick: () => move(pos, 1) }, '↓')))
         return li
       }))
+    }
+    function move(pos, delta) {
+      const idx = order[pos]; [order[pos + delta], order[pos]] = [order[pos], order[pos + delta]]
+      draw(); why.replaceChildren(); api.note(`„${items[idx].t}” új helye: ${pos + delta + 1}.`)
+      const buttons = ul.children[pos + delta].querySelectorAll('button')
+      const button = buttons[delta < 0 ? 0 : 1]
+      ;(button.disabled ? buttons[delta < 0 ? 1 : 0] : button).focus({ preventScroll: true })
     }
     draw()
     const check = h('button', { type: 'button', class: 'primary', onclick: () => {
@@ -116,7 +132,7 @@
       const grid = h('div', { class: 'bf-sl' })
       for (const k of Object.keys(v)) {
         const out = h('b', {}, v[k] + '%')
-        const inp = h('input', { type: 'range', min: 0, max: 100, step: 1, value: v[k], 'aria-label': names[k], oninput: (e) => { v[k] = +e.target.value; out.textContent = v[k] + '%'; upd() } })
+        const inp = h('input', { type: 'range', min: 0, max: 100, step: 1, value: v[k], 'aria-label': names[k], 'aria-valuetext': `${v[k]} százalék`, oninput: (e) => { v[k] = +e.target.value; out.textContent = v[k] + '%'; e.target.setAttribute('aria-valuetext', `${v[k]} százalék`); upd() } })
         grid.append(h('span', {}, names[k]), out, inp)
       }
       const cb = h('label', { class: 'bf-lab' }, h('input', { type: 'checkbox', onchange: (e) => { bad = e.target.checked; upd() } }), 'Hiba az áramütés elleni védelemben (pl. hiányzó PE)')
@@ -128,7 +144,7 @@
         svg.append(s('text', { x: 4, y: y + 15, class: k === 'tot' ? 'bf-b' : '' }, lab))
         svg.append(s('rect', { x: X0, y, width: WD, height: 22, rx: 4, fill: 'var(--bg)', stroke: 'var(--line)' }))
         bars[k] = s('rect', { x: X0, y, width: 0, height: 22, rx: 4, fill: 'var(--acc)' })
-        bars[k + 't'] = s('text', { x: X0 + 6, y: y + 16, class: 'bf-b' }, '')
+        bars[k + 't'] = s('text', { x: X0 + 6, y: y + 16, class: 'bf-b', style: 'paint-order:stroke;stroke:var(--card);stroke-width:3px;stroke-linejoin:round' }, '')
         svg.append(bars[k], bars[k + 't'])
       })
       const tx = (p) => X0 + (WD * p) / 100
@@ -314,7 +330,7 @@
         return { ...c, R, ok: good }
       })
       const rows = list.map((c) => {
-        const meter = h('span', { class: 'wmeter bf-meter' }, '– – – MΩ')
+        const meter = h('span', { class: 'wmeter bf-meter', role: 'status' }, '– – – MΩ')
         const uCh = choice([250, 500, 1000].map((u) => ({ t: u + ' V DC', v: u })), (u) => { meter.textContent = `${typeof c.R === 'string' ? c.R : fmt(c.R, 2)} MΩ  @${u} V` })
         const jCh = choice([{ t: 'Megfelel', v: true }, { t: 'Nem felel meg', v: false }])
         const why = h('p', { class: 'bf-why' })
@@ -380,9 +396,9 @@
       const loads = shuffle([...shuffle(LOADS1).slice(0, rint(3, 4)), pick(LOADS3)])
       const rows = loads.map((L) => {
         const Ib = L.ph === 1 ? L.P / 230 : L.P / (SQ3 * 400)
-        const inS = select([6, 10, 13, 16, 20, 25].map((x) => ({ t: 'B' + x, v: x })), 'In')
-        const poS = select([{ t: '1P', v: 1 }, { t: '3P', v: 3 }], 'pólus')
-        const aS = select([1.5, 2.5, 4, 6].map((x) => ({ t: fmt(x, 1) + ' mm²', v: x })), 'mm²')
+        const inS = select([6, 10, 13, 16, 20, 25].map((x) => ({ t: 'B' + x, v: x })), 'In', `${L.n} – kismegszakító névleges árama`)
+        const poS = select([{ t: '1P', v: 1 }, { t: '3P', v: 3 }], 'pólus', `${L.n} – pólusszám`)
+        const aS = select([1.5, 2.5, 4, 6].map((x) => ({ t: fmt(x, 1) + ' mm²', v: x })), 'mm²', `${L.n} – rézkeresztmetszet`)
         const avk = h('input', { type: 'checkbox' })
         const why = h('p', { class: 'bf-why' })
         const card = h('div', { class: 'bf-card' }, h('b', {}, L.n), h('span', { class: 'wsmall' }, L.ph === 1 ? '230 V, egyfázisú' : '3 × 400 V, háromfázisú'),
@@ -489,7 +505,7 @@
       })
       el.append(h('div', { class: 'wrow' }, h('button', { type: 'button', class: 'primary', onclick: () => {
         const m = []
-        const t = num(iT.value), n = parseInt(iN.value, 10), w = num(iW.value)
+        const t = num(iT.value), n = integer(iN.value), w = num(iW.value)
         if (!(Math.abs(t - total) <= 0.005)) m.push(`A csatorna összesen ${segs.map((g) => fmt(g.len, 2)).join(' + ')} = ${fmt(total, 2)} m.`)
         if (n !== rods) m.push(`A darabok: ${pieces.map((p) => fmt(p, 2)).join('; ')} m – ezek legkevesebb ${rods} db 2 m-es szálból vághatók ki (egy darab nem lehet több szálból, ezért nem elég az összhossz / 2 felfelé kerekítése${Math.ceil(total / 2 - 1e-9) === rods ? ' – itt véletlenül egyezik' : ''}).`)
         if (!(Math.abs(w - waste) <= 0.005)) m.push(`Hulladék = ${rods} · 2 m − ${fmt(total, 2)} m = ${fmt(waste, 2)} m.`)
@@ -569,14 +585,17 @@
         const g = {}
         for (const k of given) g[k] = sig(all[k])
         const [ans, form, subst] = solve(ask, g)
+        let answered = false
         const inp = h('input', { class: 'bf-in', inputmode: 'decimal', 'aria-label': QN[ask] })
-        const sol = h('p', { class: 'bf-pre', style: { display: 'none' } })
+        const sol = h('p', { class: 'bf-pre bf-solution', role: 'status', style: { display: 'none' } })
         const chk = () => {
+          if (answered) return
           const v = num(inp.value)
           if (!Number.isFinite(v)) return api.note('Írj be egy számot.', 'bad')
           if (near(v, ans, 0.02)) {
-            streak++
-            api.done(true, `Helyes: ${form} = ${subst} = ${fmt(ans, 3)} ${UNIT[ask]}. Sorozat: ${streak} jó egymás után.`)
+            answered = true; streak++
+            inp.disabled = true; box.querySelector('.primary').disabled = true
+            api.done(true, `Helyes: ${form} = ${subst} = ${fmt(ans, 3)} ${UNIT[ask]}. Sorozat: ${streak} jó egymás után. Folytasd a „Következő feladat” gombbal.`)
             sol.style.display = 'none'
           } else {
             streak = 0
@@ -608,7 +627,7 @@
       const grid = h('div', { class: 'bf-sl' })
       const sl = (k, lab, min, max, step, f) => {
         const out = h('b', {}, f(v[k]))
-        grid.append(h('span', {}, lab), out, h('input', { type: 'range', min, max, step, value: v[k], 'aria-label': lab, oninput: (e) => { v[k] = +e.target.value; out.textContent = f(v[k]); upd() } }))
+        grid.append(h('span', {}, lab), out, h('input', { type: 'range', min, max, step, value: v[k], 'aria-label': lab, 'aria-valuetext': f(v[k]), oninput: (e) => { v[k] = +e.target.value; out.textContent = f(v[k]); e.target.setAttribute('aria-valuetext', f(v[k])); upd() } }))
       }
       sl('l', 'Vezetékhossz (egy irányban)', 5, 100, 1, (x) => x + ' m')
       sl('I', 'Áram', 1, 32, 1, (x) => x + ' A')
@@ -675,11 +694,11 @@
         const P = pick([1.5, 2.2, 3, 4, 5.5, 7.5]), cos = pick([0.8, 0.82, 0.85]), eta = pick([0.8, 0.84, 0.86, 0.88])
         L = { txt: `Háromfázisú aszinkronmotor, közvetlen indítás: P = ${fmt(P, 1)} kW (leadott), 3 × 400 V, cos φ = ${fmt(cos, 2)}, η = ${fmt(eta, 2)}`, Ib: (P * 1000) / (SQ3 * 400 * cos * eta), motor: true, calc: `Ib = P / (√3 · U · cos φ · η) = ${P * 1000} / (1,732 · 400 · ${fmt(cos, 2)} · ${fmt(eta, 2)})` }
       }
-      const iIb = h('input', { class: 'bf-in', inputmode: 'decimal' })
-      const inS = select(IN_STD.map((x) => ({ t: x + ' A', v: x })), 'In')
-      const chS = select(['B', 'C', 'D'].map((x) => ({ t: x, v: x })), 'jelleg')
-      const aS = select([1.5, 2.5, 4, 6, 10, 16].map((x) => ({ t: fmt(x, 1) + ' mm²', v: x })), 'mm²')
-      const sol = h('p', { class: 'bf-pre', style: { display: 'none' } })
+      const iIb = h('input', { class: 'bf-in', inputmode: 'decimal', 'aria-label': 'Számított üzemi áram amperben' })
+      const inS = select(IN_STD.map((x) => ({ t: x + ' A', v: x })), 'In', 'Kismegszakító névleges árama')
+      const chS = select(['B', 'C', 'D'].map((x) => ({ t: x, v: x })), 'jelleg', 'Kismegszakító jelleggörbéje')
+      const aS = select([1.5, 2.5, 4, 6, 10, 16].map((x) => ({ t: fmt(x, 1) + ' mm²', v: x })), 'mm²', 'Vezeték rézkeresztmetszete')
+      const sol = h('p', { class: 'bf-pre bf-solution', role: 'status', style: { display: 'none' } })
       el.append(h('div', { class: 'bf-card' }, h('b', {}, L.txt),
         h('div', { class: 'wrow' }, h('label', { class: 'bf-lab' }, 'Ib =', iIb, 'A')),
         h('div', { class: 'wrow' }, inS, chS, aS)), sol)
@@ -714,7 +733,7 @@
     { c: 'barna', col: '#8b4513', f: 'L1' }, { c: 'fekete', col: '#222', f: 'L2' }, { c: 'szürke', col: '#888', f: 'L3' },
     { c: 'kék', col: '#1f6fd1', f: 'N' }, { c: 'zöld-sárga', col: '#2e9d3a', f: 'PE' },
   ]
-  const CORE_WHY = { L1: 'A barna az L1 fázis.', L2: 'A fekete az L2 fázis.', L3: 'A szürke az L3 fázis.', N: 'A kék ér a nulla (N) – fázisnak soha nem használható.', PE: 'A zöld-sárga kizárólag védővezető (PE), más célra soha.' }
+  const CORE_WHY = { L1: 'A barna az L1 fázis.', L2: 'A fekete az L2 fázis.', L3: 'A szürke az L3 fázis.', N: 'A kék ér a nulla (N) – fázisnak soha nem használható.', PE: 'A zöld-sárga a védővezető (PE) – más célra nem használható; PEN-vezetőként zöld-sárga, a végein kék jelöléssel.' }
   const CABLES = [
     { d: 'NYM-J 3x2,5', parts: [['NYM', 'PVC szigetelésű és köpenyű szerelővezeték (épületen belül)'], ['-J', 'van zöld-sárga ér'], ['3', 'erek száma'], ['2,5', 'keresztmetszet, mm²']] },
     { d: 'H07V-U 1,5', parts: [['H', 'harmonizált jelölés'], ['07', '450/750 V névleges feszültség'], ['V', 'PVC szigetelés'], ['-U', 'tömör (egyhuzalos) vezető'], ['1,5', 'keresztmetszet, mm²']] },
@@ -739,14 +758,18 @@
       order.forEach((c, i) => {
         const y0 = 118 + i * 16, y1 = 30 + i * 60
         const d = `M96 ${y0} C 170 ${y0}, 170 ${y1}, 250 ${y1}`
-        svg.append(s('path', { d, fill: 'none', stroke: 'var(--muted)', 'stroke-width': 15, 'stroke-linecap': 'round', opacity: 0.6 }))
+        svg.append(s('path', { d, fill: 'none', stroke: 'var(--fg)', 'stroke-width': 17, 'stroke-linecap': 'round', opacity: 0.7 }))
         svg.append(s('path', { d, fill: 'none', stroke: c.col, 'stroke-width': 12, 'stroke-linecap': 'round' }))
         if (c.f === 'PE') svg.append(s('path', { d, fill: 'none', stroke: '#f2d21b', 'stroke-width': 12, 'stroke-dasharray': '14 14' }))
         // csupaszolt vég
         svg.append(s('line', { x1: 250, x2: 280, y1, y2: y1, stroke: '#c87533', 'stroke-width': 5 }))
         const lab = s('text', { x: 340, y: y1 + 7, 'text-anchor': 'middle', style: 'font-size:20px;font-weight:700' }, '?')
         labels.push(lab)
-        const hit = s('g', { class: 'hot', role: 'button', tabindex: 0, 'aria-label': `${i + 1}. ér`, onclick: () => { asg[i] = fn; lab.textContent = fn; lab.style.fill = ''; api.note('') } },
+        const hit = s('g', { class: 'hot', role: 'button', tabindex: 0, 'aria-label': `${i + 1}. ér: ${c.c}, nincs funkció hozzárendelve`, onclick: () => {
+          asg[i] = fn; lab.textContent = fn; lab.style.fill = ''
+          hit.setAttribute('aria-label', `${i + 1}. ér: ${c.c}, hozzárendelve: ${fn}`)
+          api.note(`${c.c} ér: ${fn}.`)
+        } },
           s('rect', { x: 170, y: y1 - 29, width: 230, height: 58, fill: 'transparent' }),
           s('rect', { x: 296, y: y1 - 22, width: 88, height: 44, rx: 6, fill: 'var(--card)', stroke: 'var(--acc)', 'stroke-width': 2 }), lab)
         svg.append(hit)
@@ -756,7 +779,11 @@
       const cab = pick(CABLES)
       const meanings = [...new Set(cab.parts.map((p) => p[1]))]
       const opts = shuffle([...meanings, ...shuffle(CABLE_DECOY.filter((x) => !meanings.includes(x))).slice(0, 2)])
-      const sels = cab.parts.map((p) => { const sl = select(opts.map((o) => ({ t: o, v: o }))); return { p, sl, row: h('div', { class: 'wrow' }, h('b', { style: { minWidth: '48px', fontFamily: 'ui-monospace,monospace' } }, p[0].trim()), sl) } })
+      const sels = cab.parts.map((p) => {
+        const token = p[0].trim()
+        const sl = select(opts.map((o) => ({ t: o, v: o })), 'válassz…', `${cab.d} – „${token}” jelentése`)
+        return { p, sl, row: h('div', { class: 'bf-cable-row' }, h('b', { style: { fontFamily: 'ui-monospace,monospace' } }, token), sl) }
+      })
       const why = h('p', { class: 'bf-why' })
       const cabCard = h('div', { class: 'bf-card' }, h('b', {}, '(b) Mit jelent? ', h('span', { style: { fontFamily: 'ui-monospace,monospace', fontSize: '18px' } }, cab.d)), ...sels.map((x) => x.row), why)
       el.append(cabCard)
@@ -786,7 +813,7 @@
       const Voc = rstep(36, 50, 0.1), beta = pick([-0.26, -0.27, -0.28, -0.29, -0.3, -0.32]), T = pick([-10, -15, -20]), Umax = pick([600, 1000])
       const VT = Voc * (1 + (beta / 100) * (T - 25))
       const N = Math.floor(Umax / VT), Nstc = Math.floor(Umax / Voc)
-      const iV = h('input', { class: 'bf-in', inputmode: 'decimal' }), iN = h('input', { class: 'bf-in', inputmode: 'numeric' })
+      const iV = h('input', { class: 'bf-in', inputmode: 'decimal', 'aria-label': `Üresjárási feszültség ${T} Celsius-fokon, volt` }), iN = h('input', { class: 'bf-in', inputmode: 'numeric', 'aria-label': 'Legnagyobb sorba köthető modulszám' })
       const whyQ = shuffle([
         ['Hidegben nő a cellák (üresjárási) feszültsége – a hőmérsékleti együttható negatív, 25 °C alatt az Uoc nagyobb.', 1],
         ['Hidegben nagyobb a napsugárzás, ezért nő a feszültség.', 0],
@@ -794,13 +821,13 @@
       ])
       const wCh = choice(whyQ.map((q, i) => ({ t: q[0], v: i })), null, 'bf-col')
       wCh.el.style.flexDirection = 'column'; wCh.el.style.alignItems = 'stretch'
-      const sol = h('p', { class: 'bf-pre', style: { display: 'none' } })
+      const sol = h('p', { class: 'bf-pre bf-solution', role: 'status', style: { display: 'none' } })
       el.append(h('div', { class: 'bf-card' },
         h('div', {}, `Modul: Uoc(STC, 25 °C) = `, h('b', {}, fmt(Voc, 1) + ' V'), ', hőmérsékleti együttható: ', h('b', {}, fmt(beta, 2) + ' %/K'), '. Legalacsonyabb cellahőmérséklet: ', h('b', {}, T + ' °C'), '. Inverter max. DC bemenő feszültsége: ', h('b', {}, Umax + ' V'), '.'),
         h('div', { class: 'wrow' }, h('label', { class: 'bf-lab' }, `Uoc(${T} °C) =`, iV, 'V'), h('label', { class: 'bf-lab' }, 'max. modulszám:', iN, 'db')),
         h('b', {}, 'Miért a leghidegebb hőmérséklettel számolunk?'), wCh.el), sol)
       el.append(h('div', { class: 'wrow' }, h('button', { type: 'button', class: 'primary', onclick: () => {
-        const v = num(iV.value), n = parseInt(iN.value, 10), w = wCh.get()
+        const v = num(iV.value), n = integer(iN.value), w = wCh.get()
         const m = []
         if (!near(v, VT, 0.005)) m.push(`Uoc(${T} °C) = ${fmt(Voc, 1)} · (1 + (${fmt(beta, 2)}/100) · (${T} − 25)) = ${fmt(Voc, 1)} · ${fmt(1 + (beta / 100) * (T - 25), 4)} = ${fmt(VT, 2)} V.`)
         if (n !== N) m.push(n === Nstc && Nstc !== N ? `${n} db a 25 °C-os (STC) értékkel jön ki – hidegben ${n} · ${fmt(VT, 2)} = ${fmt(n * VT, 1)} V > ${Umax} V, ez tönkreteheti az invertert.` : `N = ${Umax} / ${fmt(VT, 2)} = ${fmt(Umax / VT, 2)} → lefelé kerekítve ${N} db (felfelé kerekítve túllépnéd ${Umax === 1000 ? 'az' : 'a'} ${Umax} V-ot).`)
@@ -833,8 +860,8 @@
       const pot = { 1: { L: Le, N: 0 }, 2: { L: Le, N: 0 }, 3: { L: Lout, N: 0 }, 4: { L: Ll, N: Nl } }
       const pname = { 1: 'Elosztó (F1 kimenete)', 2: 'Kapcsolódoboz – bejövő fázis', 3: 'Kapcsolódoboz – kapcsolt fázis', 4: 'Lámpa kapcsai' }
       let sel = null, count = 0
-      const log = h('ol', { class: 'bf-ol' })
-      const meter = h('span', { class: 'wmeter bf-meter' }, '– – – V')
+      const log = h('ol', { class: 'bf-ol', 'aria-live': 'polite' })
+      const meter = h('span', { class: 'wmeter bf-meter', role: 'status' }, '– – – V')
       const where = h('b', {}, 'Válassz mérési pontot (a rajzon vagy a gombokkal).')
       const svg = s.root(640, 230)
       const BR = '#8b4513', BL = '#1f6fd1', GN = '#2e9d3a'
@@ -854,18 +881,22 @@
       // lámpa
       svg.append(s('circle', { cx: 580, cy: 125, r: 18, fill: 'var(--card)', stroke: 'var(--fg)', 'stroke-width': 2 }), s('path', { d: 'M567 112 L593 138 M593 112 L567 138', stroke: 'var(--fg)', 'stroke-width': 2 }), s('text', { x: 580, y: 200, 'text-anchor': 'middle', class: 'bf-t' }, 'lámpa E1 (nem világít)'))
       const pts = { 1: [112, 112], 2: [282, 100], 3: [360, 100], 4: [530, 95] }
-      const marks = {}
+      const marks = {}, pointHits = {}
       for (const k of [1, 2, 3, 4]) {
         const [x, y] = pts[k]
         const c = s('circle', { cx: x, cy: y, r: 18, fill: 'var(--acc)', stroke: 'var(--fg)', 'stroke-width': 0 })
         marks[k] = c
-        svg.append(s('g', { class: 'hot', role: 'button', tabindex: 0, 'aria-label': pname[k], onclick: () => pickPt(k) }, c, s('text', { x, y: y + 5, 'text-anchor': 'middle', style: 'fill:#fff;font-weight:700;font-size:15px' }, String(k))))
+        pointHits[k] = s('g', { class: 'hot', role: 'button', tabindex: 0, 'aria-label': pname[k], 'aria-pressed': 'false', onclick: () => pickPt(k) }, c, s('text', { x, y: y + 5, 'text-anchor': 'middle', style: 'fill:#181200;font-weight:700;font-size:16px' }, String(k)))
+        svg.append(pointHits[k])
       }
-      const pBtns = [1, 2, 3, 4].map((k) => h('button', { type: 'button', onclick: () => pickPt(k) }, `${k}. ${pname[k]}`))
+      const pBtns = [1, 2, 3, 4].map((k) => h('button', { type: 'button', 'aria-pressed': 'false', onclick: () => pickPt(k) }, `${k}. ${pname[k]}`))
       function pickPt(k) {
         sel = k; where.textContent = `Mérési pont: ${k}. ${pname[k]}`; meter.textContent = '– – – V'
-        for (const j in marks) marks[j].setAttribute('stroke-width', +j === k ? 4 : 0)
-        pBtns.forEach((b, i) => b.classList.toggle('on', i + 1 === k))
+        for (const j in marks) {
+          marks[j].setAttribute('stroke-width', +j === k ? 4 : 0)
+          pointHits[j].setAttribute('aria-pressed', +j === k)
+        }
+        pBtns.forEach((b, i) => { const selected = i + 1 === k; b.classList.toggle('on', selected); b.setAttribute('aria-pressed', selected) })
       }
       const meas = (a, b) => {
         if (!sel) return api.note('Előbb válassz mérési pontot (1–4) a rajzon.', 'bad')
@@ -877,7 +908,7 @@
         log.append(h('li', {}, `${sel}. ${pname[sel]}: ${a}–${b} = ${shown} V`))
         api.note('')
       }
-      const fSel = select(shuffle(Object.keys(FAULTS)).map((k) => ({ t: FAULTS[k].n, v: k })), 'Mi a hiba?')
+      const fSel = select(shuffle(Object.keys(FAULTS)).map((k) => ({ t: FAULTS[k].n, v: k })), 'Mi a hiba?', 'A mért értékek alapján a hiba helye')
       el.append(svg,
         h('div', { class: 'wrow' }, ...pBtns),
         h('div', { class: 'wrow' }, where),
@@ -888,7 +919,7 @@
           if (!count) return api.note('Előbb mérj! Mérés nélkül csak tippelnél.', 'bad')
           if (fSel.value === fk) api.done(true, `Megtaláltad ${count} mérésből. ${FAULTS[fk].why} Jó logika: haladj a forrástól a fogyasztó felé (1 → 2 → 3 → 4), vagy kezdd középen (3) – 2–3 mérés elég.`)
           else api.done(false, `Nem ez a hiba. „${FAULTS[fSel.value].n}” esetén ezt mérnéd: ${FAULTS[fSel.value].why.split(':')[0]}. Hasonlítsd össze a mért értékeiddel, és mérj ott, ahol a fázis még megvan / már eltűnik.`)
-        } }, 'Ez a hiba')))
+        } }, 'Ellenőrzés')))
     },
   })
 
@@ -941,12 +972,12 @@
       let cur = null, err = 0, done = 0
       const symBtns = {}, nameBtns = {}
       const symRow = h('div', { class: 'wrow' })
-      for (const k of keys) {
+      for (const [i, k] of keys.entries()) {
         const svg = s('svg', { viewBox: '0 0 64 64', role: 'img', 'aria-hidden': 'true' }, symG(k))
-        const b = h('button', { type: 'button', class: 'bf-sym', 'aria-label': 'rajzjel', onclick: () => {
+        const b = h('button', { type: 'button', class: 'bf-sym', 'aria-label': `${i + 1}. rajzjel: ${SYMS[k][1]}`, 'aria-pressed': 'false', onclick: () => {
           if (b.disabled) return
           cur = k
-          for (const x in symBtns) symBtns[x].classList.toggle('bf-sel', x === k)
+          for (const x in symBtns) { const selected = x === k; symBtns[x].classList.toggle('bf-sel', selected); symBtns[x].setAttribute('aria-pressed', selected) }
           api.note('Most kattints a nevére.')
         } }, svg)
         symBtns[k] = b
