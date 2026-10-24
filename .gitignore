@@ -36,3 +36,5 @@ research/.notebook_id
 research/guide/index.html
 research/guide/audio/
 research/guide/img/
+__pycache__/
+research/nlm/public_source_ids

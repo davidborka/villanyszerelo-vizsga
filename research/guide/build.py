@@ -240,6 +240,10 @@ def build():
         .replace("%NMOD%", str(len(MODULES)))
     open(os.path.join(HERE, "index.html"), "w").write(page)
     print("index.html kész:", len(page), "bájt")
+    import sys
+    sys.path.insert(0, SRC)
+    from nlm_page import build as build_nlm
+    print("notebooklm.html:", build_nlm(os.path.join(ROOT, "research", "nlm", "public"), HERE))
 
 
 TOPICS = {1: "vizsga", 2: "kapcsolók", 3: "relé, automata", 4: "elosztó", 5: "mérőhely", 6: "érintésvédelem", 7: "mérések", 8: "5 szabály", 9: "csatorna"}
@@ -273,7 +277,7 @@ button.read.on{background:var(--good);color:#fff}.tools{display:flex;gap:8px;fle
 .pcard{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin:6px 0}dl dt{font-weight:700;margin-top:8px}dl dd{margin:0}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style></head><body>
-<header><b>⚡ Villanyszerelő vizsga – mai terv</b><nav><a href="#home">Áttekintés</a><a href="#terv">Mai terv</a><a href="#modulok">Modulok</a><a href="#elvek">Elvek</a><a href="#videok">Videók</a><a href="#forrasok">Források</a><a href="#fogalmak">Fogalmak</a></nav>
+<header><b>⚡ Villanyszerelő vizsga – mai terv</b><nav><a href="#home">Áttekintés</a><a href="notebooklm.html"><b>NotebookLM: kvíz, kártyák</b></a><a href="#terv">Mai terv</a><a href="#modulok">Modulok</a><a href="#elvek">Elvek</a><a href="#videok">Videók</a><a href="#forrasok">Források</a><a href="#fogalmak">Fogalmak</a></nav>
 <label class="muted"><input type="checkbox" id="practice"> Gyakorló mód</label></header>
 <main>
 <section id="home"><div class="kicker">4 0713 04 07 · Villanyszerelő · Épületvillamosság</div>

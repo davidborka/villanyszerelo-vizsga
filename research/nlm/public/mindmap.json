@@ -1,0 +1,519 @@
+{
+  "name": "Villanyszerelő Vizsga és Ismeretanyag",
+  "children": [
+    {
+      "name": "Vizsga Felépítése és Stratégia",
+      "children": [
+        {
+          "name": "Interaktív Vizsga (30%)",
+          "children": [
+            {
+              "name": "Időtartam: 90 perc"
+            },
+            {
+              "name": "Minimum határ: 40%"
+            },
+            {
+              "name": "Feleletválasztós és számítási feladatok"
+            }
+          ]
+        },
+        {
+          "name": "Projektfeladat (70%)",
+          "children": [
+            {
+              "name": "Időtartam: 300 perc"
+            },
+            {
+              "name": "Minimum határ: 40%"
+            },
+            {
+              "name": "I. Portfólió és védés (20%)"
+            },
+            {
+              "name": "II. Épületvillamossági szerelés (40%)"
+            },
+            {
+              "name": "III. Fogyasztásmérő hely (40%)"
+            }
+          ]
+        },
+        {
+          "name": "Érdemjegyek",
+          "children": [
+            {
+              "name": "0-39%: Elégtelen (1)"
+            },
+            {
+              "name": "40-49%: Elégséges (2)"
+            },
+            {
+              "name": "50-59%: Közepes (3)"
+            },
+            {
+              "name": "60-79%: Jó (4)"
+            },
+            {
+              "name": "80-100%: Jeles (5)"
+            }
+          ]
+        },
+        {
+          "name": "Kiemelt Értékelési Szempontok",
+          "children": [
+            {
+              "name": "Áramütés elleni védelem hibája = Érvénytelen vizsga"
+            },
+            {
+              "name": "VDE szigetelt szerszámok és 2-pólusú feszültségvizsgáló"
+            },
+            {
+              "name": "Rendezett, esztétikus kivitelezés (gérvágás, sorjázás)"
+            },
+            {
+              "name": "Mérés és szabványos jegyzőkönyv"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Villamos Biztonság és Munkavédelem",
+      "children": [
+        {
+          "name": "Feszültségmentesítés 5+1 Lépése (MSZ 1585)",
+          "children": [
+            {
+              "name": "0. Berendezés beazonosítása"
+            },
+            {
+              "name": "1. Teljes leválasztás"
+            },
+            {
+              "name": "2. Visszakapcsolás elleni biztosítás (lakat, tábla)"
+            },
+            {
+              "name": "3. Feszültségmentesség ellenőrzése (2-pólusú vizsgáló!)"
+            },
+            {
+              "name": "4. Földelés és rövidre zárás"
+            },
+            {
+              "name": "5. Szomszédos aktív részek elleni védelem"
+            }
+          ]
+        },
+        {
+          "name": "Hálózati Rendszerek (TN, TT)",
+          "children": [
+            {
+              "name": "TN-C: Egyesített PE és N (PEN)"
+            },
+            {
+              "name": "TN-S: Különválasztott N és PE végig"
+            },
+            {
+              "name": "TN-C-S: Szétválasztott PEN (újraegyesíteni TILOS)"
+            },
+            {
+              "name": "TT: Fogyasztó saját földelővel"
+            }
+          ]
+        },
+        {
+          "name": "Érintésvédelmi Osztályok",
+          "children": [
+            {
+              "name": "I. osztály: Alapszigetelés + PE védővezető"
+            },
+            {
+              "name": "II. osztály: Kettős/megerősített szigetelés (kettős négyzet)"
+            },
+            {
+              "name": "III. osztály: Törpefeszültség (SELV/PELV, ≤50V AC)"
+            }
+          ]
+        },
+        {
+          "name": "Áram-védőkapcsoló (ÁVK / FI-relé)",
+          "children": [
+            {
+              "name": "Működés: Összegző áramváltó (hibaáram érzékelés)"
+            },
+            {
+              "name": "Személyvédelem: IΔn ≤ 30 mA"
+            },
+            {
+              "name": "Kötelező használat: Dugaljak (≤32A), szabadtér, lakás világítás"
+            },
+            {
+              "name": "Típusok: AC (szinuszos), A (lüktető DC), B (sima DC / PV)"
+            },
+            {
+              "name": "Nem helyettesíti az alap- és hibavédelmet"
+            }
+          ]
+        },
+        {
+          "name": "EPH és Földelés",
+          "children": [
+            {
+              "name": "Fő EPH sín: Fémes közművek bekötése (min. 6 mm² Cu)"
+            },
+            {
+              "name": "PEN vezető min. keresztmetszete: 10 mm² Cu / 16 mm² Al"
+            },
+            {
+              "name": "PE-be és PEN-be kapcsolót/biztosítót tenni TILOS"
+            }
+          ]
+        },
+        {
+          "name": "Túlfeszültség- és Villámvédelem",
+          "children": [
+            {
+              "name": "Külső villámvédelem: Felfogó, levezető, földelő"
+            },
+            {
+              "name": "T1 (10/350 µs): Villámáram-levezető (főelosztó)"
+            },
+            {
+              "name": "T2 (8/20 µs): Túlfeszültség-levezető (alelosztó)"
+            },
+            {
+              "name": "T3: Finomvédelem (készülék közelében)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Anyag- és Alkatrészismeret",
+      "children": [
+        {
+          "name": "Vezetékek és Kábelek",
+          "children": [
+            {
+              "name": "H07V-U: Tömör réz egyerű vezeték (csőbe/csatornába)"
+            },
+            {
+              "name": "H07V-K: Hajlékony egyerű (érvéghüvely szükséges)"
+            },
+            {
+              "name": "NYM-J: PVC köpenyes szerelővezeték (falba/vakolat alá)"
+            },
+            {
+              "name": "NYY-J / NAYY-J: Földkábel (PVC, réz / alumínium)"
+            },
+            {
+              "name": "H07RN-F: Gumiszigetelésű hajlékony kábel"
+            },
+            {
+              "name": "H1Z2Z2-K: Solár DC kábel (UV-álló, 1.5kV DC)"
+            }
+          ]
+        },
+        {
+          "name": "Színjelölések (MSZ EN 60445)",
+          "children": [
+            {
+              "name": "Fázis (L1, L2, L3): Barna, Fekete, Szürke"
+            },
+            {
+              "name": "Nulla (N): Kék"
+            },
+            {
+              "name": "Védővezető (PE): Zöld-sárga"
+            },
+            {
+              "name": "PEN: Zöld-sárga, végein kék jelöléssel"
+            }
+          ]
+        },
+        {
+          "name": "Védelmi Készülékek",
+          "children": [
+            {
+              "name": "Kismegszakító: B (3-5 In), C (5-10 In), D (10-20 In)"
+            },
+            {
+              "name": "Zárlati megszakítóképesség: pl. 6000 téglalapban (6 kA)"
+            },
+            {
+              "name": "Olvadóbiztosító gG: Általános vezetékvédelem"
+            },
+            {
+              "name": "Motorvédő kapcsoló: Hőkioldó (túlterhelés) + Mágneses kioldó (zárlat)"
+            }
+          ]
+        },
+        {
+          "name": "IP Védettség (MSZ EN 60529)",
+          "children": [
+            {
+              "name": "1. szám: Szilárd testek / Por (5=porvédett, 6=portömör)"
+            },
+            {
+              "name": "2. szám: Víz (4=fröccsenő víz, 5=vízsugár, 7=merülés)"
+            },
+            {
+              "name": "Fürdőszoba 1. és 2. zóna: Min. IPX4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Szerelési Technológia és Kivitelezés",
+      "children": [
+        {
+          "name": "Kábelcsatornázás és Nyomvonal",
+          "children": [
+            {
+              "name": "Süllyesztett vezetés: Vízszintes és függőleges falélekkel párhuzamosan"
+            },
+            {
+              "name": "Vágás: Finomfogú fűrész + gérvágóláda (45°/90°)"
+            },
+            {
+              "name": "Minden vágott élt sorjázni kell (szigetelésvédelem)"
+            },
+            {
+              "name": "Közvetlen vakolatba egyerű (H07V-U) TILOS, csak csőben"
+            }
+          ]
+        },
+        {
+          "name": "Vezetékezési Alapszabályok",
+          "children": [
+            {
+              "name": "Ajánlott bekötési sorrend: PE → N → L"
+            },
+            {
+              "name": "Csupaszolási hossz: 8–14 mm (kapocs függő)"
+            },
+            {
+              "name": "Alu-Réz kötés: Csak engedélyezett Al/Cu kötőelemmel + paszta"
+            },
+            {
+              "name": "Sodrás + szigetelőszalag használata TILOS"
+            }
+          ]
+        },
+        {
+          "name": "Motorvezérlések",
+          "children": [
+            {
+              "name": "Forgásirányváltás: Két fázis felcserélésével"
+            },
+            {
+              "name": "Reteszelések: Villamos (bontó segédérintkező), nyomógombos, mechanikus"
+            },
+            {
+              "name": "Csillag-Delta indítás: Indítási áram és nyomaték 1/3-ra csökken"
+            },
+            {
+              "name": "K1+KY (csillag) → Időrelé → KY bont → KΔ (delta) behúz"
+            },
+            {
+              "name": "KY és KΔ egyszerre behúzása: Fáziszárlat!"
+            },
+            {
+              "name": "Mágneskapcsoló kapocsjelölések: Tekercs A1-A2, Hőkioldó bontó 95-96"
+            }
+          ]
+        },
+        {
+          "name": "Földkábel Fektetése",
+          "children": [
+            {
+              "name": "Homokágyba fektetés (mechanikai védelem, hőelvezetés)"
+            },
+            {
+              "name": "Figyelmeztető szalag a visszatöltésnél"
+            },
+            {
+              "name": "Útkeresztezésnél védőcső"
+            },
+            {
+              "name": "PVC kábel hidegben rideg (temperálás szükséges)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Világításvezérlések",
+      "children": [
+        {
+          "name": "Kapcsolótípusok",
+          "children": [
+            {
+              "name": "101: Egypólusú kapcsoló (1 lámpakör 1 helyről)"
+            },
+            {
+              "name": "105: Csillárkapcsoló / Sorozatkapcsoló (2 kör 1 helyről)"
+            },
+            {
+              "name": "106: Váltókapcsoló / Alternatív (1 lámpa 2 helyről)"
+            },
+            {
+              "name": "107: Keresztkapcsoló (3 vagy több helyről, 106-osok közé)"
+            },
+            {
+              "name": "Nyomógomb (záró): Impulzusrelé / Lépcsőházi automata"
+            }
+          ]
+        },
+        {
+          "name": "Kötési Szabály",
+          "children": [
+            {
+              "name": "A kapcsoló mindig a FÁZIST bontja"
+            },
+            {
+              "name": "A lámpa a Nullát és PE-t közvetlenül kapja"
+            }
+          ]
+        },
+        {
+          "name": "Váltó - Kereszt - Váltó Bekötés",
+          "children": [
+            {
+              "name": "L → V1 közös (C)"
+            },
+            {
+              "name": "V1 (1,2) → K (1,2) [2 korrespondáló vezető]"
+            },
+            {
+              "name": "K (3,4) → V2 (1,2) [2 korrespondáló vezető]"
+            },
+            {
+              "name": "V2 közös (C) → Lámpa L"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mérés, Ellenőrzés és Jegyzőkönyv",
+      "children": [
+        {
+          "name": "Első Ellenőrzés Sorrendje (MSZ HD 60364-6)",
+          "children": [
+            {
+              "name": "1. Szemrevételezés (feszültségmentesen)"
+            },
+            {
+              "name": "2. Védővezetők / EPH folytonossága (I ≥ 0.2A, R < 1Ω)"
+            },
+            {
+              "name": "3. Szigetelési ellenállás mérése (feszültségmentesen!)"
+            },
+            {
+              "name": "4. Önműködő lekapcsolás (Hurokimpedancia Zs)"
+            },
+            {
+              "name": "5. ÁVK kioldás vizsgálata"
+            },
+            {
+              "name": "6. Működési próbák"
+            }
+          ]
+        },
+        {
+          "name": "Szigetelési Ellenállás Határértékek",
+          "children": [
+            {
+              "name": "230/400 V áramkörök: 500 V DC mérőfeszültség, ≥ 1 MΩ"
+            },
+            {
+              "name": "SELV / PELV áramkörök: 250 V DC mérőfeszültség, ≥ 0.5 MΩ"
+            }
+          ]
+        },
+        {
+          "name": "Lekapcsolási Idők (≤ 32A végáramkör)",
+          "children": [
+            {
+              "name": "TN rendszer (230 V): max. 0.4 s"
+            },
+            {
+              "name": "TT rendszer (230 V): max. 0.2 s"
+            }
+          ]
+        },
+        {
+          "name": "Hálózati Feszültség Tűréshatára (MSZ EN 50160)",
+          "children": [
+            {
+              "name": "230 V ± 10% (207 V – 253 V)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Egyfázisú Fogyasztásmérő Hely (Mérőhely)",
+      "children": [
+        {
+          "name": "Direkt Mérő Kapocsiosztása (1-3-4-6)",
+          "children": [
+            {
+              "name": "1: Méretlen L be"
+            },
+            {
+              "name": "3: Mért L ki"
+            },
+            {
+              "name": "4: N be"
+            },
+            {
+              "name": "6: N ki"
+            }
+          ]
+        },
+        {
+          "name": "Fővezetékek és Keresztmetszetek",
+          "children": [
+            {
+              "name": "Fővezeték 32 A-ig: min. 10 mm² Cu (H07V-K)"
+            },
+            {
+              "name": "Plombálható főkismegszakító a mérő ELŐTT a fázisban"
+            },
+            {
+              "name": "PEN szétválasztása a PE-sínen (mérő előtt)"
+            },
+            {
+              "name": "ÁVK kizárólag a mért oldalon (lakás főelosztóban)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Villamos Számítások Képletei",
+      "children": [
+        {
+          "name": "Egyfázisú teljesítmény: P = U · I · cos φ"
+        },
+        {
+          "name": "Háromfázisú teljesítmény: P = √3 · U · I · cos φ"
+        },
+        {
+          "name": "Vezeték ellenállása: R = ρ · l / A (ρCu = 0.0178 Ω·mm²/m)"
+        },
+        {
+          "name": "Egyfázisú feszültségesés: ΔU = 2 · I · l · ρ / A"
+        },
+        {
+          "name": "Hurokimpedancia korlát: Zs ≤ U0 / Ia (B16: Ia=80A → Zs ≤ 2.88 Ω)"
+        },
+        {
+          "name": "Fogyasztott energia: W = P · t"
+        }
+      ]
+    }
+  ]
+}

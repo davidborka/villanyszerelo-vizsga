@@ -1,0 +1,1105 @@
+{
+  "title": "Electrician Flashcards",
+  "cards": [
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What are the time duration, score weight, and minimum passing threshold for the central interactive exam in the Hungarian electrician qualification?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Duration: 90 minutes. Weight: 30%. Minimum passing score: 40%."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What are the time duration, score weight, and minimum passing threshold for the practical project task in the electrician qualification?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Duration: 300 minutes (includes a 10-minute portfolio defense). Weight: 70%. Minimum passing score: 40%."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "In the practical project exam, what specific installation error leads to an immediate failed (invalid) exam?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Any error made in the execution of the protection against electric shock (áramütés elleni védelem)."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "According to Hungarian regulation 12/2020. Korm. rendelet 290. §, what are the percentage grade boundaries for electrician professional exams?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "0–39%: Unsatisfactory (1)\n40–49%: Sufficient (2)\n50–59%: Average (3)\n60–79%: Good (4)\n80–100%: Excellent (5)"
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What percentage weights do the sectoral basic exam (ágazati alapvizsga) and professional exam carry in the final qualification certificate?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Sectoral basic exam: 20%\nProfessional exam: 80%"
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What are the four content topics and their percentage breakdowns in the central interactive electrician exam?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "1. Material and Component Knowledge: 20%\n2. Technology: 20%\n3. Calculations: 20%\n4. Electrical Safety: 40%"
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What are the structural properties and application limits of an NYM-J 3x1.5 cable?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "3 solid copper conductors of 1.5 mm² with PVC insulation and PVC outer sheath, rated 300/500 V. Contains a green-yellow protective conductor (-J). Suitable for indoor building wiring, but NOT for direct earth/soil burial."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Which power cable designation is rated for 0.6/1 kV and suitable for direct burial in a sand bed in soil?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "NYY-J (e.g., NYY-J 3x2.5)"
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "In harmonized cable designation HD 361, what does the letter 'U' signify at the end (e.g., H07V-U)?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Solid, single-wire rigid conductor."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "In harmonized cable designations, what conductor construction types are represented by 'R', 'K', and 'F'?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "R = Stranded rigid conductor\nK = Fine-wired conductor for fixed installation\nF = Flexible cord/cable"
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What rated voltage ($U_0/U$) corresponds to harmonized designation codes '03', '05', and '07'?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "03 = 300/300 V\n05 = 300/500 V\n07 = 450/750 V"
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What is the structural meaning of the cable code H07RN-F 5G2.5?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Harmonized (H), 450/750 V (07), rubber insulation (R), polychloroprene/neoprene sheath (N), flexible conductor (F), containing 5 conductors of 2.5 mm², including one green-yellow conductor (G)."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What is the difference between '3G1.5' and '3x1.5' in harmonized cable designations?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "'G' indicates that the cable includes a green-yellow protective conductor, whereas 'x' indicates there is no green-yellow conductor."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What do the letters in the CYKY cable designation stand for?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "C = Copper (Cu) conductor\nY = PVC core insulation\nK = Cable\nY = PVC outer sheath"
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "In VDE cable codes, what do the letters 'A' and 'SE' mean in NAYY-J 4x50 SE?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "A = Aluminium conductor\nSE = Sector-shaped single-wire conductor"
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "According to MSZ EN 60445, what are the standardized wire colors for Neutral (N), Protective Earth (PE), and Phase conductors L1, L2, L3?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "N = Blue\nPE = Green-Yellow\nL1 = Brown\nL2 = Black\nL3 = Grey"
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What is the strict rule regarding the usage of green-yellow colored conductors?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "It can ONLY be used as a protective conductor (PE), or as a PEN conductor with blue marking at its ends. It must NEVER be used as a phase or switched phase conductor."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "According to MSZ HD 60364-5-52, what is the minimum allowed copper conductor cross-section for fixed power and lighting circuits?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "$\\ge 1.5\\text{ mm}^2$"
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What does a 'C16' marking on a miniature circuit breaker (MCB) signify?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Type C tripping characteristic ($5\\text{--}10 \\cdot I_n$ short-circuit trip threshold) and a rated nominal current of $16\\text{ A}$."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What does a number '6000' printed inside a rectangle on a circuit breaker indicate?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Nominal short-circuit breaking capacity ($I_{cn}$) of $6000\\text{ A}$ ($6\\text{ kA}$)."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "How do fuse operating classes 'gG' and 'aM' differ in their application?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "gG = General purpose, full-range breaking capacity (used for cable and line protection against overload and short-circuit).\naM = Partial-range breaking capacity (used exclusively for motor short-circuit protection)."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Why is soldering fine-stranded wire ends forbidden in screw terminals, and what tool/method must be used instead?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Solder cold-flows under screw pressure, loosening the connection and causing thermal failure. Fine-stranded wires must be fitted with wire-end ferrules (érvéghüvely) using a crimping tool."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What markings must be present on hand tools certified for working near live electrical parts up to 1000 V AC?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "The double triangle symbol and the marking '1000 V' (MSZ EN 60900 standard)."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Why is a single-pole phase tester screwdriver ('fázisceruza') prohibited for verifying a dead state (feszültségmentesítés)?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "It is unreliable and unsafe. A standardized two-pole voltage tester (MSZ EN 61243-3) must be used across all poles."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "How many corresponding (strap) conductors run between two two-way switches in an alternative (staircase) lighting circuit?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "2 corresponding conductors."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What does an 'E90' fire performance rating indicate for a cable installation?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "The cable system maintains functional electrical integrity for at least 90 minutes during a fire."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "On a residual current device (RCD / ÁVK), what does 'In = 40 A, IΔn = 0.03 A' mean?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "In = 40 A: Continuous nominal load current capacity.\nIΔn = 0.03 A (30 mA): Rated residual operating current for fault protection."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Why must direct physical contact between copper and aluminium conductors be avoided in junction boxes?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Direct contact causes galvanic corrosion and aluminium cold flow, leading to high resistance and thermal hazards. Specially rated Al/Cu connectors with contact paste must be used."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What are the four sequence steps of a Star-Delta ($\n\\text{Y--}\\Delta\n$) motor starting system?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "1. Main contactor (K1) and Star contactor (KY) energize together.\n2. Motor accelerates in star connection while the timer relay counts.\n3. Timer relay opens Star contactor (KY).\n4. Delta contactor (KΔ) energizes, running the motor in delta configuration."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Can a 3-phase induction motor marked 'Δ/Y 400/690 V' be started using Star-Delta switching on a 3x400/230 V supply network?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Yes, because its rated delta winding voltage matches the 400 V line-to-line network voltage."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "By what fraction are line current and starting torque reduced during Star connection compared to direct Delta starting?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Both starting line current and starting torque drop to approximately $\\frac{1}{3}$ (one-third) of their direct Delta values."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "How is the direction of rotation reversed in a three-phase AC induction motor?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "By swapping any two phase supply wires connected to the motor."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "image",
+            "reference": "7e8abb51-b83e-4bee-8b58-33b84b97603c",
+            "alt": "Schematic diagram of a motor reversing control circuit"
+          },
+          {
+            "type": "text",
+            "content": "In this motor reversing control circuit, what specific contacts ensure electrical interlocking between contactors K1 and K2?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "The normally closed (NC) auxiliary contact of K2 is wired in series with K1's coil, and the NC auxiliary contact of K1 is wired in series with K2's coil, preventing both contactors from pulling in simultaneously."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "How is the self-holding (öntartás) contact wired in a contactor control circuit?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "A normally open (NO) auxiliary contact (13–14) of the contactor is connected in parallel with the START (BE) pushbutton."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Which terminals of a thermal overload relay (motor protection) are wired into the contactor coil circuit?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Terminals 95–96 (normally closed / NC contact)."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What standardized terminal designation is used for a contactor's operating coil?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "A1–A2"
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "How are motor terminal posts jumpered on the terminal board for Delta ($\n\\Delta\n$) connection?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "U1 is jumpered to W2, V1 to U2, and W1 to V2 (3 parallel vertical jumpers)."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "How are motor terminal posts jumpered on the terminal board for Star ($\n\\text{Y}\n$) connection?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Terminals U2, V2, and W2 are connected together (1 horizontal jumper forming the neutral star point)."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What happens if Star (KY) and Delta (KΔ) contactors energize at the exact same time?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "A direct phase-to-phase short circuit occurs."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Why is underground power cable bedded in a layer of sand before soil backfilling?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "It provides uniform bedding, prevents mechanical damage from sharp stones, and improves heat dissipation away from the cable."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What precautions must be taken when installing PVC-insulated cables in cold weather?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "PVC becomes brittle and cracks at low temperatures; the cable must be pre-warmed in a heated room or kept above the manufacturer's minimum laying temperature."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "According to installation rules, along what paths must concealed (in-wall) cable chases be routed?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Strictly horizontal and vertical zones parallel to wall edges; diagonal routing is prohibited."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Can single-core insulated wire (e.g., H07V-U) be embedded directly into wall plaster without conduit?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "No. Single-core unsheathed wires must always be enclosed inside protective conduit or trunking."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "According to MSZ HD 60364-5-52, which environmental and installation factors modify a cable's continuous current-carrying capacity?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Ambient temperature, grouping/bundling of multiple circuits, installation method (in insulation, air, or ground), and soil thermal resistivity."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "According to MSZ HD 60364-6, what test voltage and minimum acceptable resistance apply to insulation testing on standard 230/400 V AC installations?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Test voltage: $500\\text{ V DC}$. Minimum acceptable insulation resistance: $\\ge 1\\text{ M}\\Omega$."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What test voltage and minimum insulation resistance apply to SELV and PELV extra-low voltage circuits?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Test voltage: $250\\text{ V DC}$. Minimum acceptable insulation resistance: $\\ge 0.5\\text{ M}\\Omega$."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What is the maximum permissible touch voltage limit ($U_L$) under standard conditions for AC electrical systems?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "$50\\text{ V AC}$ ($120\\text{ V}$ ripple-free DC)."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What are the upper voltage limits defining Extra-Low Voltage (ELV) systems?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "$\\le 50\\text{ V AC}$ and $\\le 120\\text{ V}$ ripple-free DC."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "According to MSZ HD 60364-6, what minimum measuring current must be used when testing the continuity of protective conductors (PE)?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "At least $20\\text{ mA}$."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What protection level is provided by an IP2X rating on an electrical distribution enclosure?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Hazardous live parts are protected against access by fingers (solid objects $\\ge 12.5\\text{ mm}$)."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What protection level is provided by an IP5X rating on an electrical enclosure?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Protected against harmful dust deposits (dust-protected)."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "According to MSZ HD 60364-4-41, what minimum copper PE conductor cross-section is required if the copper phase conductor cross-section is 16 mm²?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "$16\\text{ mm}^2$ (For phase cross-sections $S \\le 16\\text{ mm}^2$, $S_{PE} = S$)."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What single fault in a 3-phase 3x400/230 V network feeding single-phase loads creates the highest hazard of overvoltage and electrical accidents?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Interruption or breakage of the PEN conductor."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What is the formula for calculating single-phase active power ($P$)?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "$P = U \\cdot I \\cdot \\cos\\varphi$"
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What is the formula for three-phase active power ($P$)?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "$P = \\sqrt{3} \\cdot U \\cdot I \\cdot \\cos\\varphi$"
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "What formula gives the single-phase conductor voltage drop ($\\Delta U$) over a line length $l$?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "$\\Delta U = \\frac{2 \\cdot I \\cdot l \\cdot \\rho}{A}$ (accounting for outbound and return paths)."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Four identical solar modules, each with open-circuit voltage $U_{oc} = 40\\text{ V}$ and short-circuit current $I_{sc} = 10\\text{ A}$, are connected in series. What are the total open-circuit voltage and short-circuit current of the string?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "$U_{oc, total} = 4 \\cdot 40\\text{ V} = 160\\text{ V}$\n$I_{sc, total} = 10\\text{ A}$ (series current remains equal to a single module)."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "image",
+            "reference": "e920fdbb-f026-4950-988c-97796456890e",
+            "alt": "Photo of Schrack Tytan II switches installed on a DIN rail labeled Q4 and Q5"
+          },
+          {
+            "type": "text",
+            "content": "What is the exact name of the electrical device shown in this photograph?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Fuse switch-disconnector (Szakaszoló biztosító / Schrack Tytan II)."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "image",
+            "reference": "e0b3e041-dbaf-44be-ac4f-2f64861b0bb6",
+            "alt": "Red 5-pin industrial electrical connector plug"
+          },
+          {
+            "type": "text",
+            "content": "What electrical component is depicted in this photo?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Three-phase 400 V industrial CEE plug ($3\\text{F}+\\text{N}+\\text{PE}$)."
+          }
+        ]
+      }
+    },
+    {
+      "front": {
+        "flashcardContentBlock": [
+          {
+            "type": "image",
+            "reference": "03d308f2-31b8-446b-88a1-5d3cc68b8894",
+            "alt": "Vector diagram showing primary and secondary voltage vectors shifted by 180 degrees"
+          },
+          {
+            "type": "text",
+            "content": "Which transformer connection vector group corresponds to this winding and phasor diagram?"
+          }
+        ]
+      },
+      "back": {
+        "flashcardContentBlock": [
+          {
+            "type": "text",
+            "content": "Yy6 (Star-star connection with a $180^\\circ$ phase shift)."
+          }
+        ]
+      }
+    }
+  ]
+}

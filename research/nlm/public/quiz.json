@@ -1,0 +1,246 @@
+{
+  "title": "Electrical Quiz",
+  "questions": [
+    {
+      "type": "multiple_choice",
+      "question": "Egy TN-C-S hálózat kiépítése során a PEN-vezetőt a lakás főelosztójában választják szét külön védővezetőre (PE) és nullavezetőre (N). Milyen alapvető szabályt kell betartani a szétválasztási pont után, és miért bír ez kiemelt jelentőséggel a szakmai vizsgán?",
+      "answerOptions": [
+        {
+          "text": "A szétválasztás után a PE- és N-vezetőket többszörösen is össze lehet kötni a jobb földelési hatás eléréséért.",
+          "isCorrect": false,
+          "rationale": "A PE- és N-vezető újbóli összekötése megbontja a TN-S szakaszt, és az üzemi áram visszajutását okozza a védővezetőre."
+        },
+        {
+          "text": "A szétválasztási pont után a PE- és N-vezetőt soha többé nem szabad összekötni; az ebben elkövetett hiba a vizsga érvénytelenítését vonja maga után.",
+          "isCorrect": true,
+          "rationale": "A szétválasztás utáni összekötés tilalma szabványi előírás, és az áramütés elleni védelemben elkövetett hiba a vizsgaszabályzat szerint azonnali érvénytelenítést eredményez."
+        },
+        {
+          "text": "A szétválasztott N-vezetőt zöld-sárga színnel, míg a PE-vezetőt kék színnel kell jelölni.",
+          "isCorrect": false,
+          "rationale": "Az MSZ EN 60445 szabvány szerint az N-vezető kék, a PE-vezető pedig kizárólag zöld-sárga színű lehet."
+        },
+        {
+          "text": "A PEN-vezető szétválasztása után az áram-védőkapcsolót (ÁVK) a szétválasztási pont elé, a méretlen oldalra kell beépíteni.",
+          "isCorrect": false,
+          "rationale": "Az ÁVK-t a szétválasztási pont után, a mért oldali hálózaton kell elhelyezni, a PEN-vezetőt nem szabad ÁVK-n átvezetni."
+        }
+      ],
+      "hint": "Gondoljon a PE és N vezetők feladatának szétválására a TN-S szakaszon, valamint a biztonsági hibák következményeire."
+    },
+    {
+      "type": "fill_in_the_blank",
+      "question": "A $230\\text{ V}$-os üzemi feszültségű épületvillamossági áramkörök feszültségmentes állapotban végzett szigetelési ellenállás-mérése során alkalmazott egyenfeszültségű mérőfeszültség értéke $500\\text{ V DC}$, a megengedett legkisebb előírt határérték pedig ___ $\\text{M}\\Omega$.",
+      "bestAnswer": "1",
+      "acceptableAnswers": [
+        "1",
+        "1,0",
+        "1.0"
+      ],
+      "rationale": "Az MSZ HD 60364-6 szabvány szerint a 230 V-os hálózatok szigetelési ellenállásának legalább 1 MΩ-nak kell lennie 500 V DC mérőfeszültség mellett.",
+      "hint": "Emlékezzen az MSZ HD 60364-6 szerinti határértékre a 230 V-os áramkörök feszültségmentes vizsgálatakor."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Egyfázisú direkt fogyasztásmérő (1–3–4–6 kapocs-kiosztású mérő) szakszerű bekötésekor hogyan kapcsolódnak a méretlen és mért fázis-, valamint nullavezetők a mérő kapcsaihoz?",
+      "answerOptions": [
+        {
+          "text": "1: méretlen fázis be, 3: mért fázis ki, 4: nulla be, 6: nulla ki",
+          "isCorrect": true,
+          "rationale": "A szabványos egyfázisú direkt mérőbekötésnél az 1-es kapocsra érkezik a méretlen fázis, a 3-asról távozik a mért fázis, míg a 4-es és 6-os kapocs a nullavezető be- és kimenete."
+        },
+        {
+          "text": "1: mért fázis ki, 3: méretlen fázis be, 4: nulla ki, 6: nulla be",
+          "isCorrect": false,
+          "rationale": "A felcserélt fázisbe- és kimenet (1 és 3 felcserélése) hibás mérőbekötést jelent, ami fordított áramirányt vagy mérési hibát eredményez."
+        },
+        {
+          "text": "1: méretlen fázis be, 3: nulla be, 4: mért fázis ki, 6: nulla ki",
+          "isCorrect": false,
+          "rationale": "A fázis- és nullavezetők feszültség alatt lévő kapcsainak felcserélése zárlatot okozhat a mérő belső tekercsein."
+        },
+        {
+          "text": "1: PE-vezető be, 3: méretlen fázis be, 4: mért fázis ki, 6: N-vezető ki",
+          "isCorrect": false,
+          "rationale": "A fogyasztásmérőbe védővezetőt (PE) nem kötünk be; az 1-es kapocsnak a méretlen fázist kell fogadnia."
+        }
+      ],
+      "hint": "Kövesse a fázis be- és kimenet, valamint a nulla be- és kimenet szabványos számozási sorrendjét."
+    },
+    {
+      "type": "multiple_select",
+      "question": "A feszültségmentesítés öt szabálya és a munkavédelmi előírások alapján mely állítások igazak a feszültségmentes állapot szabványos ellenőrzésére?",
+      "answerOptions": [
+        {
+          "text": "A feszültségmentességet minden póluson kétpólusú feszültségkémlelővel (MSZ EN 61243-3) kell ellenőrizni.",
+          "isCorrect": true,
+          "rationale": "A szabványos feszültségmentesítés ellenőrzéséhez kizárólag a megbízható mérési eredményt adó kétpólusú feszültségkémlelő használható."
+        },
+        {
+          "text": "A feszültségkémlelő működőképességét a használat előtt és a használat után is ellenőrizni kell egy ismert feszültségű helyen vagy beépített tesztgombbal.",
+          "isCorrect": true,
+          "rationale": "A feszültségkémlelő használat előtti és utáni tesztelése garantálja,hogy a műszer nem hibásodott meg a mérés során, megelőzve a tévesen biztonságosnak vélt állapotot."
+        },
+        {
+          "text": "Egypólusú fáziskereső csavarhúzó („fázisceruza”) teljesen elfogadható és szabványos eszköz a feszültségmentesítés igazolására.",
+          "isCorrect": false,
+          "rationale": "Az egypólusú fázisceruza nem számít megbízható és szabványos feszültségvizsgáló eszköznek, feszültségmentesítésre nem használható."
+        },
+        {
+          "text": "Érintés nélküli feszültségjelző tollal végzett ellenőrzés elegendő a feszültségmentesítési jegyzőkönyv aláírásához.",
+          "isCorrect": false,
+          "rationale": "Az érintés nélküli teszterek kapacitív szórt feszültségektől téves jelzést adhatnak, ezért feszültségmentesítés igazolására alkalmatlanok."
+        }
+      ],
+      "hint": "Gondoljon arra, hogy milyen műszer ad megbízható eredményt és milyen ellenőrzési lépés előzi meg, illetve követi a mérést.",
+      "hasAllOfTheAbove": false,
+      "hasNoneOfTheAbove": false
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Határozza meg a várható fázis-nulla zárlati áram ($I_z$) értékét abban a $3 \\times 400/230\\text{ V}$-os hálózatban, ahol a táplálást egy $150\\text{ m}$ hosszú $\\text{NYY-J } 3 \\times 95/50\\text{ mm}^2$ kábel biztosítja, ha a vezető fajlagos ellenállása $\\rho = 0{,}0175\\text{ }\\Omega\\cdot\\text{mm}^2/\\text{m}$!",
+      "answerOptions": [
+        {
+          "text": "$2870\\text{ A}$",
+          "isCorrect": true,
+          "rationale": "A fázis- és PEN-vezető eredő ellenállása $R = \\rho \\cdot \\left( \\frac{l}{A_L} + \\frac{l}{A_{PEN}} \\right) = 0{,}0175 \\cdot \\left( \\frac{150}{95} + \\frac{150}{50} \\right) = 0{,}08013\\text{ }\\Omega$, így $I_z = \\frac{U_0}{R} = \\frac{230}{0{,}08013} \\approx 2870\\text{ A}$."
+        },
+        {
+          "text": "$4161\\text{ A}$",
+          "isCorrect": false,
+          "rationale": "Ez az érték akkor adódna, ha a vonali feszültséggel ($400\\text{ V}$) számolnánk a fázisfeszültség ($230\\text{ V}$) helyett."
+        },
+        {
+          "text": "$4992\\text{ A}$",
+          "isCorrect": false,
+          "rationale": "Ez a hibás eredmény a fázis- és PEN-vezetők ellenállásának helytelen soros/párhuzamos összegzéséből származik."
+        },
+        {
+          "text": "$7238\\text{ A}$",
+          "isCorrect": false,
+          "rationale": "Ez az eredmény figyelmen kívül hagyja a csökkentett keresztmetszetű PEN-vezető ($50\\text{ mm}^2$) plusz ellenállását."
+        }
+      ],
+      "hint": "Kiszámításkor adja össze a fázisvezető ($95\\text{ mm}^2$) és a PEN-vezető ($50\\text{ mm}^2$) oda-vissza úti ellenállását a fázisfeszültséghez ($230\\text{ V}$)."
+    },
+    {
+      "type": "short_answer",
+      "question": "Három különböző helyről szeretnénk kapcsolni egy helyiség világítását. Írja le, milyen típusú kapcsolókra és hány darab összekötő (korrespondáló) vezetőre van szükség a kapcsolók közötti nyomvonalakban, valamint hová csatlakozik a fázisvezető és a kapcsolt fázis!",
+      "grading": {
+        "modelAnswer": "A három helyről történő kapcsoláshoz 2 db váltókapcsoló (106-os) és köztük 1 db keresztkapcsoló (107-es) szükséges. A két váltókapcsoló és a keresztkapcsoló között szakaszonként 2-2 (összesen 4) korrespondáló vezető fut. A betápláló fázisvezető az első váltókapcsoló közös (C) kapcsára érkezik, míg a második váltókapcsoló közös kapcsáról indul a kapcsolt fázis a lámpához.",
+        "rationale": "A háromhelyes világításvezérlés két szélső váltókapcsolóból és a köztük lévő keresztkapcsolóból áll, ahol a korrespondáló szálak továbbítják az átkapcsolási jelet a két szélső közös pont között.",
+        "requiredAttributes": [
+          "Megemlíti a 2 db váltókapcsoló és 1 db keresztkapcsoló alkalmazását.",
+          "Leírja, hogy a fázis az egyik váltókapcsoló közös pontjára érkezik, a kapcsolt fázis pedig a másik váltókapcsoló közös pontjáról megy a lámpához.",
+          "Megadja a kapcsolók közötti korrespondáló vezetők számát (szakaszonként 2-2 / összesen 4 összekötő szál)."
+        ],
+        "errors": {
+          "misconceptions": [
+            "Azt állítani, hogy a keresztkapcsoló közvetlenül a lámpára táplál rá.",
+            "Azt hinni, hogy 3 db váltókapcsoló elegendő a kapcsolás megvalósításához."
+          ],
+          "bluffs": [
+            "Általánosságban beszélni a világításról anélkül, hogy megnevezné a pontos kapcsolótípusokat és a fázis útját."
+          ]
+        }
+      },
+      "hint": "Gondoljon a váltó-kereszt-váltó kapcsolási láncra és a kapcsolt fázis kiindulási pontjára."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Csillag-delta indítású háromfázisú aszinkronmotor mágneskapcsolós vezérlőáramkörében mi a szerepe a csillag (KY) és delta (KΔ) mágneskapcsolók közötti villamos reteszelésnek?",
+      "answerOptions": [
+        {
+          "text": "Megakadályozza, hogy a csillag és delta mágneskapcsoló egyszerre húzzon be, megelőzve a fázisok közötti zárlatot.",
+          "isCorrect": true,
+          "rationale": "A csillag- és delta-mágneskapcsolók egyidejű zárása közvetlenül összekötné a fázisvezetőket, ami fáziszárlatot okozna, ezért kötelező a bontó segédérintkezőkkel megvalósított villamos reteszelés."
+        },
+        {
+          "text": "Biztosítja a motor forgásirányának automatikus megfordítását az indítási folyamat végén.",
+          "isCorrect": false,
+          "rationale": "A forgásirányváltás két fázis felcserélésével történik külön mágneskapcsolókkal, nem a csillag-delta átkapcsolás feladata."
+        },
+        {
+          "text": "Lekapcsolja a főáramköri kismegszakítót túlterhelés esetén.",
+          "isCorrect": false,
+          "rationale": "A túlterhelés-védelmet a motorvédő relé (hőkioldó) látja el, nem a reteszelő segédérintkező."
+        },
+        {
+          "text": "Késlelteti a motor indítását a hálózati feszültség ingadozása esetén.",
+          "isCorrect": false,
+          "rationale": "A csillagból deltába való átkapcsolás időzítését az időrelé végzi, a reteszelés pedig a zárlat elleni védelem eszköze."
+        }
+      ],
+      "hint": "Gondolja végig, mi történne a fázisokkal, ha a csillagpontot képző és a fázisokat kapcsoló kontaktusok egyszerre zárnának."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Az MSZ HD 60364-6 szabvány szerint milyen sorrendben kell elvégezni egy új lakóépület villamos berendezésének első ellenőrzését?",
+      "answerOptions": [
+        {
+          "text": "1. Szemrevételezés → 2. Vezetők folytonossága → 3. Szigetelési ellenállás mérése → 4. Önműködő lekapcsolás ellenőrzése (hurokimpedancia) → 5. ÁVK kioldás vizsgálata → 6. Működési próbák",
+          "isCorrect": true,
+          "rationale": "A szerelői ellenőrzést mindig feszültségmentes állapotban végzett szemrevételezéssel kell kezdeni, ezt követik a feszültségmentes mérések (folytonosság, szigetelés), és csak ezután jöhetnek a feszültség alatti mérések és próbaüzemek."
+        },
+        {
+          "text": "1. Feszültség alá helyezés → 2. Működési próbák → 3. Szemrevételezés → 4. Szigetelési ellenállás mérése → 5. Hurokimpedancia mérése",
+          "isCorrect": false,
+          "rationale": "A feszültség alá helyezést megelőzően kötelező a feszültségmentes szemrevételezés és a biztonsági mérések (PE folytonosság, szigetelés) elvégzése."
+        },
+        {
+          "text": "1. Szigetelési ellenállás mérése feszültség alatt → 2. Szemrevételezés → 3. ÁVK kioldási idő mérése → 4. Vezetők folytonossága",
+          "isCorrect": false,
+          "rationale": "Szigetelési ellenállást feszültség alatt mérni tilos és életveszélyes, továbbá a mérés károsíthatja a műszert."
+        },
+        {
+          "text": "1. Hurokimpedancia mérése → 2. ÁVK próbagomb ellenőrzése → 3. Szemrevételezés → 4. Folytonosság mérése",
+          "isCorrect": false,
+          "rationale": "A hurokimpedancia-mérés feszültség alatti mérés, melyet nem szabad megelőznie a feszültségmentes ellenőrzéseknek."
+        }
+      ],
+      "hint": "A feszültségmentes vizsgálatoknak (szemrevételezés, folytonosság, szigetelés) mindig meg kell előzniük a feszültség alatti vizsgálatokat."
+    },
+    {
+      "type": "fill_in_the_blank",
+      "question": "A $0{,}6/1\\text{ kV}$-os névleges feszültségű, közvetlenül földbe (homokágyba) fektethető, PVC érszigetelésű és PVC köpenyű, zöld-sárga védővezetőt is tartalmazó rézvezetőjű földkábel szabványos VDE jelölése az ___ .",
+      "bestAnswer": "NYY-J",
+      "acceptableAnswers": [
+        "NYY-J",
+        "NYY-J 3x2,5",
+        "NYY-J 4x16",
+        "NYY-J 5G2,5"
+      ],
+      "rationale": "Az NYY jelölésű kábelek (N=szabványos, Y=PVC szigetelés, Y=PVC köpeny) fektethetők földbe, míg a -J toldalék a zöld-sárga védővezető jelenlétét jelzi.",
+      "hint": "Emlékezzen a földkábelek VDE betűjelzésére (N=normál, Y=PVC), és a zöld-sárga éret jelölő toldalékra."
+    },
+    {
+      "type": "multiple_select",
+      "question": "A projektfeladat értékelési szabályzata alapján mely szerelési és bekötési hibák vonják maguk után a gyakorlati vizsga azonnali ÉRVÉNYTELENÍTÉSÉT?",
+      "answerOptions": [
+        {
+          "text": "A védővezető (PE) hiánya vagy be nem kötése egy lámpatestnél vagy dugaszolóaljzatnál.",
+          "isCorrect": true,
+          "rationale": "A PE-vezető hiánya közvetlen áramütési veszélyt jelent, így az áramütés elleni védelem hibájaként a vizsga azonnali érvénytelenítését vonja maga után."
+        },
+        {
+          "text": "A villamos kapcsoló beépítése a nullavezetőbe (N) a fázisvezető (L) helyett.",
+          "isCorrect": true,
+          "rationale": "Ha a kapcsoló a nullavezetőt bontja, a fogyasztó lekapcsolt állapotban is feszültség alatt marad, ami kritikus biztonsági hiba."
+        },
+        {
+          "text": "Az áram-védőkapcsoló (ÁVK) megkerülése vagy helytelen bekötése, ahol a nulla az ÁVK előtt van közösítve.",
+          "isCorrect": true,
+          "rationale": "Az ÁVK hibás bekötése vagy megkerülése működésképtelenné teszi a kiegészítő védelmet, ami az áramütés elleni védelem súlyos hibája."
+        },
+        {
+          "text": "A műanyag vezetékcsatorna vágási élének sorjázása csiszolópapírral.",
+          "isCorrect": false,
+          "rationale": "A csatorna éleinek sorjázása előírt technológiai lépés a vezetékek szigetelésének védelme érdekében, nem minősül hibának."
+        }
+      ],
+      "hint": "Gondoljon azokra a hibákra, amelyek közvetlenül veszélyeztetik a felhasználó életét és hibavédelmi szempontból megengedhetetlenek.",
+      "hasAllOfTheAbove": false,
+      "hasNoneOfTheAbove": false
+    }
+  ]
+}
