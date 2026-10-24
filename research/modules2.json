@@ -1,0 +1,26 @@
+[
+ {
+  "key": "m11-alapszamitasok",
+  "focus": "A 11. modul: villamos alapszámítások – Ohm-törvény, soros és párhuzamos ellenállás, teljesítmény és energia, vezeték ellenállása, váltakozó áram, cos φ és a teljesítményháromszög, háromfázisú csillag és delta, kidolgozott példákkal."
+ },
+ {
+  "key": "m12-vezetekmeretezes-vedelem",
+  "focus": "A 12. modul: vezetékméretezés és túláramvédelem – Ib ≤ In ≤ Iz, terhelhetőség, B, C, D karakterisztika, olvadóbiztosító, szelektivitás, feszültségesés egy- és háromfázisban, keresztmetszet-választás lépései, PE keresztmetszet."
+ },
+ {
+  "key": "m13-motorok-vezerles",
+  "focus": "A 13. modul: aszinkronmotor, szinkron fordulatszám és szlip, adattábla és motoráram, mágneskapcsoló öntartása, forgásirányváltás reteszeléssel, csillag–delta indítás menete."
+ },
+ {
+  "key": "m14-kabelek-szereles-kulonleges-helyek",
+  "focus": "A 14. modul: kábelek és vezetékek jelölése, szerelési módok, kötéstechnika és Cu/Al átmenet, fürdőszoba zónái, IP-kód, érintésvédelmi osztályok, építési terület ideiglenes ellátása."
+ },
+ {
+  "key": "m15-tulfeszultseg-pv-transzformator",
+  "focus": "A 15. modul: villám- és túlfeszültség-védelem, SPD fokozatok, fotovoltaikus rendszerek biztonsága, transzformátor áttétel, áram- és feszültségváltó biztonsági szabályai, EV-töltő alapok."
+ },
+ {
+  "key": "m16-dokumentacio-anyagjegyzek-hibakereses",
+  "focus": "A 16. modul: villamos dokumentáció fajtái, anyagjegyzék és mennyiségkiírás készítése rajzból, hibakeresés módszere és tipikus hibák, átadás-átvétel."
+ }
+]

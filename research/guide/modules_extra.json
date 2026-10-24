@@ -1,0 +1,278 @@
+[
+  {
+    "key": "m11-alapszamitasok",
+    "title": "Villamos alapismeretek és alapszámítások",
+    "min": 20,
+    "lead": "Ohm-törvény, P = U·I, W = P·t, R = ρ·l/A, S/P/Q háromszög és háromfázisban P = √3·U·I·cos φ.",
+    "principles": [
+      [
+        "Mértékegység előbb, képlet utána",
+        "A számolási feladatok többsége az Ohm-törvényre, a P = U·I-re és a W = P·t-re épül. A hibák nagy része nem a képletből, hanem az átváltásból jön: a kW-ot W-ra, a percet és a másodpercet órára kell váltani, mielőtt behelyettesítesz. A vezeték ellenállását R = ρ·l/A adja, egyfázisú körben oda-vissza úttal (2·l). A végén mindig nézd meg, reális-e az eredmény: a párhuzamos eredő nem lehet nagyobb a legkisebb ágnál.",
+        "Az interaktív vizsga generált számolási feladatainál írd fel külön sorba az adatokat egységgel, és csak utána számolj; a hibás válasznál nézd meg, melyik átváltás maradt ki.",
+        "1000-szeres eltérés a W–kW vagy a perc–óra keverése miatt.",
+        "Villamos alapismeretek"
+      ],
+      [
+        "Teljesítményháromszög és háromfázis",
+        "Váltakozó áramon a látszólagos teljesítmény S = U·I (VA), ebből a hatásos P = S·cos φ (W), a meddő Q = S·sin φ (var), és S² = P² + Q². Háromfázisban a vonali értékekkel P = √3·U·I·cos φ, a vonali feszültség a fázisfeszültség √3-szorosa, deltában a vonali áram a fázisáram √3-szorosa. A fázisjavító kondenzátor a meddőt helyben adja, így az áram csökken, a hatásos teljesítmény nem változik.",
+        "Oldd meg a gyakorló háromfázisú teljesítmény-feladatokat úgy, hogy előbb S-t számolod, utána P-t és Q-t; ellenőrizd, hogy S² = P² + Q² kijön-e.",
+        "A √3 kihagyása, vagy Q = S − P számolása.",
+        "Villamos alapismeretek – váltakozó áramú hálózatok"
+      ]
+    ],
+    "checks": [
+      [
+        "Mekkora az árama egy 230 V-os, 2000 W-os vízforralónak?",
+        "I = 2000/230 ≈ 8,70 A."
+      ],
+      [
+        "Mi a meddő teljesítmény mértékegysége?",
+        "var (voltamper reaktív)."
+      ],
+      [
+        "Mekkora P, ha 400 V, 20 A, cos φ = 0,85 háromfázisban?",
+        "P = 1,732·400·20·0,85 ≈ 11,8 kW."
+      ]
+    ],
+    "cards": [
+      [
+        "ρ réz / alumínium",
+        "0,0178 / 0,0286 Ω·mm²/m"
+      ],
+      [
+        "Uv és Uf kapcsolata",
+        "Uv = √3 · Uf (400 ≈ 1,732 · 230)"
+      ]
+    ]
+  },
+  {
+    "key": "m12-vezetekmeretezes-vedelem",
+    "title": "Vezetékméretezés és túláramvédelem",
+    "min": 20,
+    "lead": "Ib ≤ In ≤ Iz, B/C/D karakterisztika, gG/aM, szelektivitás, feszültségesés és PE-keresztmetszet.",
+    "principles": [
+      [
+        "A védelem a vezetéket védi",
+        "A kismegszakító névleges árama legyen legalább az üzemi áram, de legfeljebb a vezeték terhelhetősége: Ib ≤ In ≤ Iz. A terhelhetőség a szerelési módtól, a környezeti hőmérséklettől és a csoportosítástól függ, ezért a csökkentő tényezőkkel együtt kell nézni. A karakterisztika (B, C, D) a zárlati kioldás küszöbét adja meg, és ettől függ a megengedett hurokimpedancia is. Lakásban a szokásos pár 1,5 mm² – B10 és 2,5 mm² – B16.",
+        "Az elosztó összeállításánál minden áramkörhöz írd fel az Ib–In–Iz hármast, mielőtt kiválasztod a kismegszakítót; a generált méretezési feladatoknál ugyanígy haladj.",
+        "C32 kismegszakító 2,5 mm²-es dugaljkörön, amely túlterhelésnél nem védi a vezetéket.",
+        "MSZ HD 60364-4-43; MSZ HD 60364-5-52"
+      ],
+      [
+        "Feszültségesés és felfelé kerekítés",
+        "Egyfázisban ΔU = 2·I·l·ρ/A, háromfázisú szimmetrikus terhelésnél ΔU = √3·I·l·ρ·cos φ/A (a reaktanciát elhanyagolva). A megengedett esésből visszaszámolt keresztmetszetet mindig a következő szabványos méretre kerekítjük felfelé. A végleges keresztmetszet a terhelhetőségből, a feszültségesésből és az érintésvédelemből kiadódó legnagyobb érték. A PE keresztmetszete 16 mm²-ig a fázisvezetővel azonos.",
+        "A generált feszültségesés-feladatoknál előbb döntsd el, egy- vagy háromfázisú-e a kör, és csak utána válaszd a képletet.",
+        "3,1 mm²-es számított értékre 2,5 mm² választása, vagy a 2-es szorzó elhagyása.",
+        "MSZ HD 60364-5-52 (feszültségesés); MSZ HD 60364-5-54"
+      ]
+    ],
+    "checks": [
+      [
+        "Mikor old ki biztosan azonnal egy B16-os kismegszakító?",
+        "5·In = 80 A felett (a mágneses tartomány felső határa)."
+      ],
+      [
+        "Mekkora PE kell 25 mm²-es fázisvezetőhöz?",
+        "16 mm² (16 < S ≤ 35 mm² között)."
+      ],
+      [
+        "Mire való az aM betét?",
+        "Csak zárlatvédelemre, motorágban, a túlterhelés ellen hőrelé véd."
+      ]
+    ],
+    "cards": [
+      [
+        "B / C / D mágneses kioldás",
+        "3–5 / 5–10 / 10–20 · In"
+      ],
+      [
+        "Feszültségesés 1f",
+        "ΔU = 2 · I · l · ρ / A"
+      ]
+    ]
+  },
+  {
+    "key": "m13-motorok-vezerles",
+    "title": "Motorok és motorvezérlés",
+    "min": 20,
+    "lead": "n0 = 60·f/p, szlip, adattábla, I = P2/(√3·U·cos φ·η), öntartás, irányváltás reteszeléssel, csillag–delta.",
+    "principles": [
+      [
+        "Adattábla és motoráram",
+        "Az adattáblán a teljesítmény a tengelyen leadott P2, ezért a felvett teljesítmény P1 = P2/η, az áram I = P2/(√3·U·cos φ·η). A Δ/Y 400/690 V jelölésű motor a 3 × 400 V-os hálózaton deltában üzemel, és csillag–delta indítással indítható; a 230/400 V-os csillagban megy. A szinkron fordulatszám n0 = 60·f/p, a szlip s = (n0 − n)/n0, és az adattábla fordulatszámához mindig a közvetlenül felette lévő szinkron értéket választod.",
+        "A generált motoráram-feladatoknál húzd alá az adattábla-adatokból a P2-t, η-t és cos φ-t, és ellenőrizd, hogy mind a három benne van-e a nevezőben.",
+        "A hatásfok kihagyása miatt alulméretezett motorvédelem.",
+        "Villamos gépek alapjai"
+      ],
+      [
+        "Öntartás és reteszelés",
+        "Az öntartásnál a START nyomógombbal párhuzamosan a mágneskapcsoló saját segédzárója (13-14) van, a STOP bontó és a hőrelé 95-96 érintkezője sorosan. Irányváltásnál két fázist cserélünk, és minden tekercs elé a másik mágneskapcsoló bontó segédérintkezője kerül (villamos reteszelés), mellé mechanikus retesz. Csillag–deltánál a csillag és a delta kapcsoló soha nem lehet egyszerre behúzva, mert az zárlat. Az indítóáram és a nyomaték csillagban harmadára csökken.",
+        "A rajzgyakorlóban a motorvezérlés-kiegészítő feladatnál először a soros elemeket (hőrelé, STOP) rajzold be, utána a párhuzamos öntartást, végül a reteszelő bontókat.",
+        "Reteszelés nélküli irányváltó, amely egyszerre két kapcsolót behúzva fázisok közti zárlatot okoz.",
+        "Villamos vezérlések – mágneskapcsolós motorvezérlés"
+      ]
+    ],
+    "checks": [
+      [
+        "Mekkora egy p = 2 póluspárú motor szinkron fordulatszáma 50 Hz-en?",
+        "1500 1/min."
+      ],
+      [
+        "Hogyan kötöd az öntartó érintkezőt?",
+        "A mágneskapcsoló segédzáróját a START gombbal párhuzamosan."
+      ],
+      [
+        "Miért 1/3 az indítóáram csillagban?",
+        "A tekercs √3-ad feszültséget kap, és a vonali áram sem √3-szoros, így a kettő szorzata 3."
+      ]
+    ],
+    "cards": [
+      [
+        "Szlip",
+        "s = (n0 − n) / n0"
+      ],
+      [
+        "Motoráram",
+        "I = P2 / (√3 · U · cos φ · η)"
+      ]
+    ]
+  },
+  {
+    "key": "m14-kabelek-szereles-kulonleges-helyek",
+    "title": "Kábelek, szerelési módok, különleges helyek",
+    "min": 20,
+    "lead": "Típusjelölések, csatorna és cső, kötéstechnika és Cu/Al, IP-kód, fürdőszoba-zónák, építési elosztó.",
+    "principles": [
+      [
+        "A jelölésből a felhasználás",
+        "A harmonizált jelölésben a 05 és a 07 a feszültségszintet, a V a PVC-t, az R a gumit, az U, R, K, F betű a vezető kialakítását (tömör, sodrott, finomhuzalos, hajlékony) jelenti. Az egyerű H07V-U csak csőben vagy csatornában futhat, az NYM-J falon és vakolatban, földbe az NYY, a NAYY vagy a CYKY való. A hajlékony vezetőt csavaros kapocsba érvéghüvellyel kötjük, rezet és alumíniumot pedig csak Cu/Al-ra jelölt kötőelemmel.",
+        "Az anyag-előkészítő szakaszban a feladat környezetéhez (csatorna, falba, földbe, mozgó gép) válaszd ki a vezetéktípust, és mondd ki, melyik betű miatt az.",
+        "NYM-J földbe fektetése, hajlékony ér hüvely nélkül a csavaros kapocsban.",
+        "MSZ HD 361 (kábeljelölés)"
+      ],
+      [
+        "Különleges helyek: víz és építési terület",
+        "A fürdőszobában a 0. zóna a kád vagy zuhanytálca belseje (IPX7), az 1. zóna fölötte 2,25 m-ig, a 2. zóna további 0,6 m (mindkettő legalább IPX4). A helyiség összes áramkörét 30 mA-es ÁVK védi, és ahol az előírás kéri, helyi egyenpotenciálra hozás is kell. Az építési területet zárható, legalább IP44-es építési elosztó látja el, a dugaljkörök 30 mA-es ÁVK mögött vannak, a mozgó gépekhez H07RN-F gumikábel kell.",
+        "A biztonsági kérdéseknél rajzold le magadnak a kád körüli zónákat a magasságokkal és a minimális IP-kóddal, mielőtt a válaszokat megnézed.",
+        "IP44-es lámpa a 0. zónában, PVC hosszabbító ÁVK nélkül az építkezésen.",
+        "MSZ HD 60364-7-701; MSZ HD 60364-7-704; MSZ EN 60529"
+      ]
+    ],
+    "checks": [
+      [
+        "Mit jelent a H07V-K jelölésben a K?",
+        "Finomhuzalos vezető rögzített szerelésre."
+      ],
+      [
+        "Mi a minimális IP a fürdőszoba 0. zónájában?",
+        "IPX7."
+      ],
+      [
+        "Milyen vezeték való építési területen mozgó gépekhez?",
+        "H07RN-F gumiszigetelésű, neoprén köpenyű hajlékony kábel."
+      ]
+    ],
+    "cards": [
+      [
+        "IP44",
+        "> 1 mm tárgy és fröccsenő víz elleni védelem"
+      ],
+      [
+        "Cu/Al kötés",
+        "Csak Cu/Al-ra jelölt (bimetál) kötőelemmel"
+      ]
+    ]
+  },
+  {
+    "key": "m15-tulfeszultseg-pv-transzformator",
+    "title": "Túlfeszültség-védelem, PV, transzformátor",
+    "min": 15,
+    "lead": "LPZ zónák, SPD T1/T2/T3, napelem DC oldala, inverter, U1/U2 = N1/N2, áramváltó és feszültségváltó tilalmai.",
+    "principles": [
+      [
+        "Lépcsőzetes túlfeszültség-védelem és a PV DC oldala",
+        "A villámvédelmi zónák határán a T1 levezető a betáplálásnál a részleges villámáramot, a T2 az elosztókban, a T3 a készülékek közelében a maradék túlfeszültséget fogja meg; az SPD földelő vezetéke legyen rövid. A napelem fényben mindig feszültséget ad, ezért a DC oldal az inverter vagy az AC oldal kikapcsolása után is feszültség alatt marad. DC-n csak egyenáramra méretezett kapcsoló és biztosító használható, mert az egyenáramú ív nem alszik ki magától. Az inverter szigetüzem elleni védelme hálózatkimaradáskor megszünteti a visszatáplálást.",
+        "Az elosztó összeállításánál a T2 levezetőt az ÁVK elé, rövid PE-bekötéssel helyezd el, és a biztonsági kérdéseknél indokold, miért nem T3 kerül oda.",
+        "A napelem DC kábelének bontása abban a hitben, hogy az inverter lekapcsolásával feszültségmentes lett.",
+        "MSZ EN 62305 (villámvédelem); MSZ HD 60364-7-712 (PV)"
+      ],
+      [
+        "Transzformátor és mérőváltók",
+        "Ideális transzformátornál a feszültségek a menetszámok arányában, az áramok fordított arányban állnak: U1/U2 = N1/N2 = I2/I1, a látszólagos teljesítmény S = U·I. Az áramváltó szekunder körét üzem közben soha nem szabad megszakítani, mert a nyitott szekunderen életveszélyes feszültség keletkezik; műszercsere előtt rövidre kell zárni. A feszültségváltónál fordított a helyzet: a szekunderét tilos rövidre zárni, ezért azt biztosító védi.",
+        "A generált transzformátor-feladatoknál írd fel egymás alá a feszültség- és az áramarányt, és ellenőrizd, hogy a nagyobb feszültségű oldalon kisebb az áram.",
+        "Áramváltós mérő kikötése rövidrezárás nélkül.",
+        "Villamos gépek – transzformátorok, mérőváltók"
+      ]
+    ],
+    "checks": [
+      [
+        "Melyik SPD-típus kerül jellemzően a lakáselosztóba?",
+        "T2 (2. típusú, 8/20 µs)."
+      ],
+      [
+        "Mit tilos az áramváltó szekunderével?",
+        "Üzem közben szakadásban hagyni – előtte rövidre kell zárni."
+      ],
+      [
+        "230/24 V, N1 = 920 menet: mennyi N2?",
+        "920 · 24 / 230 = 96 menet."
+      ]
+    ],
+    "cards": [
+      [
+        "Transzformátor áttétele",
+        "U1/U2 = N1/N2 = I2/I1"
+      ],
+      [
+        "Feszültségváltó szekundere",
+        "Rövidre zárni tilos"
+      ]
+    ]
+  },
+  {
+    "key": "m16-dokumentacio-anyagjegyzek-hibakereses",
+    "title": "Dokumentáció, anyagjegyzék, hibakeresés",
+    "min": 15,
+    "lead": "Kiviteli és megvalósulási terv, egyvonalas és áramútrajz, mennyiségkiírás rajzból, félbevágásos hibakeresés, átadás.",
+    "principles": [
+      [
+        "Mennyiségkiírás áramkörönként",
+        "Az anyagjegyzéket áramkörönként, az elosztótól a legutolsó fogyasztóig haladva készítjük, így semmi nem marad ki. A darabos tételeket (szerelvény, lámpatest, elosztókészülék) a rajzjelekből és a jelmagyarázatból számoljuk, a vezetéket erenként és színenként: ér × nyomvonalhossz, ráhagyással. A csatornát és a vezetéket a kiszerelésre felfelé kerekítjük. A megvalósulási terv a ténylegesen megépült állapotot rögzíti, a kiviteli terv azt, amit építeni kell.",
+        "A projektfeladat egyvonalas rajzáról a vonalkák alapján írd ki szakaszonként az érszámot és a hosszt, és ebből állítsd össze a vezetékmennyiséget, mielőtt az Anyag szakaszban választasz.",
+        "A vezeték mennyiségét a csatorna hosszával azonosnak venni, így a szerelés közben elfogy.",
+        "Villamos dokumentáció – kiviteli terv"
+      ],
+      [
+        "Hibakeresés feszültségmentesen, felezve",
+        "A hibakeresés a tünet pontos leírásával kezdődik, majd az öt szabály szerinti feszültségmentesítés után szemrevételezéssel, folytonosság- és szigetelésméréssel folytatódik. Hosszú láncnál a félbevágás módszere gyors: középen mérve eldől, melyik felében a hiba, és azt felezed tovább, 8 elemnél 3 lépésben. Az azonnal kioldó ÁVK mögött leggyakrabban N–PE összekötés, a két helyről működő lámpa mögött felcserélt korrespondáló vezeték áll. Javítás után újramérés és funkciópróba kell.",
+        "A rajzgyakorló hibás kapcsolási rajzainál keresd meg az N–PE összekötést és a felcserélt korrespondálót, és mondd ki, milyen tünetet okozna.",
+        "Feszültség alatti folytonosságmérés, vagy javítás után ellenőrizetlen átadás.",
+        "MSZ 1585; MSZ HD 60364-6"
+      ]
+    ],
+    "checks": [
+      [
+        "Mi a különbség a kiviteli és a megvalósulási terv között?",
+        "A kiviteli terv alapján építünk, a megvalósulási terv a ténylegesen megépült állapotot rögzíti."
+      ],
+      [
+        "Hány méréssel találod meg a hibás szakaszt 8 elemes láncban félbevágással?",
+        "3 méréssel."
+      ],
+      [
+        "Mi a valószínű oka, ha az ÁVK bekapcsoláskor azonnal kiold?",
+        "N és PE összekötése az ÁVK utáni részen (vagy rossz N-sínre kötött nulla)."
+      ]
+    ],
+    "cards": [
+      [
+        "Áramútrajz",
+        "Minden vezető és érintkező külön – vezérlésekhez, hibakereséshez"
+      ],
+      [
+        "Vezetékmennyiség",
+        "ér × nyomvonalhossz + ráhagyás, felfelé kerekítve"
+      ]
+    ]
+  }
+]

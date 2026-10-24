@@ -282,3 +282,65 @@ test('új feladatsor: előbb a még nem látott bankkérdések', () => {
   }
   expect(second.filter((i) => i.q.id.startsWith('g-')).length).toBe(4)
 })
+
+import { CALC_TYPES, generateOne } from '../src/sim/generated'
+
+test('gyakorlóterem: minden számolási típus 4 különböző válaszlehetőséget ad, a helyes van megjelölve', () => {
+  for (const t of [...CALC_TYPES.map((x) => x.key), 'vegyes']) {
+    for (let i = 0; i < 40; i++) {
+      const q = generateOne(t)
+      expect(q.options!.length).toBe(4)
+      expect(new Set(q.options).size).toBe(4)
+      expect(q.answer).toBe(0)
+      expect(q.explain.length).toBeGreaterThan(10)
+    }
+  }
+})
+
+test('gyakorlóterem: ismert esetek kézzel ellenőrizve', () => {
+  // rnd = 0 → minden választás az első elem
+  const zero = () => 0
+  expect(generateOne('motor', zero).options![0]).toBe('4,7 A') // 2200 / (1,732·400·0,8·0,84) = 4,725
+  expect(generateOne('fordulat', zero).options![0]).toBe('3,0 %') // 2 pólus → 3000; 2910 → 3 %
+  expect(generateOne('trafo', zero).options![0]).toBe('48 menet') // 920·12/230
+  expect(generateOne('keresztmetszet', zero).options![0]).toBe('1,5 mm²') // Ib 9 → In 10 → 1,5 (18 A)
+  expect(generateOne('csillagdelta', zero).options![0]).toBe('13,3 A') // 8·5/3
+  expect(generateOne('impulzus', zero).options![0]).toBe('240 W') // 300 W, c 500, 30 s → 1 imp → 240 W (kerekítés miatt)
+})
+
+import { CIRCUIT_DRILLS, LADDERS, allSlots, checkLadder } from '../src/sim/drills'
+import { solutionFor } from '../src/sim/solutions'
+
+test('áramútrajz-gyakorlatok: a helyes kapcsolást elfogadja, a tipikus hibát nem', () => {
+  const sol: Record<string, [string, string][]> = {
+    d101: [['bet.L', 'S1.L'], ['S1.1', 'L1.L'], ['bet.N', 'L1.N'], ['bet.PE', 'L1.PE']],
+    dvv: [['bet.L', 'V1.C'], ['V1.1', 'V2.1'], ['V1.2', 'V2.2'], ['V2.C', 'L2.L'], ['bet.N', 'L2.N'], ['bet.PE', 'L2.PE']],
+    dvkv: solutionFor('nyariKonyha').schematic,
+    d105: solutionFor('csillar').schematic,
+    dir: solutionFor('impulzus').schematic,
+    dla: solutionFor('lepcsohaz').schematic,
+    dso: [['bet.L', 'SO.L'], ['bet.N', 'SO.N'], ['bet.PE', 'SO.PE']],
+    dmero: solutionFor('merohely').schematic,
+  }
+  for (const d of CIRCUIT_DRILLS) expect([d.id, checkSchematic(d.task, sol[d.id]).ok]).toEqual([d.id, true])
+  const get = (id: string) => CIRCUIT_DRILLS.find((d) => d.id === id)!.task
+  // kapcsoló a nullában
+  expect(checkSchematic(get('d101'), [['bet.N', 'S1.L'], ['S1.1', 'L1.N'], ['bet.L', 'L1.L'], ['bet.PE', 'L1.PE']]).ok).toBe(false)
+  // dugalj PE nélkül
+  expect(checkSchematic(get('dso'), [['bet.L', 'SO.L'], ['bet.N', 'SO.N']]).ok).toBe(false)
+  // váltó–váltó: korrespondálók a közös kapcsokon
+  expect(checkSchematic(get('dvv'), [['bet.L', 'V1.1'], ['V1.C', 'V2.C'], ['V1.2', 'V2.2'], ['V2.1', 'L2.L'], ['bet.N', 'L2.N'], ['bet.PE', 'L2.PE']]).ok).toBe(false)
+})
+
+test('motorvezérlés: a megoldás elfogadva, a párhuzamos ágak sorrendje mindegy, a hiba jelölve', () => {
+  for (const l of LADDERS) {
+    const right: Record<string, string> = {}
+    const walk = (cells: Parameters<typeof checkLadder>[0]['rungs'][number]['cells']) => cells.forEach((c) => ('slot' in c ? (right[c.slot] = c.answer) : 'par' in c ? c.par.forEach(walk) : null))
+    l.rungs.forEach((r) => walk(r.cells))
+    expect(Object.keys(right).sort()).toEqual(allSlots(l).sort())
+    expect(checkLadder(l, right).ok).toBe(true)
+  }
+  const ont = LADDERS[0]
+  expect(checkLadder(ont, { a: 'F2', b: 'S0', c: 'K1no', d: 'S1' }).ok).toBe(true) // párhuzamos ág felcserélve
+  expect(checkLadder(ont, { a: 'F2', b: 'S1', c: 'S0', d: 'K1no' }).wrong).toContain('b')
+})

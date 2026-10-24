@@ -1,0 +1,110 @@
+<!doctype html><html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Számolási feladatgyűjtemény – villanyszerelő vizsga</title><style>
+:root{--bg:#fbfaf6;--fg:#1b1d21;--muted:#666b73;--card:#fff;--line:#e4e1d8;--acc:#c46a00;--good:#1d7a46;--bad:#b42318}
+@media (prefers-color-scheme:dark){:root{--bg:#111418;--fg:#e8ebef;--muted:#9aa3ae;--card:#1a1e24;--line:#2c323b;--acc:#ffb020;--good:#3ddc84;--bad:#ff6b6b}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
+header{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 16px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;z-index:2}
+header a{color:var(--fg);text-decoration:none;font-size:14px}header a:hover{color:var(--acc)}main{max-width:920px;margin:0 auto;padding:16px}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin:18px 0}h1{font-size:26px;margin:0 0 10px}.muted{color:var(--muted)}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;display:block;overflow-x:auto}td,th{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+.q{border-top:1px solid var(--line);padding:12px 0}.q b{display:block;margin-bottom:6px}.opt{display:block;width:100%;text-align:left;margin:4px 0;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font:inherit;cursor:pointer}
+.opt.ok{border-color:var(--good);background:rgba(29,122,70,.12)}.opt.no{border-color:var(--bad);background:rgba(180,35,24,.1)}.why{font-size:14px;color:var(--muted);margin:4px 0 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}.card{min-height:110px;text-align:left;padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font:inherit;cursor:pointer}.card.flip{background:var(--acc);color:#fff}
+.tree,.tree ul{list-style:none;padding-left:18px}.tree summary{cursor:pointer;font-weight:600}.tree li{margin:3px 0}
+.src{font-size:13px;color:var(--muted)}details.sol{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:6px 10px;margin:4px 0 14px}details.sol summary{cursor:pointer;color:var(--acc);font-weight:600}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<header><a href="./index.html"><b>← Tanulási segédlet</b></a></header>
+<main><p class="src" hidden>Google NotebookLM-mel generált anyag a notebook nyilvános forrásaiból (KKK, vizsgaközponti mintafeladat, szolgáltatói előírások, saját tananyag-modulok, kérdésbank, videók). Ellenőrizd a hivatalos forrásokkal; eltérés esetén a KKK és a szabvány az irányadó.</p>
+<section><h2>17. modul – Számolási feladatgyűjtemény</h2>
+<p>Vizsgaszerű feladatok típusonként, lépésenkénti megoldással. Anyagállandók: <b>ρCu = 0,0178 Ω·mm²/m</b>, <b>ρAl = 0,0286 Ω·mm²/m</b>; √3 ≈ 1,732. A képletek magyarázata a 11. és 12. modulban van.</p>
+<p><b>Munkamódszer minden feladatnál:</b> 1. írd ki az adatokat egységgel; 2. váltsd át (kW → W, perc → h, s → h); 3. írd fel a képletet; 4. helyettesíts be; 5. kerekíts a végén, és nézd meg, reális-e az eredmény.</p>
+<h3>A) Ohm-törvény, teljesítmény, energia</h3>
+<h4>1. Vasaló</h4>
+<ul><li><b>Feladat:</b> 230 V / 1500 W-os vasaló árama és üzemi ellenállása?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> I = P / U = 1500 / 230; R = U² / P = 230² / 1500 = 52 900 / 1500.</li><li><b>Eredmény:</b> I = <b>6,52 A</b>, R = <b>35,27 Ω</b>.</li><li><b>Tipikus hiba:</b> R = U / P – mértékegységben sem jön ki Ω.</li></ul></details>
+<h4>2. Törpefeszültségű fűtőbetét</h4>
+<ul><li><b>Feladat:</b> 24 V-ra kapcsolt 16 Ω-os fűtőbetét árama és teljesítménye?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> I = U / R = 24 / 16; P = U · I = 24 · 1,5.</li><li><b>Eredmény:</b> I = <b>1,5 A</b>, P = <b>36 W</b>.</li><li><b>Tipikus hiba:</b> P = U / R-rel számolni (az áram jön ki, nem a teljesítmény).</li></ul></details>
+<h4>3. Villanybojler havi költsége</h4>
+<ul><li><b>Feladat:</b> 2,4 kW-os bojler naponta 2,5 órát fűt, 30 napon át. Energia és költség 75 Ft/kWh áron?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> W = P · t = 2,4 kW · 2,5 h · 30 = 180 kWh; költség = 180 · 75.</li><li><b>Eredmény:</b> <b>180 kWh</b>, <b>13 500 Ft</b>.</li><li><b>Tipikus hiba:</b> W-ban hagyott teljesítménnyel számolni (180 000 „kWh”).</li></ul></details>
+<h4>4. Vegyes kapcsolás</h4>
+<ul><li><b>Feladat:</b> R1 = 10 Ω sorosan kapcsolódik az R2 = 30 Ω és R3 = 60 Ω párhuzamos eredőjével. Eredő ellenállás, és az áram 12 V-on?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> R2 ∥ R3 = 30 · 60 / (30 + 60) = 1800 / 90 = 20 Ω; Re = 10 + 20 = 30 Ω; I = 12 / 30.</li><li><b>Eredmény:</b> Re = <b>30 Ω</b>, I = <b>0,4 A</b>.</li><li><b>Tipikus hiba:</b> a párhuzamos részt is összeadni (100 Ω).</li></ul></details>
+<h4>5. Izzó csökkentett feszültségen</h4>
+<ul><li><b>Feladat:</b> 230 V / 100 W-os izzó mekkora teljesítményt vesz fel 207 V-on (az ellenállást állandónak véve)?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> R = 230² / 100 = 529 Ω; P&#x27; = 207² / 529 = 42 849 / 529.</li><li><b>Eredmény:</b> <b>81 W</b> (10%-kal kisebb feszültség → kb. 19%-kal kisebb teljesítmény, mert P ~ U²).</li><li><b>Tipikus hiba:</b> arányosan 90 W-ot mondani.</li></ul></details>
+<h3>B) Vezeték ellenállása</h3>
+<h4>6. Rézvezeték ellenállása</h4>
+<ul><li><b>Feladat:</b> 40 m hosszú, 1,5 mm²-es rézér ellenállása; mekkora a hurok (oda-vissza) ellenállása?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> R = ρ · l / A = 0,0178 · 40 / 1,5; hurok = 2 · R.</li><li><b>Eredmény:</b> R = <b>0,475 Ω</b>, hurok = <b>0,949 Ω</b>.</li><li><b>Tipikus hiba:</b> a hurokellenállásnál elfelejteni a 2-es szorzót.</li></ul></details>
+<h4>7. Réz helyett alumínium</h4>
+<ul><li><b>Feladat:</b> Mekkora alumínium keresztmetszet ad ugyanakkora ellenállást, mint egy 6 mm²-es rézvezető (azonos hossz)?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> ρAl / AAl = ρCu / ACu → AAl = 6 · 0,0286 / 0,0178 = 9,64 mm² → következő szabványos méret.</li><li><b>Eredmény:</b> <b>9,64 mm² → 10 mm² Al</b>.</li><li><b>Tipikus hiba:</b> fordított arány (6 · 0,0178 / 0,0286 = 3,7 mm²).</li></ul></details>
+<h4>8. Ismeretlen hossz</h4>
+<ul><li><b>Feladat:</b> Egy 2,5 mm²-es rézvezeték-tekercs mért ellenállása 0,356 Ω. Milyen hosszú?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> l = R · A / ρ = 0,356 · 2,5 / 0,0178.</li><li><b>Eredmény:</b> <b>50 m</b>.</li><li><b>Tipikus hiba:</b> A és ρ felcserélése a képletben.</li></ul></details>
+<h3>C) Feszültségesés és keresztmetszet-választás</h3>
+<h4>9. Egyfázisú feszültségesés</h4>
+<ul><li><b>Feladat:</b> 230 V, I = 10 A, nyomvonalhossz 30 m, 1,5 mm² Cu. Megfelel-e 3%-os határra?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> ΔU = 2 · 10 · 30 · 0,0178 / 1,5 = 7,12 V; ε = 7,12 / 230 · 100.</li><li><b>Eredmény:</b> <b>7,12 V = 3,10%</b> → <b>nem felel meg</b> (nagyobb keresztmetszet kell).</li><li><b>Tipikus hiba:</b> 2-es szorzó nélkül 1,55%-ot kapni és „megfelel”-t mondani.</li></ul></details>
+<h4>10. Egyfázisú keresztmetszet-választás</h4>
+<ul><li><b>Feladat:</b> 3,5 kW-os ohmos fogyasztó 230 V-on, 28 m-re. A megengedett esés 2%. Legkisebb szabványos Cu keresztmetszet?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> I = 3500 / 230 = 15,22 A; ΔUmeg = 0,02 · 230 = 4,6 V; A ≥ 2 · 15,22 · 28 · 0,0178 / 4,6 = 3,30 mm².</li><li><b>Eredmény:</b> <b>4 mm²</b>.</li><li><b>Tipikus hiba:</b> 3,30-at 2,5-re kerekíteni.</li></ul></details>
+<h4>11. Háromfázisú feszültségesés</h4>
+<ul><li><b>Feladat:</b> Szimmetrikus 3f terhelés, 400 V, I = 25 A, cos φ = 0,9, l = 50 m, 10 mm² Cu. Feszültségesés (reaktanciát elhanyagolva)?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> ΔU = √3 · I · l · ρ · cos φ / A = 1,732 · 25 · 50 · 0,0178 · 0,9 / 10; ε = ΔU / 400.</li><li><b>Eredmény:</b> <b>3,47 V = 0,87%</b>.</li><li><b>Tipikus hiba:</b> egyfázisú képlettel (2-es szorzóval) számolni.</li></ul></details>
+<h4>12. Háromfázisú keresztmetszet-választás</h4>
+<ul><li><b>Feladat:</b> 3f szimmetrikus, 400 V, I = 40 A, cos φ = 0,85, l = 80 m, megengedett esés 2%. Legkisebb szabványos Cu keresztmetszet?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> ΔUmeg = 0,02 · 400 = 8 V; A ≥ 1,732 · 40 · 80 · 0,0178 · 0,85 / 8 = 10,48 mm².</li><li><b>Eredmény:</b> <b>16 mm²</b> (a 10 mm² kevés).</li><li><b>Tipikus hiba:</b> 10,48-at 10-re kerekíteni.</li></ul></details>
+<h4>13. Védelem kiválasztása (Ib ≤ In ≤ Iz)</h4>
+<ul><li><b>Feladat:</b> 3,2 kW-os sütő 230 V-on, 2,5 mm² Cu (Iz = 24 A, tájékoztató érték), csoportosítás miatt 0,7-es csökkentő tényező. Megfelel-e a B16?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> Ib = 3200 / 230 = 13,91 A; Iz&#x27; = 24 · 0,7 = 16,8 A; 13,91 ≤ 16 ≤ 16,8.</li><li><b>Eredmény:</b> <b>B16 megfelel.</b></li><li><b>Tipikus hiba:</b> a csökkentő tényező elhagyása, vagy B20 választása (20 &gt; 16,8 – nem védi a vezetéket).</li></ul></details>
+<h3>D) Háromfázisú rendszer</h3>
+<h4>14. Vonali feszültség</h4>
+<ul><li><b>Feladat:</b> Uf = 230 V. Mekkora a vonali feszültség?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> Uv = √3 · Uf = 1,732 · 230.</li><li><b>Eredmény:</b> <b>398,4 V ≈ 400 V</b>.</li><li><b>Tipikus hiba:</b> 2 · 230 = 460 V.</li></ul></details>
+<h4>15. Delta fázisárama</h4>
+<ul><li><b>Feladat:</b> Delta kapcsolású fogyasztó vonali árama 17,3 A. Mekkora egy ág (fázis) árama?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> If = Iv / √3 = 17,3 / 1,732.</li><li><b>Eredmény:</b> <b>≈ 10 A</b>.</li><li><b>Tipikus hiba:</b> szorozni osztás helyett.</li></ul></details>
+<h4>16. Háromfázisú fűtés árama</h4>
+<ul><li><b>Feladat:</b> 3 × 2 kW-os fűtőbetét deltában 400 V-on. Összteljesítmény és vonali áram?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> P = 3 · 2 = 6 kW; I = P / (√3 · U) = 6000 / (1,732 · 400) (cos φ = 1).</li><li><b>Eredmény:</b> <b>6 kW</b>, <b>8,66 A</b>.</li><li><b>Tipikus hiba:</b> 6000 / 400 = 15 A (√3 nélkül).</li></ul></details>
+<h4>17. S, P, Q háromfázisban</h4>
+<ul><li><b>Feladat:</b> 400 V, I = 12 A, cos φ = 0,8. S, P, Q?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> S = √3 · 400 · 12 = 8314 VA; P = S · 0,8 = 6651 W; Q = √(S² − P²) = S · 0,6.</li><li><b>Eredmény:</b> <b>S = 8314 VA, P = 6651 W, Q = 4988 var</b>.</li><li><b>Tipikus hiba:</b> Q = S − P (1663) – a háromszög derékszögű, nem egyenes.</li></ul></details>
+<h3>E) Motoráram</h3>
+<h4>18. Motor névleges árama</h4>
+<ul><li><b>Feladat:</b> P2 = 4 kW, 400 V, cos φ = 0,82, η = 0,86. Névleges áram?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> I = 4000 / (1,732 · 400 · 0,82 · 0,86).</li><li><b>Eredmény:</b> <b>8,19 A</b>.</li><li><b>Tipikus hiba:</b> η kihagyása (7,04 A) – a leadott teljesítmény nem a felvett.</li></ul></details>
+<h4>19. Felvett teljesítmény, veszteség</h4>
+<ul><li><b>Feladat:</b> P2 = 11 kW, η = 0,9. Felvett teljesítmény és veszteség?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> P1 = P2 / η = 11 / 0,9; veszteség = P1 − P2.</li><li><b>Eredmény:</b> <b>P1 = 12,22 kW</b>, veszteség <b>1,22 kW</b>.</li><li><b>Tipikus hiba:</b> P1 = P2 · η = 9,9 kW (a felvett nem lehet kisebb a leadottnál).</li></ul></details>
+<h4>20. Csillag–delta indítóáram</h4>
+<ul><li><b>Feladat:</b> In = 15 A, közvetlen indításnál az indítóáram 7 · In. Mekkora az indítóáram csillagban?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> közvetlen (delta): 7 · 15 = 105 A; csillagban 1/3: 105 / 3.</li><li><b>Eredmény:</b> <b>35 A</b>.</li><li><b>Tipikus hiba:</b> 1/√3-mal számolni (60,6 A).</li></ul></details>
+<h3>F) Szinkron fordulatszám és szlip</h3>
+<h4>21. Négypólusú motor</h4>
+<ul><li><b>Feladat:</b> p = 2, f = 50 Hz, a mért fordulatszám 1455 1/min. Szlip?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> n0 = 60 · 50 / 2 = 1500; s = (1500 − 1455) / 1500.</li><li><b>Eredmény:</b> <b>s = 0,03 = 3%</b>.</li><li><b>Tipikus hiba:</b> a pólusszámmal (4) osztani a póluspár (2) helyett → 750.</li></ul></details>
+<h4>22. Adattáblából</h4>
+<ul><li><b>Feladat:</b> Az adattáblán n = 960 1/min, 50 Hz. Póluspár és szlip?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> a felette lévő szinkron érték 1000 → p = 60 · 50 / 1000 = 3; s = (1000 − 960) / 1000.</li><li><b>Eredmény:</b> <b>p = 3, s = 4%</b>.</li><li><b>Tipikus hiba:</b> a 750-es szinkron értéket választani (negatív szlip jönne ki).</li></ul></details>
+<h4>23. Kétpólusú motor</h4>
+<ul><li><b>Feladat:</b> n = 2950 1/min, 50 Hz. Szlip %-ban?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> n0 = 3000 (p = 1); s = (3000 − 2950) / 3000 · 100.</li><li><b>Eredmény:</b> <b>1,67%</b>.</li><li><b>Tipikus hiba:</b> n0 helyett n-nel osztani (1,69%).</li></ul></details>
+<h3>G) Hurokimpedancia-határ (TN, U0 = 230 V)</h3>
+<h4>24. B10 és C10</h4>
+<ul><li><b>Feladat:</b> Legnagyobb Zs B10 és C10 kismegszakítóhoz?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> B: Ia = 5 · 10 = 50 A → 230 / 50; C: Ia = 10 · 10 = 100 A → 230 / 100.</li><li><b>Eredmény:</b> <b>B10: 4,6 Ω; C10: 2,3 Ω</b>.</li><li><b>Tipikus hiba:</b> In-nel osztani (23 Ω).</li></ul></details>
+<h4>25. Mért érték értékelése</h4>
+<ul><li><b>Feladat:</b> Egy C16-tal védett kör mért Zs-e 1,9 Ω. Megfelel? Megfelelne B16-tal?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> C16: 230 / 160 = 1,44 Ω &lt; 1,9 → nem; B16: 230 / 80 = 2,88 Ω &gt; 1,9 → igen.</li><li><b>Eredmény:</b> <b>C16-tal nem felel meg, B16-tal megfelel.</b></li><li><b>Tipikus hiba:</b> azt hinni, hogy a „nagyobb” C karakterisztika jobban véd.</li></ul></details>
+<h4>26. B20 és C32</h4>
+<ul><li><b>Feladat:</b> Zs-határ B20-hoz és C32-höz?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> 230 / (5 · 20) = 230 / 100; 230 / (10 · 32) = 230 / 320.</li><li><b>Eredmény:</b> <b>B20: 2,3 Ω; C32: 0,72 Ω</b>.</li><li><b>Tipikus hiba:</b> B-nél 3 · In-nel számolni (a biztos kioldáshoz a felső határ, 5 · In kell).</li></ul></details>
+<h3>H) Teljesítménytényező</h3>
+<h4>27. Egyfázisú motor</h4>
+<ul><li><b>Feladat:</b> 230 V, I = 6 A, a wattmérő 1100 W-ot mutat. S, cos φ, Q?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> S = 230 · 6 = 1380 VA; cos φ = 1100 / 1380; Q = √(1380² − 1100²).</li><li><b>Eredmény:</b> <b>S = 1380 VA, cos φ = 0,80, Q = 833 var</b>.</li><li><b>Tipikus hiba:</b> P = U · I-vel 1380 W-ot mondani.</li></ul></details>
+<h4>28. Fázisjavítás</h4>
+<ul><li><b>Feladat:</b> P = 20 kW, cos φ = 0,75, cél 0,95. Szükséges kondenzátor-teljesítmény?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> tg φ1 = 0,882; tg φ2 = 0,329; Qc = 20 · (0,882 − 0,329).</li><li><b>Eredmény:</b> <b>Qc ≈ 11,06 kvar</b>.</li><li><b>Tipikus hiba:</b> cos-értékek különbségével szorozni (20 · 0,2 = 4 kvar).</li></ul></details>
+<h3>I) Transzformátor, mérőváltó</h3>
+<h4>29. Csengőtranszformátor</h4>
+<ul><li><b>Feladat:</b> 230/12 V, 60 VA, N1 = 1150. N2, I2, I1?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> N2 = 1150 · 12 / 230 = 60; I2 = 60 / 12; I1 = 60 / 230.</li><li><b>Eredmény:</b> <b>N2 = 60 menet, I2 = 5 A, I1 = 0,261 A</b>.</li><li><b>Tipikus hiba:</b> az áramokat is a feszültség arányában számolni (fordított arány!).</li></ul></details>
+<h4>30. Áramváltó</h4>
+<ul><li><b>Feladat:</b> 150/5 A-es áramváltó szekunderén 3,4 A folyik. Primer áram?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> áttétel 150 / 5 = 30; 3,4 · 30.</li><li><b>Eredmény:</b> <b>102 A</b>.</li><li><b>Tipikus hiba:</b> osztani szorzás helyett.</li></ul></details>
+<h3>J) Mérési jegyzőkönyv, fogyasztásmérő</h3>
+<h4>31. Teljesítmény mért értékekből</h4>
+<ul><li><b>Feladat:</b> Izzós (ohmos) körben U = 228,6 V, lakatfogóval I = 0,436 A. Felvett teljesítmény?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> P = U · I · cos φ, cos φ = 1 → 228,6 · 0,436.</li><li><b>Eredmény:</b> <b>99,7 W</b>.</li><li><b>Tipikus hiba:</b> a jegyzőkönyvben a mértékegység és az értékelés elhagyása.</li></ul></details>
+<h4>32. Mérő LED-villanásai</h4>
+<ul><li><b>Feladat:</b> A mérő állandója c = 800 imp/kWh; 45 s alatt n = 20 villanás. Teljesítmény?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> P = 3600 · n / (c · t) = 3600 · 20 / (800 · 45) [kW, ha t másodpercben van].</li><li><b>Eredmény:</b> <b>2,0 kW</b>.</li><li><b>Tipikus hiba:</b> a 3600-as szorzó (óra → másodperc) kimarad.</li></ul></details>
+<h4>33. Nagy állandójú mérő</h4>
+<ul><li><b>Feladat:</b> c = 10 000 imp/kWh, 30 s alatt 25 impulzus. Teljesítmény?</li></ul><details class="sol"><summary>Megoldás</summary><ul><li><b>Megoldás lépésenként:</b> P = 3600 · 25 / (10 000 · 30).</li><li><b>Eredmény:</b> <b>0,3 kW = 300 W</b>.</li><li><b>Tipikus hiba:</b> kW és W összekeverése a végeredményben.</li></ul></details>
+<h3>Tipikus hibák (összefoglaló)</h3>
+<ul><li>Mértékegység-átváltás elmarad (kW, perc, másodperc).</li><li>A √3, a 2-es szorzó vagy az η kimarad.</li><li>Lefelé kerekített keresztmetszet.</li><li>Pólusszám és póluspárszám összekeverése.</li></ul></section>
+</main><script>
+const box=document.getElementById('quiz');if(box&&window.QUIZ){let good=0,done=0;QUIZ.forEach((q,i)=>{const d=document.createElement('div');d.className='q';d.innerHTML='<b>'+(i+1)+'. '+q.q.replace(/</g,'&lt;')+'</b>';
+if(!q.opts){const inp=document.createElement('input');inp.placeholder=q.type==='fill_in_the_blank'?'Írd be a választ…':'Fogalmazd meg röviden…';inp.style.cssText='font:inherit;padding:8px;width:100%;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--fg)';
+const btn=document.createElement('button');btn.className='opt';btn.textContent=q.type==='fill_in_the_blank'?'Ellenőrzés':'Mintaválasz';btn.onclick=()=>{if(d.dataset.done)return;d.dataset.done=1;done++;
+let ok=null;if(q.accept){ok=q.accept.includes(inp.value.trim().toLowerCase().replace('.',','))||q.accept.includes(inp.value.trim().toLowerCase());if(ok)good++;btn.classList.add(ok?'ok':'no')}
+const w=document.createElement('p');w.className='why';w.textContent='Helyes válasz: '+q.answer+(q.why?' — '+q.why:'');d.appendChild(w);document.getElementById('qscore').textContent='Eredmény: '+good+' / '+done};
+d.appendChild(inp);d.appendChild(btn);box.appendChild(d);return}
+q.opts.forEach(o=>{const b=document.createElement('button');b.className='opt';b.textContent=o.t;b.onclick=()=>{if(d.dataset.done)return;d.dataset.done=1;done++;if(o.ok)good++;d.querySelectorAll('.opt').forEach((x,k)=>{if(q.opts[k].ok)x.classList.add('ok')});if(!o.ok)b.classList.add('no');
+const w=document.createElement('p');w.className='why';w.textContent=(o.why||'')+(q.hint&&!o.ok?' Tipp: '+q.hint:'');d.appendChild(w);document.getElementById('qscore').textContent='Eredmény: '+good+' / '+done};d.appendChild(b)});box.appendChild(d)})}
+document.querySelectorAll('.card').forEach(c=>c.onclick=()=>{c.classList.toggle('flip');c.textContent=c.classList.contains('flip')?c.dataset.b:c.dataset.f});
+</script></body></html>

@@ -27,6 +27,20 @@ PLAN = [
     ("este", 30, None, "Ismétlés: tanulókártyák és kvíz a NotebookLM-ben, a hibás kérdéseid újra."),
 ]
 
+PLAN2 = [
+    ("08:00", 60, "m11-alapszamitasok", "Alapszámítások; utána Gyakorlóterem → Számolás, vegyes."),
+    ("09:00", 60, "m12-vezetekmeretezes-vedelem", "Ib ≤ In ≤ Iz és feszültségesés; Számolás → keresztmetszet, feszültségesés."),
+    ("10:00", 15, None, "Szünet."),
+    ("10:15", 75, "m13-motorok-vezerles", "Motorok; Gyakorlóterem → Motorvezérlés mindhárom feladata."),
+    ("11:30", 45, "m14-kabelek-szereles-kulonleges-helyek", "Kábeljelölések, fürdőszoba, IP, építési terület."),
+    ("12:15", 45, None, "Ebéd."),
+    ("13:00", 45, "m15-tulfeszultseg-pv-transzformator", "Túlfeszültség, PV, transzformátor, mérőváltók."),
+    ("13:45", 45, "m16-dokumentacio-anyagjegyzek-hibakereses", "Dokumentáció, anyagjegyzék, hibakeresés."),
+    ("14:30", 60, None, "Számolási feladatgyűjtemény: 33 feladat, előbb önállóan, utána a megoldás."),
+    ("15:30", 90, None, "Próbavizsga: interaktív vizsga vizsga módban, utána egy gyakorlati feladat megoldás nélkül."),
+    ("este", 30, None, "Gyakorlóterem → Áramútrajz és Rajzjelek; a portfólióvédés 10 perce hangosan."),
+]
+
 MODULES = [
     {
         "key": "m01-vizsga-strategia", "title": "A vizsga felépítése és a pontszerzés", "min": 15,
@@ -156,6 +170,11 @@ MODULES = [
     },
 ]
 
+# a 11–16. modul adatai külön fájlban (research/guide/modules_extra.json)
+_extra = os.path.join(SRC, "modules_extra.json")
+if os.path.exists(_extra):
+    MODULES += json.load(open(_extra))
+
 SOURCES = [
     ("IKK / vizsgaközpont", "Villanyszerelő – KKK 2024.08.29 v4", "A vizsga szerkezete, súlyok, értékelés; minden modul."),
     ("Nagykunsági Független Vizsgaközpont", "Épületvillamosság projektfeladat-mintafeladat, 2026", "A nyári konyha feladat, mérések, jegyzőkönyv (1., 4., 5. modul)."),
@@ -212,37 +231,46 @@ def build():
     copy_media()
     videos = json.load(open(VIDEOS)) if os.path.exists(VIDEOS) else []
     by_key = {m["key"]: m for m in MODULES}
+    num = lambda m: int(m["key"][1:3])
+    def plan_rows(rows):
+        return "".join(
+            f'<li><span class="time">{t}</span><span class="dur">{d} p</span>'
+            + (f'<a href="#{k}">{e(by_key[k]["title"])}</a>' if k else "<b>—</b>")
+            + f' <span class="muted">{e(note)}</span></li>'
+            for t, d, k, note in rows)
+    plan2 = plan_rows(PLAN2)
     plan = "".join(
         f'<li><span class="time">{t}</span><span class="dur">{d} p</span>'
         + (f'<a href="#{k}">{e(by_key[k]["title"])}</a>' if k else "<b>—</b>")
         + f' <span class="muted">{e(note)}</span></li>'
         for t, d, k, note in PLAN)
-    cards = "".join(f'<a class="mcard" href="#{m["key"]}" data-key="{m["key"]}"><b>{n + 1}. {e(m["title"])}</b><span>{e(m["lead"])}</span><i class="done">✓</i></a>' for n, m in enumerate(MODULES))
+    cards = "".join(f'<a class="mcard" href="#{m["key"]}" data-key="{m["key"]}"><b>{num(m)}. {e(m["title"])}</b><span>{e(m["lead"])}</span><i class="done">✓</i></a>' for n, m in enumerate(MODULES))
     mods, princ = "", ""
     for n, m in enumerate(MODULES):
         ps = ""
         for title, body, sim, mistake, ref in m["principles"]:
             block = f'<h4>{e(title)}</h4><p>{e(body)}</p><p class="sim"><b>A szimulátorban:</b> {e(sim)}</p><p class="err"><b>Megelőzött hiba:</b> {e(mistake)}</p><p class="ref">{e(ref)}</p>'
             ps += f'<div class="principle">{block}</div>'
-            princ += f'<details class="pcard" data-text="{e((title + " " + body).lower())}"><summary>{e(title)} <span class="muted">· {n + 1}. modul</span></summary>{block}<a href="#{m["key"]}">→ a modulhoz</a></details>'
+            princ += f'<details class="pcard" data-text="{e((title + " " + body).lower())}"><summary>{e(title)} <span class="muted">· {num(m)}. modul</span></summary>{block}<a href="#{m["key"]}">→ a modulhoz</a></details>'
         checks = "".join(f'<details><summary>{e(q)}</summary><p>{e(a)}</p></details>' for q, a in m["checks"])
         fc = "".join(f'<button class="flash" data-back="{e(b)}">{e(f)}</button>' for f, b in m["cards"])
         mods += f'''<section class="module" id="{m["key"]}">
-<div class="kicker">{n + 1}. modul · ~{m["min"]} perc</div><h2>{e(m["title"])}</h2><p class="lead">{e(m["lead"])}</p>
+<div class="kicker">{num(m)}. modul · ~{m["min"]} perc</div><h2>{e(m["title"])}</h2><p class="lead">{e(m["lead"])}</p>
 {media(m["key"])}{ps}
 <div class="practice"><h3>Ellenőrző kérdések</h3>{checks}<h3>Tanulókártyák</h3><div class="flashes">{fc}</div></div>
 <button class="read" data-key="{m["key"]}">Megjelölöm olvasottnak</button></section>'''
     vids = "".join(f'<li><b>{e(v.get("title", ""))}</b> <span class="muted">— {e(v.get("channel", ""))}, {e(str(v.get("minutes", "")))} perc · {n_topic(v)}</span><br><span>{e(v.get("why", ""))}</span></li>' for v in videos)
     srcs = "".join(f'<li><b>{e(a)}</b>: {e(t)} <span class="muted">— {e(w)}</span></li>' for a, t, w in SOURCES)
     gl = "".join(f"<dt>{e(k)}</dt><dd>{e(v)}</dd>" for k, v in GLOSSARY)
-    page = TEMPLATE.replace("%PLAN%", plan).replace("%CARDS%", cards).replace("%MODULES%", mods).replace("%PRINC%", princ) \
+    page = TEMPLATE.replace("%PLAN2%", plan2).replace("%PLAN%", plan).replace("%CARDS%", cards).replace("%MODULES%", mods).replace("%PRINC%", princ) \
         .replace("%VIDEOS%", vids or '<li class="muted">A videók a NotebookLM notebook forrásai között vannak.</li>').replace("%SOURCES%", srcs).replace("%GLOSS%", gl) \
         .replace("%NMOD%", str(len(MODULES)))
     open(os.path.join(HERE, "index.html"), "w").write(page)
     print("index.html kész:", len(page), "bájt")
     import sys
     sys.path.insert(0, SRC)
-    from nlm_page import build as build_nlm
+    from nlm_page import build as build_nlm, build_md_page
+    print("feladatgyujtemeny.html:", build_md_page(os.path.join(ROOT, "research", "modules", "17-szamolasi-feladatgyujtemeny.md"), os.path.join(HERE, "feladatgyujtemeny.html"), "Számolási feladatgyűjtemény"))
     print("notebooklm.html:", build_nlm(os.path.join(ROOT, "research", "nlm", "public"), HERE))
 
 
@@ -254,7 +282,7 @@ def n_topic(v):
 
 
 TEMPLATE = """<!doctype html><html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Villanyszerelő vizsga – mai tanulási terv</title><style>
+<title>Villanyszerelő vizsga – tanulási segédlet</title><style>
 :root{--bg:#fbfaf6;--fg:#1b1d21;--muted:#666b73;--card:#fff;--line:#e4e1d8;--acc:#c46a00;--good:#1d7a46;--bad:#b42318}
 @media (prefers-color-scheme:dark){:root{--bg:#111418;--fg:#e8ebef;--muted:#9aa3ae;--card:#1a1e24;--line:#2c323b;--acc:#ffb020;--good:#3ddc84;--bad:#ff6b6b}}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
@@ -277,16 +305,19 @@ button.read.on{background:var(--good);color:#fff}.tools{display:flex;gap:8px;fle
 .pcard{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin:6px 0}dl dt{font-weight:700;margin-top:8px}dl dd{margin:0}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style></head><body>
-<header><b>⚡ Villanyszerelő vizsga – mai terv</b><nav><a href="#home">Áttekintés</a><a href="notebooklm.html"><b>NotebookLM: kvíz, kártyák</b></a><a href="#terv">Mai terv</a><a href="#modulok">Modulok</a><a href="#elvek">Elvek</a><a href="#videok">Videók</a><a href="#forrasok">Források</a><a href="#fogalmak">Fogalmak</a></nav>
+<header><b>⚡ Villanyszerelő vizsga – tanulási segédlet</b><nav><a href="#home">Áttekintés</a><a href="#terv">Terv</a><a href="feladatgyujtemeny.html"><b>Számolási feladatok</b></a><a href="notebooklm.html"><b>NotebookLM: kvíz, kártyák</b></a><a href="#modulok">Modulok</a><a href="#elvek">Elvek</a><a href="#videok">Videók</a><a href="#forrasok">Források</a><a href="#fogalmak">Fogalmak</a></nav>
 <label class="muted"><input type="checkbox" id="practice"> Gyakorló mód</label></header>
 <main>
 <section id="home"><div class="kicker">4 0713 04 07 · Villanyszerelő · Épületvillamosság</div>
-<h1>Egy nap alatt a legtöbb pont: biztonság, mérőhely, mérések, bekötések.</h1>
-<div class="stats"><div><b>%NMOD%</b> modul</div><div>~<b>7–8</b> óra tanulás</div><div>hanglecke + infografika modulonként</div><div><span id="pct">0</span>% kész</div></div>
+<h1>Biztos átmenő, erős közepes: a vizsga minden részére.</h1>
+<p class="lead">Interaktív vizsga (anyag, technológia, számítás, biztonság), gyakorlati szerelés, mérőhely és portfólióvédés – a pontok zömét adó mag, alaposan, számolási és rajzolási gyakorlással.</p>
+<div class="stats"><div><b>%NMOD%</b> modul</div><div>2 nap, ~14 óra</div><div>hanglecke + infografika modulonként</div><div>33 kidolgozott számolás</div><div><span id="pct">0</span>% kész</div></div>
 <div class="progress"><i id="bar"></i></div>
 <h3>Áttekintés</h3><div class="flow"><span>Feladatlap, rajz</span>→<span>Anyag, szerszám</span>→<span>Csatorna</span>→<span>Készülékek</span>→<span>Vezetékezés (PE → N → L)</span>→<span>Ellenőrzés, mérés</span>→<span>Bemutatás, jegyzőkönyv</span>→<span>Portfólióvédés</span></div>
 <p>A vizsga két része: <b>projektfeladat (70%)</b> – portfólió 20, épületvillamossági szerelés 40, fogyasztásmérő hely 40 – és <b>központi interaktív vizsga (30%)</b>. Mindkettőn külön 40% kell. Az áramütés elleni védelem hibája érvénytelen vizsgát jelent, ezért a terv a biztonsággal kezd. Minden modulhoz tartozik egy rövid hanglecke és egy ábra; a gyakorló módban ellenőrző kérdések és tanulókártyák is megjelennek. A notebookban (NotebookLM) bármire rákérdezhetsz, és ott van a kvíz, a tanulókártyák és a gondolattérkép is.</p></section>
-<section id="terv"><h2>Mai terv</h2><ol class="plan">%PLAN%</ol></section>
+<section id="terv"><h2>Tanulási terv</h2><p class="muted">Ha csak egy napod van, az 1. nap a gyakorlati vizsgát és a biztonságot (a pontok több mint felét) fedi le. A gyakorló feladatok a szimulátor Gyakorlótermében vannak: végtelen számolás lépésenkénti megoldással, áramútrajzok, motorvezérlés-rajzkiegészítés, rajzjelek, portfólióvédés.</p>
+<h3>1. nap – gyakorlati vizsga, biztonság, mérések</h3><ol class="plan">%PLAN%</ol>
+<h3>2. nap – interaktív vizsga témái, számolás, rajz, próbavizsga</h3><ol class="plan">%PLAN2%</ol></section>
 <section id="modulok"><h2>Modulok</h2><div class="cards">%CARDS%</div>%MODULES%</section>
 <section id="elvek"><h2>Elvek</h2><div class="tools"><input class="search" id="q" placeholder="Keresés az elvek között…"><button id="openall">Mind ki</button><button id="closeall">Mind be</button></div>%PRINC%</section>
 <section id="videok"><h2>Videók</h2><p class="muted">A videók a NotebookLM notebook forrásai; a feliratukra a notebookban rá is kérdezhetsz.</p><ul>%VIDEOS%</ul></section>

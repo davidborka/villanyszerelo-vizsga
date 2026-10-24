@@ -52,3 +52,29 @@ button.armed { border-color: var(--bad) !important; background: rgba(255,77,77,.
   .sheet-drawer { position: absolute; inset: 0; width: auto; box-shadow: none; overflow: visible; }
   .sheet-tools { display: none; }
 }
+/* Gyakorlóterem */
+.quiz nav.tabs { display: flex; gap: 4px; flex-wrap: wrap; }
+.quiz nav.tabs button { font-family: var(--head); text-transform: uppercase; font-size: 13px; border-color: transparent; background: transparent; color: var(--muted); }
+.quiz nav.tabs button.cur { background: var(--acc); color: #1a0f00; font-weight: 700; }
+.qcard.practice { margin: 0 auto; width: 100%; }
+.steps { white-space: pre-line; margin-top: 6px; font-family: 'Barlow', sans-serif; }
+.drills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.drills button { font-size: 13px; } .drills button.on { border-color: var(--acc); background: rgba(255,176,32,.14); }
+.grid.syms3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.ladder { background: #f4f1e8; color: #111; border-radius: 8px; padding: 10px 14px; overflow-x: auto; }
+.ladder .rail { font-size: 12px; font-weight: 700; border-bottom: 3px solid #111; padding: 2px 0; margin: 4px 0; }
+.ladder .rail:last-child { border-bottom: 0; border-top: 3px solid #111; }
+.rung { display: flex; align-items: center; gap: 0; margin: 10px 0; min-width: 640px; }
+.rung .wire { flex: 0 0 18px; height: 2px; background: #111; }
+.lc { font-size: 12px; padding: 6px 8px; border: 2px solid #111; border-radius: 4px; background: #fff; color: #111; margin: 0 6px; position: relative; }
+.lc.fixed { background: #e8e4d8; }
+.lc.coil { margin-left: auto; border-radius: 4px; min-width: 52px; text-align: center; font-weight: 700; }
+select.lc.slot { max-width: 210px; font-family: inherit; }
+select.lc.slot.good { border-color: #1d7a46; background: #dcfce7; } select.lc.slot.bad { border-color: #b42318; background: #fee2e2; }
+.lc.par { display: flex; flex-direction: column; gap: 6px; border: 0; background: transparent; padding: 0; border-left: 2px solid #111; border-right: 2px solid #111; }
+.lc.par .branch { display: flex; align-items: center; }
+.phases li { margin: 4px 0; padding: 4px 8px; border-radius: 6px; } .phases li.cur { background: rgba(255,176,32,.18); }
+.crit { display: grid; grid-template-columns: 1fr 160px 50px; gap: 10px; align-items: center; margin: 6px 0; font-size: 14px; }
+@media (max-width: 700px) { .grid.syms3 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .crit { grid-template-columns: 1fr; } }
+.rung { background: linear-gradient(#111, #111) center / 100% 2px no-repeat; }
+.lc.par { background: transparent; } .lc.par .branch { background: linear-gradient(#111, #111) center / 100% 2px no-repeat; }

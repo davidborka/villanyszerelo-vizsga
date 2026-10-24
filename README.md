@@ -34,6 +34,11 @@ A kezdőképernyőn választasz feladatot és módot:
 - **Vizsga mód:** nincs tipp, nincs azonnali „jó/rossz”. Szabad sorrend, bármelyik szakaszra visszaléphetsz. Hibázni lehet: rossz szerszámmal is elvégzed a műveletet (rosszabb minőségben), túl hosszú csatornát is fel lehet erőltetni, feszültség alatt is lehet szerelni (áramütés, érvénytelen vizsga), bekapcsolás előtti mérések nélkül is bekapcsolhatsz. Minden a **Beadás** után derül ki.
 - **Gyakorló mód:** tippek, azonnali visszajelzés, ellenőrizhető rajzfeladatok, „mi kell” az anyagvételezésnél.
 
+## Gyakorlóterem és tanulási segédlet
+
+- **Gyakorlóterem** (a szimulátor kezdőképernyőjéről): végtelen számolás 15 feladattípusban lépésenkénti megoldással; áramútrajz-feladatok minden alapkapcsolásra (ugyanaz a hálózatmodell ellenőrzi, mint a 3D szerelést); motorvezérlés-rajzkiegészítés (öntartás, forgásirányváltás reteszeléssel, csillag–delta); installációs és kapcsolási rajzjelek; portfólióvédés-gyakorló LLM nélkül (10 perces időzítő, bizottsági kérdések, opcionális hangfelvétel csak a böngészőben, önértékelés).
+- **Tanulási segédlet** (`/tanulas/`): 15 modul a vizsga minden részére, kétnapos terv, modulonként NotebookLM-hanglecke és infografika, kereshető elvek, fogalomtár; **számolási feladatgyűjtemény** (33 feladat, rejtett lépésenkénti megoldással); **NotebookLM-oldal** (útmutató, kvíz, tanulókártyák, gondolattérkép). Forrás: `research/modules/*.md`, építés: `python3 research/guide/build.py`.
+
 ## Szakaszok
 
 1. **Feladatlap** – a feladat és az egyvonalas rajz.

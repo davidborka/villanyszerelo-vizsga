@@ -32,6 +32,14 @@ export function checkSchematic(task: Task, links: [string, string][]): { ok: boo
     const ret = task.supply === 'tncs' ? 'bet.PEN' : 'bet.N'
     if (uf.same('bet.L', ret) || uf.same('bet.L', task.supply === 'tncs' ? 'PEs.0' : 'bet.PE')) return { ok: false, msg: 'Zárlat van a kapcsolásban (valamelyik állásban L összeér N-nel vagy PE-vel).' }
   }
+  // dugalj: nincs „működése”, a három érintkezőt külön ellenőrizzük
+  {
+    const uf0 = nets(rig), ret = task.supply === 'tncs' ? 'bet.PEN' : 'bet.N', pe = task.supply === 'tncs' ? 'PEs.0' : 'bet.PE'
+    for (const id of task.schematic.mounts) if (task.loads.find((l) => l.id === id)?.socket) {
+      if (!uf0.same(`${id}.L`, 'bet.L') || !uf0.same(`${id}.N`, ret)) return { ok: false, msg: `A(z) ${id} dugalj nem kap fázist és nullát.` }
+      if (!uf0.same(`${id}.PE`, pe)) return { ok: false, msg: `A(z) ${id} dugalj védőérintkezője (PE) nincs bekötve.` }
+    }
+  }
   const f = task.functional(functionalCtx(rig))
   const bad = f.find((x) => x.sev === 'error' || x.sev === 'critical')
   if (bad) return { ok: false, msg: bad.msg }

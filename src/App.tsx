@@ -10,6 +10,7 @@ import { loadRecord, loadSeen, resetProgress } from './sim/progress'
 import { QUESTIONS } from './sim/questions'
 import { ConfirmButton } from './ui/ConfirmButton'
 import { HotSeat } from './ui/HotSeat'
+import { Practice } from './ui/Practice'
 import { Interactive } from './ui/Interactive'
 import { Log, StagePanel, TaskSheetContent, ToolBelt } from './ui/Panels'
 
@@ -58,6 +59,7 @@ function Start() {
   const start = useGame((s) => s.start)
   const openQuiz = useGame((s) => s.openQuiz)
   const openHotSeat = useGame((s) => s.openHotSeat)
+  const openPractice = useGame((s) => s.openPractice)
   const [mode, setMode] = useState<Mode>('vizsga')
   return (
     <div className="start">
@@ -100,6 +102,11 @@ function Start() {
                 <span className="num">I</span>
                 <b>Portfólióvédés (Hot Seat)</b>
                 <span className="muted small">10 perces bemutatás, kérdések a vizsgabizottságtól. Az eredmény bekerül az előrejelzésbe.</span>
+              </button>
+              <button className="taskcard" onClick={openPractice}>
+                <span className="num">✎</span>
+                <b>Gyakorlóterem</b>
+                <span className="muted small">Végtelen számolás lépésenkénti megoldással, áramútrajzok, motorvezérlés-rajzkiegészítés, rajzjelek, portfólióvédés LLM nélkül.</span>
               </button>
               <a className="taskcard" href="./tanulas/" target="_blank" rel="noreferrer">
                 <span className="num">📚</span>
@@ -144,6 +151,7 @@ export default function App() {
   if (screen === 'start') return <Start />
   if (screen === 'quiz') return <Interactive key={quizKey} mode={mode} onExit={toMenu} onRestart={() => setQuizKey((k) => k + 1)} />
   if (screen === 'hotseat') return <HotSeat onExit={toMenu} />
+  if (screen === 'gyakorlo') return <Practice onExit={toMenu} />
   const idx = STAGES.findIndex((s) => s.id === stage)
   return (
     <div className="app">

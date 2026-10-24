@@ -109,6 +109,26 @@ def build(src: str, out: str):
     return [v for _, v in nav]
 
 
+def build_md_page(md_path: str, out: str, title: str) -> int:
+    """Markdown tananyag önálló oldalként (pl. a számolási feladatgyűjtemény)."""
+    html_body = md(open(md_path).read())
+
+    # feladatonként: a „Feladat” látszik, a megoldás, eredmény és tipikus hiba lenyitható blokkban
+    def hide(m):
+        items = re.findall(r"<li>.*?</li>", m.group(0), flags=re.S)
+        task = [x for x in items if "<b>Feladat:</b>" in x]
+        rest = [x for x in items if x not in task]
+        if not task or not rest:
+            return m.group(0)
+        return "<ul>" + "".join(task) + "</ul><details class=\"sol\"><summary>Megoldás</summary><ul>" + "".join(rest) + "</ul></details>"
+    html_body = re.sub(r"<ul>.*?</ul>", hide, html_body, flags=re.S)
+    body = f'<section>{html_body}</section>'
+    page = PAGE.replace("%NAV%", "").replace("%BODY%", body).replace("<title>NotebookLM tananyag – villanyszerelő vizsga</title>", f"<title>{e(title)} – villanyszerelő vizsga</title>")
+    page = page.replace('<main><p class="src">Google NotebookLM-mel generált anyag', '<main><p class="src" hidden>Google NotebookLM-mel generált anyag')
+    open(out, "w").write(page)
+    return len(page)
+
+
 PAGE = """<!doctype html><html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>NotebookLM tananyag – villanyszerelő vizsga</title><style>
 :root{--bg:#fbfaf6;--fg:#1b1d21;--muted:#666b73;--card:#fff;--line:#e4e1d8;--acc:#c46a00;--good:#1d7a46;--bad:#b42318}
@@ -122,10 +142,10 @@ table{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;display:b
 .opt.ok{border-color:var(--good);background:rgba(29,122,70,.12)}.opt.no{border-color:var(--bad);background:rgba(180,35,24,.1)}.why{font-size:14px;color:var(--muted);margin:4px 0 0}
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}.card{min-height:110px;text-align:left;padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font:inherit;cursor:pointer}.card.flip{background:var(--acc);color:#fff}
 .tree,.tree ul{list-style:none;padding-left:18px}.tree summary{cursor:pointer;font-weight:600}.tree li{margin:3px 0}
-.src{font-size:13px;color:var(--muted)}
+.src{font-size:13px;color:var(--muted)}details.sol{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:6px 10px;margin:4px 0 14px}details.sol summary{cursor:pointer;color:var(--acc);font-weight:600}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style></head><body>
-<header><a href="./index.html"><b>← Mai terv</b></a>%NAV%</header>
+<header><a href="./index.html"><b>← Tanulási segédlet</b></a>%NAV%</header>
 <main><p class="src">Google NotebookLM-mel generált anyag a notebook nyilvános forrásaiból (KKK, vizsgaközponti mintafeladat, szolgáltatói előírások, saját tananyag-modulok, kérdésbank, videók). Ellenőrizd a hivatalos forrásokkal; eltérés esetén a KKK és a szabvány az irányadó.</p>
 %BODY%
 </main><script>

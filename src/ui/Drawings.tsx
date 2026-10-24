@@ -247,16 +247,19 @@ export function OneLineGeneric({ circuits }: { circuits: OneLineCircuit[] }) {
 
 // ---------- Áramútrajz kiegészítése (feladatonként) ----------
 interface PT { id: string; x: number; y: number; label: string }
+const SHORT: Record<string, string> = { mcbB32: 'F0 B32', meter1f: 'P1 mérő (kWh)', timer: 'LA automata', ir: 'IR relé' }
 function schematicLayout(task: Task) {
+  // TN-C-S mérőhelynél a forrás a szétválasztott N-kapocs és PE-sín (a PEN már a PE-sínen van)
+  const tncs = task.supply === 'tncs'
   const pts: PT[] = [
     { id: 'bet.L', x: 30, y: 30, label: 'L' },
-    { id: 'bet.N', x: 30, y: 60, label: 'N' },
-    { id: 'bet.PE', x: 30, y: 90, label: 'PE' },
+    { id: tncs ? 'Nk.0' : 'bet.N', x: 30, y: 60, label: 'N' },
+    { id: tncs ? 'PEs.0' : 'bet.PE', x: 30, y: 90, label: 'PE' },
   ]
   const boxes: { x: number; y: number; w: number; h: number; name: string; round?: boolean }[] = []
   let x = 90
   const devs = [
-    ...task.schematic.din.map((t) => ({ id: schematicUid(t), def: itemByType[t], name: itemByType[t].name.split(' ')[0], lamp: false })),
+    ...task.schematic.din.map((t) => ({ id: schematicUid(t), def: itemByType[t], name: SHORT[t] ?? itemByType[t].name.split(' ')[0], lamp: false })),
     ...task.schematic.mounts.map((id) => {
       const m = task.layout.mounts.find((q) => q.id === id)!
       return { id, def: itemByType[m.expect], name: `${id}`, lamp: m.kind === 'lamp' }
@@ -270,7 +273,8 @@ function schematicLayout(task: Task) {
       d.def.terms.forEach((t, i) => pts.push({ id: `${d.id}.${t.id}`, x: x + 16 + i * 22, y: 168, label: t.label }))
     } else {
       boxes.push({ x, y: 150, w, h: 60, name: d.name })
-      d.def.terms.forEach((t, i) => pts.push({ id: `${d.id}.${t.id}`, x: x + 16 + i * 22, y: 150, label: t.label }))
+      // a rajzon a rövid kapocsjel elég (pl. 1, 3, 4, 6 a mérőn)
+      d.def.terms.forEach((t, i) => pts.push({ id: `${d.id}.${t.id}`, x: x + 16 + i * 22, y: 150, label: t.label.length > 4 ? t.id : t.label }))
     }
     x += w + 18
   }
@@ -290,7 +294,7 @@ export function Pathway({ task, links, setLinks, locked }: { task: Task; links: 
   const col = (a: string, b: string) => ([a, b].some((x) => x.endsWith('PE')) ? '#2f9e44' : [a, b].some((x) => x.endsWith('.N') || x.endsWith('.A2')) ? '#1f5fd6' : '#8a4b22')
   return (
     <svg viewBox={`0 0 ${width} 240`} width="100%" className="pathway">
-      <text x={50} y={34} className="svgt">L (kismegszakító után)</text>
+      <text x={50} y={34} className="svgt">{task.supply === 'tncs' ? 'L (méretlen fővezeték)' : 'L (kismegszakító után)'}</text>
       <text x={50} y={64} className="svgt">N</text>
       <text x={50} y={94} className="svgt">PE</text>
       {boxes.map((b, i) =>
@@ -304,7 +308,11 @@ export function Pathway({ task, links, setLinks, locked }: { task: Task; links: 
         ) : (
           <g key={i}>
             <rect x={b.x} y={b.y} width={b.w} height={b.h} rx={6} className="devbox" />
-            <text x={b.x + 4} y={b.y + b.h + 16} className="svgt">{b.name}</text>
+            {/* a név a dobozban, két sorban, hogy a szomszédos dobozok felirata ne érjen össze */}
+            <text x={b.x + b.w / 2} y={b.y + 30} className="svgt" textAnchor="middle">
+              <tspan>{b.name.split(' ')[0]}</tspan>
+              <tspan x={b.x + b.w / 2} dy={13} className="small">{b.name.split(' ').slice(1).join(' ')}</tspan>
+            </text>
           </g>
         ),
       )}
@@ -320,6 +328,73 @@ export function Pathway({ task, links, setLinks, locked }: { task: Task; links: 
           <text x={t.x + 7} y={t.y - 7} className="svgt small">{t.label}</text>
         </g>
       ))}
+    </svg>
+  )
+}
+
+// ---------- Kapcsolási (áramúti) rajzjelek a Gyakorlóterem rajzjel-feladatához ----------
+export type SchemKind = 'kismegszakito' | 'avk' | 'spd' | 'mero' | 'motor' | 'tekercs' | 'hore' | 'nyomoNo' | 'nyomoNc' | 'idorele' | 'trafo' | 'foldeles' | 'biztosito' | 'zaro' | 'bonto'
+export const SCHEM_NAMES: Record<SchemKind, string> = {
+  kismegszakito: 'Kismegszakító',
+  avk: 'Áram-védőkapcsoló (ÁVK)',
+  spd: 'Túlfeszültség-levezető',
+  mero: 'Fogyasztásmérő (kWh)',
+  motor: 'Háromfázisú motor',
+  tekercs: 'Mágneskapcsoló / relé tekercse',
+  hore: 'Hőrelé (túlterhelés-védelem) fűtőeleme',
+  nyomoNo: 'Nyomógomb, záró (START)',
+  nyomoNc: 'Nyomógomb, bontó (STOP)',
+  idorele: 'Időrelé tekercse (késleltetett)',
+  trafo: 'Transzformátor',
+  foldeles: 'Földelés',
+  biztosito: 'Olvadóbiztosító',
+  zaro: 'Záró érintkező (segédzáró)',
+  bonto: 'Bontó érintkező (segédbontó)',
+}
+
+export function SchemSym({ kind, size = 64 }: { kind: SchemKind; size?: number }) {
+  const s = { stroke: 'currentColor', strokeWidth: 2.2, fill: 'none', strokeLinecap: 'round' as const }
+  const contact = (closed: boolean) => (
+    <g>
+      <line x1={32} y1={6} x2={32} y2={22} {...s} />
+      <line x1={32} y1={42} x2={32} y2={58} {...s} />
+      {closed ? (
+        <g><line x1={32} y1={42} x2={44} y2={20} {...s} /><line x1={32} y1={22} x2={46} y2={22} {...s} /></g>
+      ) : (
+        <line x1={32} y1={42} x2={20} y2={22} {...s} />
+      )}
+    </g>
+  )
+  const push = <g><line x1={4} y1={32} x2={24} y2={32} {...s} strokeDasharray="3 3" /><line x1={4} y1={26} x2={4} y2={38} {...s} /></g>
+  return (
+    <svg viewBox="0 0 64 64" width={size} height={size} className="sym">
+      {kind === 'zaro' && contact(false)}
+      {kind === 'bonto' && contact(true)}
+      {kind === 'nyomoNo' && <g>{contact(false)}{push}</g>}
+      {kind === 'nyomoNc' && <g>{contact(true)}{push}</g>}
+      {(kind === 'kismegszakito' || kind === 'avk') && (
+        <g>
+          {contact(false)}
+          <line x1={28} y1={18} x2={36} y2={26} {...s} /><line x1={36} y1={18} x2={28} y2={26} {...s} />
+          {kind === 'avk' && <ellipse cx={32} cy={50} rx={10} ry={5} {...s} />}
+        </g>
+      )}
+      {kind === 'spd' && (
+        <g>
+          <rect x={24} y={14} width={16} height={28} {...s} />
+          <path d="M34 18 L29 28 L35 28 L30 38" {...s} />
+          <line x1={32} y1={4} x2={32} y2={14} {...s} /><line x1={32} y1={42} x2={32} y2={52} {...s} />
+          <line x1={22} y1={52} x2={42} y2={52} {...s} /><line x1={26} y1={56} x2={38} y2={56} {...s} /><line x1={30} y1={60} x2={34} y2={60} {...s} />
+        </g>
+      )}
+      {kind === 'mero' && <g><rect x={10} y={16} width={44} height={32} {...s} /><text x={32} y={37} textAnchor="middle" fontSize={13} fill="currentColor">kWh</text></g>}
+      {kind === 'motor' && <g><circle cx={32} cy={32} r={20} {...s} /><text x={32} y={31} textAnchor="middle" fontSize={14} fill="currentColor">M</text><text x={32} y={45} textAnchor="middle" fontSize={11} fill="currentColor">3~</text></g>}
+      {kind === 'tekercs' && <g><rect x={18} y={20} width={28} height={24} {...s} /><line x1={32} y1={6} x2={32} y2={20} {...s} /><line x1={32} y1={44} x2={32} y2={58} {...s} /></g>}
+      {kind === 'idorele' && <g><rect x={18} y={20} width={28} height={24} {...s} /><rect x={18} y={20} width={9} height={24} fill="currentColor" /><line x1={32} y1={6} x2={32} y2={20} {...s} /><line x1={32} y1={44} x2={32} y2={58} {...s} /></g>}
+      {kind === 'hore' && <g><rect x={18} y={16} width={28} height={32} {...s} /><path d="M32 6 V22 H40 V42 H32 V58" {...s} /></g>}
+      {kind === 'trafo' && <g><circle cx={32} cy={23} r={13} {...s} /><circle cx={32} cy={41} r={13} {...s} /></g>}
+      {kind === 'foldeles' && <g><line x1={32} y1={8} x2={32} y2={34} {...s} /><line x1={16} y1={34} x2={48} y2={34} {...s} /><line x1={21} y1={42} x2={43} y2={42} {...s} /><line x1={27} y1={50} x2={37} y2={50} {...s} /></g>}
+      {kind === 'biztosito' && <g><rect x={24} y={14} width={16} height={36} {...s} /><line x1={32} y1={4} x2={32} y2={60} {...s} /></g>}
     </svg>
   )
 }
