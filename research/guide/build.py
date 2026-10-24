@@ -197,6 +197,37 @@ GLOSSARY = [
 ]
 
 
+# Interaktív szemléltetések és mini feladatok (research/guide/widgets/*.js) modulonként
+WIDGETS = {
+    "m01-vizsga-strategia": ["pont-kalkulator"],
+    "m02-munkavedelem": ["ot-szabaly", "szerszamvalasztas"],
+    "m03-aramutes-elleni-vedelem": ["hibaaram-demo", "avk-demo"],
+    "m04-meresek": ["meres-sorrend", "szigeteles-meres"],
+    "m05-vilagitasvezerlesek": ["valto-demo", "valto-bekotes", "impulzus-demo"],
+    "m06-eloszto-csatorna": ["eloszto-osszeallitas", "csatorna-vagas"],
+    "m07-merohely": ["merohely-bekotes"],
+    "m08-interaktiv-vizsga": ["rajzjel-par"],
+    "m11-alapszamitasok": ["ohm-haromszog", "feszultsegeses"],
+    "m12-vezetekmeretezes-vedelem": ["kismegszakito-valasztas"],
+    "m13-motorok-vezerles": ["csillag-delta", "ontartas-demo"],
+    "m14-kabelek-szereles-kulonleges-helyek": ["erszin", "furdo-zonak"],
+    "m15-tulfeszultseg-pv-transzformator": ["pv-string"],
+    "m16-dokumentacio-anyagjegyzek-hibakereses": ["hibakereses"],
+}
+WSRC = os.path.join(SRC, "widgets")
+
+
+def copy_widgets():
+    """A widget-forrásokat a kiadott mappába másolja; a betöltési sorrend: core.js, majd a többi ábécérendben."""
+    dst = os.path.join(HERE, "widgets")
+    os.makedirs(dst, exist_ok=True)
+    files = sorted(f for f in os.listdir(WSRC) if f.endswith((".js", ".css")))
+    for f in files:
+        shutil.copy2(os.path.join(WSRC, f), os.path.join(dst, f))
+    js = ["core.js"] + [f for f in files if f.endswith(".js") and f != "core.js"]
+    return "".join(f'<script src="widgets/{f}"></script>' for f in js) + '<link rel="stylesheet" href="widgets/core.css">'
+
+
 def copy_media():
     """Hanganyag másolása, infografikák WebP-re tömörítése (1600 px széles)."""
     import subprocess
@@ -229,6 +260,7 @@ def media(key):
 
 def build():
     copy_media()
+    wtags = copy_widgets()
     videos = json.load(open(VIDEOS)) if os.path.exists(VIDEOS) else []
     by_key = {m["key"]: m for m in MODULES}
     num = lambda m: int(m["key"][1:3])
@@ -256,7 +288,7 @@ def build():
         fc = "".join(f'<button class="flash" data-back="{e(b)}">{e(f)}</button>' for f, b in m["cards"])
         mods += f'''<section class="module" id="{m["key"]}">
 <div class="kicker">{num(m)}. modul · ~{m["min"]} perc</div><h2>{e(m["title"])}</h2><p class="lead">{e(m["lead"])}</p>
-{media(m["key"])}{ps}
+{media(m["key"])}{ps}{"".join(f'<div class="wslot" data-w="{w}"></div>' for w in WIDGETS.get(m["key"], []))}
 <div class="practice"><h3>Ellenőrző kérdések</h3>{checks}<h3>Tanulókártyák</h3><div class="flashes">{fc}</div></div>
 <button class="read" data-key="{m["key"]}">Megjelölöm olvasottnak</button></section>'''
     vids = "".join(f'<li><b>{e(v.get("title", ""))}</b> <span class="muted">— {e(v.get("channel", ""))}, {e(str(v.get("minutes", "")))} perc · {n_topic(v)}</span><br><span>{e(v.get("why", ""))}</span></li>' for v in videos)
@@ -264,8 +296,13 @@ def build():
     gl = "".join(f"<dt>{e(k)}</dt><dd>{e(v)}</dd>" for k, v in GLOSSARY)
     page = TEMPLATE.replace("%PLAN2%", plan2).replace("%PLAN%", plan).replace("%CARDS%", cards).replace("%MODULES%", mods).replace("%PRINC%", princ) \
         .replace("%VIDEOS%", vids or '<li class="muted">A videók a NotebookLM notebook forrásai között vannak.</li>').replace("%SOURCES%", srcs).replace("%GLOSS%", gl) \
-        .replace("%NMOD%", str(len(MODULES)))
+        .replace("%NMOD%", str(len(MODULES))).replace("%WIDGETS%", wtags)
     open(os.path.join(HERE, "index.html"), "w").write(page)
+    style = TEMPLATE.split("<style>", 1)[1].split("</style>", 1)[0]
+    mods_js = json.dumps({m["key"]: f'{num(m)}. {m["title"]}' for m in MODULES}, ensure_ascii=False)
+    wall = WALL.replace("%STYLE%", style).replace("%WIDGETS%", wtags).replace("%MODS%", mods_js)
+    open(os.path.join(HERE, "gyakorlat.html"), "w").write(wall)
+    print("gyakorlat.html kész")
     print("index.html kész:", len(page), "bájt")
     import sys
     sys.path.insert(0, SRC)
@@ -304,8 +341,8 @@ figure{margin:12px 0}figure img{max-width:100%;border-radius:8px;border:1px soli
 button.read.on{background:var(--good);color:#fff}.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}input.search{font:inherit;padding:7px 10px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--fg);flex:1;min-width:180px}
 .pcard{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin:6px 0}dl dt{font-weight:700;margin-top:8px}dl dd{margin:0}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-</style></head><body>
-<header><b>⚡ Villanyszerelő vizsga – tanulási segédlet</b><nav><a href="#home">Áttekintés</a><a href="#terv">Terv</a><a href="feladatgyujtemeny.html"><b>Számolási feladatok</b></a><a href="notebooklm.html"><b>NotebookLM: kvíz, kártyák</b></a><a href="#modulok">Modulok</a><a href="#elvek">Elvek</a><a href="#videok">Videók</a><a href="#forrasok">Források</a><a href="#fogalmak">Fogalmak</a></nav>
+</style>%WIDGETS%</head><body>
+<header><b>⚡ Villanyszerelő vizsga – tanulási segédlet</b><nav><a href="#home">Áttekintés</a><a href="#terv">Terv</a><a href="gyakorlat.html"><b>Interaktív gyakorlás</b></a><a href="feladatgyujtemeny.html"><b>Számolási feladatok</b></a><a href="notebooklm.html"><b>NotebookLM: kvíz, kártyák</b></a><a href="#modulok">Modulok</a><a href="#elvek">Elvek</a><a href="#videok">Videók</a><a href="#forrasok">Források</a><a href="#fogalmak">Fogalmak</a></nav>
 <label class="muted"><input type="checkbox" id="practice"> Gyakorló mód</label></header>
 <main>
 <section id="home"><div class="kicker">4 0713 04 07 · Villanyszerelő · Épületvillamosság</div>
@@ -336,6 +373,14 @@ pp.onclick=()=>{if(a.paused){document.querySelectorAll('audio').forEach(x=>x!==a
 a.onended=()=>{const r=get(),k=p.closest('.module').id;if(!r.includes(k))put([...r,k]);paint()};p.querySelectorAll('.sk').forEach(b=>b.onclick=()=>a.currentTime=Math.max(0,a.currentTime+ +b.dataset.d));p.querySelector('.sp').onchange=ev=>a.playbackRate=+ev.target.value});
 paint();
 </script></body></html>"""
+
+WALL = """<!doctype html><html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Interaktív gyakorlás – villanyszerelő vizsga</title><style>%STYLE%</style>%WIDGETS%<script>window.W_MODULES=%MODS%</script></head><body>
+<header><b>⚡ Interaktív gyakorlás</b><nav><a href="index.html">← Tanulási segédlet</a><a href="feladatgyujtemeny.html">Számolási feladatok</a></nav><span class="muted" id="wstat"></span></header>
+<main><div class="kicker">Szemléltetések és mini feladatok</div><h1>Próbáld ki, kösd be, számold ki.</h1>
+<p class="lead">Minden modulhoz kattintható ábrák (mi történik, ha…) és rövid feladatok azonnali visszajelzéssel. A „↺ Újra” gomb új változatot ad; a megoldott feladatokat a böngésződ megjegyzi.</p>
+<div id="wall"></div></main></body></html>"""
+
 
 if __name__ == "__main__":
     build()

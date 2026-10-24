@@ -1,0 +1,28 @@
+<!doctype html><html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Interaktív gyakorlás – villanyszerelő vizsga</title><style>
+:root{--bg:#fbfaf6;--fg:#1b1d21;--muted:#666b73;--card:#fff;--line:#e4e1d8;--acc:#c46a00;--good:#1d7a46;--bad:#b42318}
+@media (prefers-color-scheme:dark){:root{--bg:#111418;--fg:#e8ebef;--muted:#9aa3ae;--card:#1a1e24;--line:#2c323b;--acc:#ffb020;--good:#3ddc84;--bad:#ff6b6b}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
+header{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;z-index:2}
+header b{font-size:17px}nav a{color:var(--fg);margin-right:12px;text-decoration:none;font-size:14px}nav a:hover{color:var(--acc)}
+main{max-width:920px;margin:0 auto;padding:16px}h1{font-size:30px;line-height:1.15;margin:14px 0 6px}h2{margin:4px 0 6px}
+.kicker{color:var(--acc);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.muted{color:var(--muted)}.lead{font-size:17px}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}.stats div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:14px;margin:8px 0 18px}.flow span{background:var(--card);border:1px solid var(--line);border-radius:99px;padding:3px 10px}
+ol.plan{list-style:none;padding:0}ol.plan li{display:flex;gap:10px;flex-wrap:wrap;padding:7px 0;border-bottom:1px solid var(--line)}.time{font-weight:700;width:52px}.dur{width:48px;color:var(--muted)}ol.plan a{color:var(--acc)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin:12px 0}.mcard{position:relative;display:flex;flex-direction:column;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;color:var(--fg);text-decoration:none}.mcard span{font-size:13px;color:var(--muted)}.mcard .done{display:none;position:absolute;top:8px;right:10px;color:var(--good);font-style:normal}.mcard.isread .done{display:block}
+.progress{height:8px;background:var(--line);border-radius:99px;overflow:hidden}.progress i{display:block;height:100%;background:var(--good);width:0}
+.module{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin:18px 0}.principle{border-left:3px solid var(--acc);padding:2px 0 2px 12px;margin:14px 0}
+.sim{background:rgba(29,122,70,.08);padding:6px 10px;border-radius:6px}.err{background:rgba(180,35,24,.07);padding:6px 10px;border-radius:6px}.ref{font-size:13px;color:var(--muted);font-style:italic}
+figure{margin:12px 0}figure img{max-width:100%;border-radius:8px;border:1px solid var(--line)}
+.player{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:10px 0}.player button,.player select,button.read,button.flash,.tools button{font:inherit;padding:6px 10px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--fg);cursor:pointer}
+.practice{display:none;margin-top:12px}body.practice-on .practice{display:block}details{border-bottom:1px solid var(--line);padding:6px 0}summary{cursor:pointer}
+.flashes{display:flex;gap:8px;flex-wrap:wrap}button.flash{min-height:64px;max-width:260px;text-align:left}button.flash.flip{background:var(--acc);color:#fff}
+button.read.on{background:var(--good);color:#fff}.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}input.search{font:inherit;padding:7px 10px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--fg);flex:1;min-width:180px}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin:6px 0}dl dt{font-weight:700;margin-top:8px}dl dd{margin:0}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style><script src="widgets/core.js"></script><script src="widgets/a-aramkorok.js"></script><script src="widgets/b-feladatok.js"></script><link rel="stylesheet" href="widgets/core.css"><script>window.W_MODULES={"m01-vizsga-strategia": "1. A vizsga felépítése és a pontszerzés", "m02-munkavedelem": "2. Munkavédelem és szerszámok", "m03-aramutes-elleni-vedelem": "3. Áramütés elleni védelem", "m04-meresek": "4. Szerelői ellenőrzés és mérések", "m05-vilagitasvezerlesek": "5. Világításvezérlések", "m06-eloszto-csatorna": "6. Elosztó, csatorna, kivitelezés", "m07-merohely": "7. Fogyasztásmérő hely", "m08-interaktiv-vizsga": "8. Interaktív vizsga: számítás, anyag", "m09-portfolio": "9. Portfólió és szóbeli védés", "m11-alapszamitasok": "11. Villamos alapismeretek és alapszámítások", "m12-vezetekmeretezes-vedelem": "12. Vezetékméretezés és túláramvédelem", "m13-motorok-vezerles": "13. Motorok és motorvezérlés", "m14-kabelek-szereles-kulonleges-helyek": "14. Kábelek, szerelési módok, különleges helyek", "m15-tulfeszultseg-pv-transzformator": "15. Túlfeszültség-védelem, PV, transzformátor", "m16-dokumentacio-anyagjegyzek-hibakereses": "16. Dokumentáció, anyagjegyzék, hibakeresés"}</script></head><body>
+<header><b>⚡ Interaktív gyakorlás</b><nav><a href="index.html">← Tanulási segédlet</a><a href="feladatgyujtemeny.html">Számolási feladatok</a></nav><span class="muted" id="wstat"></span></header>
+<main><div class="kicker">Szemléltetések és mini feladatok</div><h1>Próbáld ki, kösd be, számold ki.</h1>
+<p class="lead">Minden modulhoz kattintható ábrák (mi történik, ha…) és rövid feladatok azonnali visszajelzéssel. A „↺ Újra” gomb új változatot ad; a megoldott feladatokat a böngésződ megjegyzi.</p>
+<div id="wall"></div></main></body></html>

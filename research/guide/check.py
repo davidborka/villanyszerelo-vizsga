@@ -2,7 +2,7 @@
 """Az útmutató ellenőrzése: nincs külső hivatkozás, minden helyi fájl megvan, nincs gépspecifikus utalás."""
 import os, re, sys
 here = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "public", "tanulas")
-page = open(os.path.join(here, "index.html")).read()
+page = "".join(open(os.path.join(here, f)).read() for f in ("index.html", "gyakorlat.html")) + "".join(open(os.path.join(here, "widgets", f)).read() for f in os.listdir(os.path.join(here, "widgets")))
 bad = []
 for m in re.finditer(r'(?:href|src)="([^"]+)"', page):
     u = m.group(1)
