@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { CIRCUIT_DRILLS, LADDERS, PARTS, checkLadder, type Cell } from '../sim/drills'
 import { CALC_TYPES, generateOne } from '../sim/generated'
 import { saveRecord } from '../sim/progress'
+import { useGame } from '../sim/store'
 import { checkSchematic } from '../sim/score'
 import { Pathway, SCHEM_NAMES, SchemSym, Sym, SYM_NAMES, type SchemKind, type SymKind } from './Drawings'
 
@@ -251,7 +252,7 @@ const TABS = [
 ]
 
 export function Practice({ onExit }: { onExit: () => void }) {
-  const [tab, setTab] = useState('szamolas')
+  const [tab, setTab] = useState(useGame.getState().practiceTab)
   const T = TABS.find((t) => t.id === tab)!
   return (
     <div className="quiz">

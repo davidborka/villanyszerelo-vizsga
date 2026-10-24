@@ -110,3 +110,5 @@ table.mat tr.sel { background: rgba(255,176,32,.12); } table.pieces tr { cursor:
 .tape-label { background: #f2c200; color: #111; font-weight: 800; padding: 2px 6px; border-radius: 4px; font-size: 12px; white-space: nowrap; }
 main.tool-mero canvas { cursor: crosshair; }
 @media (max-width: 900px) { .app { grid-template-columns: 1fr; grid-template-rows: auto 55vh 1fr; } aside { order: 3; } .modes { grid-template-columns: 1fr; } }
+
+.taskcard:disabled { opacity: 0.45; cursor: not-allowed; filter: grayscale(1); }

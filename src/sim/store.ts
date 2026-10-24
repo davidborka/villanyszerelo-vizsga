@@ -93,6 +93,7 @@ export interface RajzAns {
 
 interface State extends Rig {
   screen: 'start' | 'game' | 'quiz' | 'hotseat' | 'gyakorlo'
+  practiceTab: string
   mode: Mode
   stage: StageId
   startedAt: number
@@ -130,7 +131,7 @@ interface State extends Rig {
   toMenu: () => void
   openQuiz: (mode: Mode) => void
   openHotSeat: () => void
-  openPractice: () => void
+  openPractice: (tab?: string) => void
   setStage: (s: StageId) => void
   submit: () => void
   say: (msg: string, sev?: 'info' | 'event') => void
@@ -166,6 +167,7 @@ const newInsp = (): Insp => ({
 
 const initial = (taskId = 'nyariKonyha', mode: Mode = 'vizsga') => ({
   screen: 'start' as const,
+  practiceTab: 'szamolas',
   taskId,
   mode,
   stage: 'feladat' as StageId,
@@ -261,7 +263,7 @@ export const useGame = create<State>((set, get) => {
     toMenu: () => set({ screen: 'start' }),
     openQuiz: (mode) => set({ screen: 'quiz', mode }),
     openHotSeat: () => set({ screen: 'hotseat' }),
-    openPractice: () => set({ screen: 'gyakorlo' }),
+    openPractice: (tab = 'szamolas') => set({ screen: 'gyakorlo', practiceTab: tab }),
     setStage: (stage) => {
       if (get().submitted && stage !== 'ertekeles') return
       set({ stage, pendingTerm: null, tape: [], selectedPiece: null, selectedMount: null })

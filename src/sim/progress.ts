@@ -23,6 +23,8 @@ export function saveRecord(patch: Partial<ExamRecord>): ExamRecord {
 
 /** Hot Seat portfólióvédés: a zsűri által megnyitott címre visszaküldött eredmény (?portfolio=NN) */
 export const HOTSEAT_URL = (import.meta.env?.VITE_HOTSEAT_URL as string | undefined) ?? 'http://localhost:4740'
+/** A Hot Seat AI-zsűrije helyi LLM-et hív: csak a saját gépen (vagy külön beállított címmel) érhető el */
+export const HOTSEAT_AVAILABLE = !!import.meta.env?.VITE_HOTSEAT_URL || ['localhost', '127.0.0.1'].includes(location.hostname)
 export const HOTSEAT_BOARD = 'villanyszerelo-portfolio-vedes'
 
 export function hotSeatLink(): string {

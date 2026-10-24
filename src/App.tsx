@@ -6,7 +6,7 @@ import { isMuted, startSfx, toggleMuted } from './scene/sfx'
 import { STAGES, useGame, type Mode } from './sim/store'
 import { TASK_LIST, TASKS } from './sim/tasks'
 import { forecast } from './sim/score'
-import { loadRecord, loadSeen, resetProgress } from './sim/progress'
+import { HOTSEAT_AVAILABLE, loadRecord, loadSeen, resetProgress } from './sim/progress'
 import { QUESTIONS } from './sim/questions'
 import { ConfirmButton } from './ui/ConfirmButton'
 import { HotSeat } from './ui/HotSeat'
@@ -98,12 +98,27 @@ function Start() {
                   <span className="muted small">{t.short}</span>
                 </button>
               ))}
-              <button className="taskcard" onClick={openHotSeat}>
-                <span className="num">I</span>
-                <b>Portfólióvédés (Hot Seat)</b>
-                <span className="muted small">10 perces bemutatás, kérdések a vizsgabizottságtól. Az eredmény bekerül az előrejelzésbe.</span>
-              </button>
-              <button className="taskcard" onClick={openPractice}>
+              {HOTSEAT_AVAILABLE ? (
+                <button className="taskcard" onClick={openHotSeat}>
+                  <span className="num">I</span>
+                  <b>Portfólióvédés (Hot Seat)</b>
+                  <span className="muted small">10 perces bemutatás, kérdések az AI-vizsgabizottságtól. Az eredmény bekerül az előrejelzésbe.</span>
+                </button>
+              ) : (
+                <>
+                <button className="taskcard" disabled title="A Hot Seat AI-zsűrije helyi LLM-et hív, a megosztott oldalon nem érhető el">
+                  <span className="num">I</span>
+                  <b>Portfólióvédés (Hot Seat) – kikapcsolva</b>
+                  <span className="muted small">Az AI-zsűris védés helyi LLM-et igényel, ezért itt nem érhető el. Gyakorolni a mellette lévő kártyával lehet.</span>
+                </button>
+                <button className="taskcard" onClick={() => openPractice('portfolio')}>
+                  <span className="num">I</span>
+                  <b>Portfólióvédés</b>
+                  <span className="muted small">Bizottsági kérdések, önértékelés a KKK szempontjai szerint, eredmény az előrejelzésbe. LLM nélkül.</span>
+                </button>
+                </>
+              )}
+              <button className="taskcard" onClick={() => openPractice()}>
                 <span className="num">✎</span>
                 <b>Gyakorlóterem</b>
                 <span className="muted small">Végtelen számolás lépésenkénti megoldással, áramútrajzok, motorvezérlés-rajzkiegészítés, rajzjelek, portfólióvédés LLM nélkül.</span>
@@ -111,7 +126,7 @@ function Start() {
               <a className="taskcard" href="./tanulas/" target="_blank" rel="noreferrer">
                 <span className="num">📚</span>
                 <b>Tanulási útmutató</b>
-                <span className="muted small">Mai terv, 9 modul hangleckékkel és infografikákkal, NotebookLM kvíz és tanulókártyák.</span>
+                <span className="muted small">Mai terv, 15 modul hangleckékkel és infografikákkal, NotebookLM kvíz és tanulókártyák.</span>
               </a>
               <button className="taskcard" onClick={() => openQuiz(mode)}>
                 <span className="num">90'</span>
