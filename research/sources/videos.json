@@ -1,0 +1,168 @@
+[
+ {
+  "url": "https://www.youtube.com/watch?v=cjxglD5Li6w",
+  "title": "Csillárkapcsoló, Váltókapcsoló és keresztkapcsoló bekötése és tesztelése",
+  "channel": "Katona Csaba Villanyszerelő és Felülvizsgáló",
+  "minutes": 29,
+  "topic": 2,
+  "captions": "hu-auto",
+  "why": "Felülvizsgáló villanyszerelő köti be és teszteli a 105-ös, 106-os és keresztkapcsolót, pontosan a vizsga világítási áramköreit."
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=Qeh_zaNmtRM",
+  "title": "105-ös Csillár kapcsoló működési elve és bekötése",
+  "channel": "Katona Csaba Villanyszerelő és Felülvizsgáló",
+  "minutes": 3,
+  "topic": 2,
+  "captions": "hu-auto",
+  "why": "Röviden elmagyarázza a csillárkapcsoló működési elvét és bekötését két lámpakörre."
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=cFhdp4jCCXw",
+  "title": "Váltó-Keresztváltó kapcsolás",
+  "channel": "Elektric Man 33",
+  "minutes": 2,
+  "topic": 2,
+  "captions": "hu-manual",
+  "why": "Kézi magyar felirattal mutatja be a három helyről kapcsolást váltó- és keresztkapcsolóval."
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=U4OjkHxsVK8",
+  "title": "Impulzus relével vezérelt világítás 2.0",
+  "channel": "Elektric Man 33",
+  "minutes": 5,
+  "topic": 3,
+  "captions": "hu-manual",
+  "why": "Bemutatja az impulzusrelé (távkapcsoló) bekötését több nyomógombbal, kézi magyar felirattal."
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=UzIEVBbDZdc",
+  "title": "Lépcsőházi automatával világítási automatizálás",
+  "channel": "Elektric Man 33",
+  "minutes": 4,
+  "topic": 3,
+  "captions": "hu-manual",
+  "why": "A lépcsőházi automata nyomógombos bekötését és működését mutatja be, kézi magyar felirattal."
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=dXbCnNzzGK8",
+  "title": "Villanyszerelés kezdőknek lépésről-lépésre. Elosztó vezetékezés 9. Rész",
+  "channel": "Katona Csaba Villanyszerelő és Felülvizsgáló",
+  "minutes": 8,
+  "topic": 4,
+  "captions": "hu-auto",
+  "why": "Lépésről lépésre mutatja a lakáselosztó belső vezetékezését (ÁVK, kismegszakítók, N és PE sín)."
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=k6-2gS6e1CM",
+  "title": "Kiselosztó cseréje, életvédelmi relé beszerelése!",
+  "channel": "Elektric Man 33",
+  "minutes": 3,
+  "topic": 4,
+  "captions": "hu-manual",
+  "why": "Röviden bemutatja egy kiselosztó felépítését ÁVK-val és kismegszakítókkal."
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=5oUEhyx6IAk",
+  "title": "Túlfeszültség? Ebben a lakásban már TUTI nem lesz! - Villanyszerelés egy téglalakásban (3. rész)",
+  "channel": "HomeElectric",
+  "minutes": 16,
+  "topic": 4,
+  "captions": "hu-auto",
+  "why": "Valós lakáselosztó szerelése túlfeszültség-levezetővel, fésűs sínnel és ÁVK-val, magyarázattal.",
+  "caution": "Valós lakásfelújítás, nem vizsgatábla; a vlog-jellegű részeket érdemes átugrani."
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=j_-lu_5fU24",
+  "title": "H és Normál tarifás villanyóra szekrény telepítése egy családi háznál",
+  "channel": "HomeElectric",
+  "minutes": 14,
+  "topic": 5,
+  "captions": "hu-auto",
+  "why": "Mérőszekrény telepítése és bekötése a gyakorlatban, a fogyasztásmérő hely felépítésével.",
+  "caution": "Kéttarifás (H+normál) változat, a vizsgán egyfázisú egy mérős hely a feladat."
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=6fSmUlYWK-4",
+  "title": "Így építünk ki szabványos mérőhelyet – 3 mérőhely egyben!",
+  "channel": "SZVT-Villamosság",
+  "minutes": 5,
+  "topic": 5,
+  "captions": "hu-auto",
+  "why": "A szabványos mérőhely kialakításának követelményeit és szerkezetét mutatja be."
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=Uabhu5LPx2I",
+  "title": "Fi-relé I Áramvédő kapcsoló I EGYSZERŰEN VILLANY - Jarács Pistivel",
+  "channel": "Jarács István Villamosbiztonsági felülvizsgáló",
+  "minutes": 23,
+  "topic": 6,
+  "captions": "hu-auto",
+  "why": "Villamosbiztonsági felülvizsgáló magyarázza el érthetően az ÁVK működését, típusait és szerepét az áramütés elleni védelemben."
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=8ZZ3ruaMJnA",
+  "title": "Villamos szerelések - 4. Lecke (Védővezetős érintésvédelmi módok)",
+  "channel": "Pribelszki Tamás",
+  "minutes": 7,
+  "topic": 6,
+  "captions": "hu-auto",
+  "why": "Tanórai stílusban, vizsgaszerű tartalommal foglalja össze a védővezetős érintésvédelmi módokat."
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=gXniLRsGavk",
+  "title": "VBF TN rendszerek ismertetése",
+  "channel": "Rátai Attila",
+  "minutes": 36,
+  "topic": 6,
+  "captions": "hu-auto",
+  "why": "Részletesen bemutatja a TN-C, TN-S és TN-C-S rendszereket és a PEN szétválasztás helyét."
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=5Vrnm3txBBg",
+  "title": "Érintésvédelmi mérések lépésről lépésre",
+  "channel": "Global Focus Kft.",
+  "minutes": 18,
+  "topic": 7,
+  "captions": "hu-auto",
+  "why": "Installációs multifunkciós műszerrel végigviszi a szerelői ellenőrzés méréseit (szigetelés, PE folytonosság, hurokimpedancia, ÁVK)."
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=0Ep94yKku3I",
+  "title": "Szigetelési ellenállás-mérés",
+  "channel": "Rátai Attila",
+  "minutes": 24,
+  "topic": 7,
+  "captions": "hu-auto",
+  "why": "A szigetelési ellenállás mérés menetét, mérőfeszültségeit és határértékeit szakoktató magyarázza el."
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=sy-CyGtJ_0M",
+  "title": "Villamos szerelések - 11. Lecke (A védővezető vizsgálata)",
+  "channel": "Pribelszki Tamás",
+  "minutes": 7,
+  "topic": 7,
+  "captions": "hu-auto",
+  "why": "Röviden elmagyarázza a védővezető folytonosságának vizsgálatát."
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=YBoaAQp1UAY",
+  "title": "A feszültségmentesítés 5 lépése - és mi a nulladik amit sokan kihagynak",
+  "channel": "Dániel Torba",
+  "minutes": 21,
+  "topic": 8,
+  "captions": "hu-auto",
+  "why": "Kifejezetten a feszültségmentesítés öt szabályát tárgyalja, amire a vizsgán biztosan rákérdeznek.",
+  "caution": "Kis csatorna, a tartalmat a hivatalos 5 lépéssel érdemes összevetni."
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=1N623QvxMok",
+  "title": "Kábelcsatorna felszerelése - Csepeli panellakás villanyszerelés (2. rész)",
+  "channel": "HomeElectric",
+  "minutes": 12,
+  "topic": 9,
+  "captions": "hu-auto",
+  "why": "Kábelcsatorna felszerelése, darabolása és sarkok kialakítása valós lakásban.",
+  "caution": "Valós lakás, nem szerelőfal; a vizsgán a gérvágás pontosságát és az esztétikát pontozzák."
+ }
+]

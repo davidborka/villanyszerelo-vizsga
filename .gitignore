@@ -1,0 +1,38 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# nyers AI-generált modellek (optimalizálva a public/models alá kerülnek)
+assets-src/raw
+
+# a Hot Seat helyben fut (privát repó), nem része a nyilvános repónak
+hotseat/
+# NotebookLM nyers letöltések és naplók
+research/pack/
+research/nlm/raw/
+research/*.log
+research/.notebook_id
+research/guide/index.html
+research/guide/audio/
+research/guide/img/
