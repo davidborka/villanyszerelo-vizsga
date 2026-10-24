@@ -1,0 +1,22 @@
+[
+ {
+  "key": "m04-meresek",
+  "focus": "Szerelői ellenőrzés és mérések a villanyszerelő vizsgán, gyakorlati bemutatás: szemrevételezés, védővezető folytonosság, szigetelési ellenállás mérése (mérőfeszültség, határértékek), hurokimpedancia és ÁVK vizsgálata – a műszer csatlakoztatása lépésről lépésre, mit kell kiírni a jegyzőkönyvbe, tipikus hibák."
+ },
+ {
+  "key": "m05-vilagitasvezerlesek",
+  "focus": "Világításvezérlések bekötése lépésről lépésre, rajzokkal: egypólusú (101), csillár (105), váltó–váltó, váltó–kereszt–váltó, impulzusrelé (A1–A2, 11–14) és lépcsőházi automata. Mutasd meg a vezetékek útját, az érszámokat a dobozok között, és hogy a kapcsoló mindig a fázist bontja."
+ },
+ {
+  "key": "m06-eloszto-csatorna",
+  "focus": "Lakáselosztó szerelése és kábelcsatorna-szerelés a vizsgán: a készülékek sorrendje (főkapcsoló, ÁVK, kismegszakítók), N és PE sín, áramköri jegyzék; kábelcsatorna méretre vágása, 45°-os sarkok, rögzítés, sorjázás; vezetékezés sorrendje PE → N → L."
+ },
+ {
+  "key": "m07-merohely",
+  "focus": "Egyfázisú fogyasztásmérő hely bekötése lépésről lépésre: méretlen fővezeték, főkismegszakító, mérő 1-3-4-6 kapcsai (fázis be-ki, nulla be-ki), TN-C-S szétválasztás PEN → PE és N, plombálható részek, a mért oldal; tipikus hibák a vizsgán."
+ },
+ {
+  "key": "m13-motorok-vezerles",
+  "focus": "Háromfázisú motor bekötése és mágneskapcsolós vezérlése, rajzokkal: kapocstábla csillag és delta kötése (adattábla 230/400 V vagy 400/690 V), főáramkör (kismegszakító, mágneskapcsoló, hőrelé), vezérlőáramkör öntartással, STOP és START, forgásirányváltás reteszeléssel."
+ }
+]

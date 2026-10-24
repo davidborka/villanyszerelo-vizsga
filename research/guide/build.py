@@ -201,18 +201,18 @@ GLOSSARY = [
 WIDGETS = {
     "m01-vizsga-strategia": ["pont-kalkulator"],
     "m02-munkavedelem": ["ot-szabaly", "szerszamvalasztas"],
-    "m03-aramutes-elleni-vedelem": ["hibaaram-demo", "avk-demo"],
-    "m04-meresek": ["meres-sorrend", "szigeteles-meres"],
-    "m05-vilagitasvezerlesek": ["valto-demo", "valto-bekotes", "impulzus-demo"],
-    "m06-eloszto-csatorna": ["eloszto-osszeallitas", "csatorna-vagas"],
+    "m03-aramutes-elleni-vedelem": ["hibaaram-demo", "avk-demo", "lepes-tt-foldeles"],
+    "m04-meresek": ["meres-sorrend", "szigeteles-meres", "rajz-mero-kapcsolas"],
+    "m05-vilagitasvezerlesek": ["valto-demo", "valto-bekotes", "impulzus-demo", "rajz-eroszam", "rajz-aramut-hiba"],
+    "m06-eloszto-csatorna": ["eloszto-osszeallitas", "csatorna-vagas", "rajz-eloszto"],
     "m07-merohely": ["merohely-bekotes"],
     "m08-interaktiv-vizsga": ["rajzjel-par"],
-    "m11-alapszamitasok": ["ohm-haromszog", "feszultsegeses"],
-    "m12-vezetekmeretezes-vedelem": ["kismegszakito-valasztas"],
-    "m13-motorok-vezerles": ["csillag-delta", "ontartas-demo"],
-    "m14-kabelek-szereles-kulonleges-helyek": ["erszin", "furdo-zonak"],
-    "m15-tulfeszultseg-pv-transzformator": ["pv-string"],
-    "m16-dokumentacio-anyagjegyzek-hibakereses": ["hibakereses"],
+    "m11-alapszamitasok": ["ohm-haromszog", "feszultsegeses", "lepes-eredo", "lepes-3f-teljesitmeny", "lepes-energia"],
+    "m12-vezetekmeretezes-vedelem": ["kismegszakito-valasztas", "lepes-hurok", "lepes-keresztmetszet"],
+    "m13-motorok-vezerles": ["csillag-delta", "ontartas-demo", "lepes-motor", "rajz-motor"],
+    "m14-kabelek-szereles-kulonleges-helyek": ["erszin", "furdo-zonak", "lepes-vilagitas"],
+    "m15-tulfeszultseg-pv-transzformator": ["pv-string", "lepes-trafo"],
+    "m16-dokumentacio-anyagjegyzek-hibakereses": ["hibakereses", "rajz-alaprajz"],
 }
 WSRC = os.path.join(SRC, "widgets")
 
@@ -231,12 +231,14 @@ def copy_widgets():
 def copy_media():
     """Hanganyag másolása, infografikák WebP-re tömörítése (1600 px széles)."""
     import subprocess
-    for sub in ("audio", "img"):
+    for sub in ("audio", "img", "video"):
         src, dst = os.path.join(PACK, sub), os.path.join(HERE, sub)
         os.makedirs(dst, exist_ok=True)
         if not os.path.isdir(src):
             continue
         for f in os.listdir(src):
+            if os.path.isdir(os.path.join(src, f)):
+                continue
             if sub == "img" and f.endswith(".png"):
                 out = os.path.join(dst, f[:-4] + ".webp")
                 if not os.path.exists(out):
@@ -255,6 +257,9 @@ def media(key):
         out += '<p class="muted">A hanglecke a NotebookLM-ben (Stúdió) érhető el.</p>'
     if has_i:
         out += f'<figure><img src="{i}" alt="Infografika: {e(key)}" loading="lazy"></figure>'
+    v = f"video/{key}.mp4"
+    if os.path.exists(os.path.join(HERE, v)):
+        out += f'<figure class="video"><video controls preload="none" playsinline src="{v}"></video><figcaption class="muted">Videólecke (NotebookLM, nyilvános forrásokból, AI-generált – ha eltér a modul szövegétől, a modul a mérvadó)</figcaption></figure>'
     return out
 
 
@@ -334,7 +339,7 @@ ol.plan{list-style:none;padding:0}ol.plan li{display:flex;gap:10px;flex-wrap:wra
 .progress{height:8px;background:var(--line);border-radius:99px;overflow:hidden}.progress i{display:block;height:100%;background:var(--good);width:0}
 .module{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin:18px 0}.principle{border-left:3px solid var(--acc);padding:2px 0 2px 12px;margin:14px 0}
 .sim{background:rgba(29,122,70,.08);padding:6px 10px;border-radius:6px}.err{background:rgba(180,35,24,.07);padding:6px 10px;border-radius:6px}.ref{font-size:13px;color:var(--muted);font-style:italic}
-figure{margin:12px 0}figure img{max-width:100%;border-radius:8px;border:1px solid var(--line)}
+figure{margin:12px 0}figure img,figure video{max-width:100%;width:100%;border-radius:8px;border:1px solid var(--line)}
 .player{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:10px 0}.player button,.player select,button.read,button.flash,.tools button{font:inherit;padding:6px 10px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--fg);cursor:pointer}
 .practice{display:none;margin-top:12px}body.practice-on .practice{display:block}details{border-bottom:1px solid var(--line);padding:6px 0}summary{cursor:pointer}
 .flashes{display:flex;gap:8px;flex-wrap:wrap}button.flash{min-height:64px;max-width:260px;text-align:left}button.flash.flip{background:var(--acc);color:#fff}
