@@ -1,8 +1,11 @@
-import { expect, test } from 'bun:test'
+import { beforeEach, expect, test } from 'bun:test'
 import { qualityStep } from '../src/scene/quality'
 import { fitDistance, focusTarget } from '../src/scene/cameraMath'
 import { soundEvents } from '../src/scene/sfx'
 import { useGame } from '../src/sim/store'
+
+// a hangosztályozó tesztjei üres játékállapotból indulnak, függetlenül a többi tesztfájl sorrendjétől
+beforeEach(() => useGame.getState().start('nyariKonyha', 'vizsga'))
 
 test('quality fallback lowers pixel ratio and disables ambient occlusion', () => {
   expect(qualityStep(2, 'decline')).toEqual({ level: 1, dpr: 1.25, ao: true })
